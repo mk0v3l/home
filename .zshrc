@@ -8,7 +8,7 @@ source .profile
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 export PATH="/usr/lib/w3m/:$PATH"
 export PATH="$HOME/snap/:$PATH"
 export PATH="$HOME/.gord/:$PATH"
@@ -181,7 +181,7 @@ alias clone="gh repo clone"
 alias tma="tmux a"
 alias tms="tmux source-file ~/.tmux.conf"
 
-alias cleanVimSession="rm .local/share/nvim/sessions/%home%mkovel* "
+alias cleanVimSession="rm ~/.local/share/nvim/sessions/%home%mkovel* "
 alias nv="cleanVimSession; /snap/bin/nvim -p "
 # alias nv="nvim"
 
