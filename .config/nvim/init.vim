@@ -137,9 +137,41 @@ colorscheme nord
 let g:bookmark_sign = '♥'
 let g:bookmark_no_default_key_mappings = 1
 
-" Move lines
-nnoremap <C-u> :m .-2<CR>==
-nnoremap <C-j> :m .+1<CR>==
+" TEST ZONE 
+" -------------------------------------------------
+"  Move lines
+"  exemple : 5j
+"  5j = 5 lines down
+"  5k = 5 lines up
+"  5h = 5 words left
+"  -------------------------------------------------
+"  Copy lines
+"  exemple : 5yy
+"  5yy = 5 lines copy
+"  -------------------------------------------------
+
+noremap <C-u> :m-2<CR>
+noremap <C-j> :m+<CR>
+
+xnoremap <C-u> :m-2<CR>gv=gv
+xnoremap <C-j> :m'>+<CR>gv=gv
+
+inoremap <C-u> <Esc>: m-2<CR>a
+inoremap <C-j> <Esc> :m+<CR>i
+
+
+
+
+
+" nnoremap <C-j> :m+<CR>
+
+" map <C-u> :m-2<CR>
+" map <C-j> :m+<CR>
+" nnoremap <C-u> :m-2<CR>
+
+
+
+
 
 " vmap <Leader>u :m .-2<CR>==
 " vmap <Leader>j :m .+1<CR>==
@@ -237,6 +269,8 @@ let g:tagbar_map_togglefold=''
 " WhichKey
 " Map leader to which_key
 noremap <silent> <leader> :WhichKeyVisual ';'<CR>
+noremap <silent>= :WhichKeyVisual '='<CR>
+noremap <silent>C :WhichKeyVisual 'C'<CR>
 set timeoutlen=50
 " nnoremap <silent> <leader> :silent WhichKey ';'<CR>
 " vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual ';'<CR>
@@ -249,7 +283,7 @@ let g:which_key_sep = '→'
 
 
 " Not a fan of floating windows for this
-let g:which_key_use_floating_win = 0
+let g:which_key_use_floating_win = 1
 
 " Change the colors if you want
 highlight default link WhichKey          Operator
@@ -279,17 +313,20 @@ tmap <Leader>, <C-\><C-n>:q<CR>
 tmap <Leader>: <C-\><C-n>:q<CR>
 tmap <Leader>; <C-\><C-n>
 
-map <Leader>gp :call CapitalPythonTemplate()<CR>
-map <Leader>gc :call PreInitCpp()<CR>
-map <Leader>gj :call InitClassIfCapJava()<CR>
-map <Leader>gh :call InitClassIfCapHpp()<CR>
-map <Leader>gmp :call MainPythonTemplate()<CR>
-map <Leader>gmc :call MainCppTemplate()<CR>
-map <Leader>gmj :call MainJavaTemplate()<CR>
+map <Leader>Gp :call CapitalPythonTemplate()<CR>
+map <Leader>Gc :call PreInitCpp()<CR>
+map <Leader>Gj :call InitClassIfCapJava()<CR>
+map <Leader>Gh :call InitClassIfCapHpp()<CR>
+map <Leader>Gmp :call MainPythonTemplate()<CR>
+map <Leader>Gmc :call MainCppTemplate()<CR>
+map <Leader>Gmj :call MainJavaTemplate()<CR>
+map <Leader>GMc :call GenerateCMakefile()<CR>
+map <Leader>GM+ :call GenerateCppMakefile()<CR>
 
 map <Leader>cj :term mvn clean compile<CR>i
 map <Leader>cc :term make<CR>i
 map <Leader>cp :term python3 %<CR>i
+map <Leader>cb :term 
 map <Leader>cec :term make run<CR>i
 map <Leader>cej :term mvn clean compile exec:java<CR>i
 
@@ -312,14 +349,15 @@ let g:which_key_map['/'] = [ '<C-a>'  , 'comment' ]
 let g:which_key_map.w = [ 'dw'        , 'Delete word' ]
 let g:which_key_map.q = [ '<Esc>'     , 'Exit menu WhichKey' ]
 let g:which_key_map.Q = [ 'Q'         , 'Exit (force)' ]
-let g:which_key_map.h = [ ';h'        , '╴ split horizontal' ]
-let g:which_key_map.v = [ ';v'		  , '| split vertical']
+let g:which_key_map.h = [ ';h'        , '╴ split horizontal ...' ]
+let g:which_key_map.v = [ ';v'		  , '| split vertical ...' ]
 let g:which_key_map.t = [ ';t'        , 'terminal' ]
 let g:which_key_map.b = [ ';b'        , 'bookmark' ]
 let g:which_key_map.m = [ ';m'        , 'next buffer' ]
 let g:which_key_map.l = [ ';l'        , 'previous buffer' ]
-let g:which_key_map[','] = [ ';,'     , 'new terminal split H (do it fast to close)' ]
-let g:which_key_map[':'] = [ ';:'     , 'new terminal split V (do it fast to close)' ]
+let g:which_key_map[','] = [ ';,'     , '╴ TERM split horizontal' ]
+let g:which_key_map[':'] = [ ';:'     , '| TERM split vertical' ]
+let g:which_key_map[';'] = [ ';;'     , 'Insert mode again' ]
 let g:which_key_map.d = [ ';d'        , 'Tree Toogle ' ]
 let g:which_key_map.f = [ ';f'        , 'Tree focus' ]
 
@@ -348,6 +386,7 @@ let g:which_key_map.c = {
 	  \ 'c' : [';cp'     , 'C++ compile with make'],
 	  \ 'p' : [';cp'     , 'Python exec'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
+	  \ 'b' : [';cb'    , 'Bash command ...'],
       \ }
 
 let g:which_key_map.c.e= {
@@ -357,35 +396,47 @@ let g:which_key_map.c.e= {
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
 
-let g:which_key_map.g = {
+let g:which_key_map.G = {
       \ 'name' : '+GenerateCode Language' ,
-      \ 'c' : [';gc'     , 'CPP source from HPP file'],
-	  \ 'p' : [';gp'     , 'Python class template'],
-	  \ 'j' : [';gj'     , 'Java class template'],
-	  \ 'h' : [';gh'     , 'HPP class template'],
+      \ 'c' : [';Gc'     , 'CPP source from HPP file'],
+	  \ 'p' : [';Gp'     , 'Python class template'],
+	  \ 'j' : [';Gj'     , 'Java class template'],
+	  \ 'h' : [';Gh'     , 'HPP class template'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
-let g:which_key_map.g.m= {
+let g:which_key_map.G.m= {
 	  \ 'name' : '+MainTemplate Language' ,
-	  \ 'p' : [';gmp'     , 'Python main template'],
-	  \ 'c' : [';gmc'     , 'C++ main template'],
-	  \ 'j' : [';gmj'     , 'Java main template'],
+	  \ 'p' : [';Gmp'     , 'Python main template'],
+	  \ 'c' : [';Gmc'     , 'C++ main template'],
+	  \ 'j' : [';Gmj'     , 'Java main template'],
 	  \ 'q' : ['<Esc>'    , 'Exit menu WhichKey'],
 	  \ }
-map <Leader>gMc :call GenerateCMakefile()<CR>
-map <Leader>gM+ :call GenerateCppMakefile()<CR>
-let g:which_key_map.g.M= {
+let g:which_key_map.G.M= {
 	  \ 'name' : '+Makefile C/C++' ,
 	  \ 'q' : ['<Esc>'    , 'Exit menu WhichKey'],
-	  \ 'c' : [';gMc'     , 'C Makefile'],
-	  \ '+' : [';gM+'     , 'C++ Makefile'],
+	  \ 'c' : [';GMc'     , 'C Makefile'],
+	  \ '+' : [';GM+'     , 'C++ Makefile'],
 	  \ }
-
+map <Leader>gs :term git status<CR>i
+let g:which_key_map.g = {
+      \ 'name' : '+Git Commands' ,
+	  \ 's' : [';gs'     , 'git status'],
+	  \ 'c' : [';gc'     , 'git add and commit'],
+	  \ 'a' : [';ga'     , 'git add'],
+	  \ 'p' : [';gp'     , 'git push'],
+	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
+	  \ }
 
 " Register which key map
 call which_key#register(';', "g:which_key_map")
+let g:which_key_map2 = {}
 
-
+let g:which_key_map2['C-u'] = [ ''     , 'Move line(s) up' ]
+let g:which_key_map2['C-j'] = [ ''     , 'Move line(s) down' ]
+let g:which_key_map2['C-a'] = [ ''     , 'Comment line(s)' ]
+let g:which_key_map2[';'] = [ ''     , 'Leader key' ]
+let g:which_key_map2['='] = [ '<Esc>'     , 'Exit menu WhichKey' ]
+call which_key#register('=', "g:which_key_map2")
 
 " let g:which_key_map = {}
 " let g:which_key_sep = '>'
@@ -463,6 +514,35 @@ call which_key#register(';', "g:which_key_map")
 " nnoremap <silent> <leader>Left :bnext<CR>
 
 
+
+
+
+" test zone 
+"1
+"2
+"3
+"4
+"5
+"6
+"7
+"----------------
+"8
+"9
+"10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 " nnoremap <space-f>     :NERDTreeTabsToggle<CR>
 " nnoremap <S-t> :TerminalVSplit zsh<CR>
 
@@ -477,19 +557,6 @@ call which_key#register(';', "g:which_key_map")
 " nnoremap <esc> :noh<return><esc>
 
 " move lines
-
-" nnoremap <C-p> :m-2<CR>
-" nnoremap <C-m> :m+<CR>
-" unbind <Enter>
-" map <C-p> :m-2<CR>
-" map <C-m> :m+<CR>
-
-" inoremap <A-Up> <Esc>: m-2<CR>
-" inoremap <A-Down> <Esc> :m+<CR>
-
-
-" xnoremap <A-Up> :m-2<CR>gv=gv
-" xnoremap <A-Down> :m'>+<CR>gv=gv
 " nmap <C-h> :sp temp<CR> 
 " inoremap <C-a> <Esc> :Commentary<CR>
 " vnoremap <C-a> :Commentary<CR> 

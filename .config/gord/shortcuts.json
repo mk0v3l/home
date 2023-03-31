@@ -37,16 +37,16 @@
     {
         "Identifier": "copy_selected_message_link",
         "ScopeIdentifier": "chatview",
-        "EventKey": 256,
-        "EventMod": 0,
-        "EventRune": 108
+        "EventKey": 12,
+        "EventMod": 2,
+        "EventRune": 12
     },
     {
         "Identifier": "copy_selected_message",
         "ScopeIdentifier": "chatview",
         "EventKey": 256,
         "EventMod": 0,
-        "EventRune": 99
+        "EventRune": 121
     },
     {
         "Identifier": "toggle_selected_message_spoilers",
@@ -65,37 +65,37 @@
     {
         "Identifier": "view_selected_message_images",
         "ScopeIdentifier": "chatview",
+        "EventKey": -1,
+        "EventMod": -1,
+        "EventRune": -1
+    },
+    {
+        "Identifier": "selection_up",
+        "ScopeIdentifier": "chatview",
         "EventKey": 256,
         "EventMod": 0,
         "EventRune": 111
     },
     {
-        "Identifier": "selection_up",
-        "ScopeIdentifier": "chatview",
-        "EventKey": 257,
-        "EventMod": 0,
-        "EventRune": 0
-    },
-    {
         "Identifier": "selection_down",
         "ScopeIdentifier": "chatview",
-        "EventKey": 258,
+        "EventKey": 256,
         "EventMod": 0,
-        "EventRune": 0
+        "EventRune": 108
     },
     {
         "Identifier": "selection_top",
         "ScopeIdentifier": "chatview",
-        "EventKey": 268,
+        "EventKey": 256,
         "EventMod": 0,
-        "EventRune": 0
+        "EventRune": 107
     },
     {
         "Identifier": "selection_bottom",
         "ScopeIdentifier": "chatview",
-        "EventKey": 269,
+        "EventKey": 256,
         "EventMod": 0,
-        "EventRune": 0
+        "EventRune": 109
     },
     {
         "Identifier": "toggle_reply_mention",
@@ -107,16 +107,16 @@
     {
         "Identifier": "expand_selection_word_to_left",
         "ScopeIdentifier": "multiline_text_input",
-        "EventKey": 260,
-        "EventMod": 1,
-        "EventRune": 0
+        "EventKey": 2,
+        "EventMod": 6,
+        "EventRune": 2
     },
     {
         "Identifier": "expand_selection_word_to_right",
         "ScopeIdentifier": "multiline_text_input",
-        "EventKey": 259,
-        "EventMod": 1,
-        "EventRune": 0
+        "EventKey": 14,
+        "EventMod": 6,
+        "EventRune": 14
     },
     {
         "Identifier": "select_all",
@@ -184,30 +184,30 @@
     {
         "Identifier": "move_cursor_to_word_left",
         "ScopeIdentifier": "multiline_text_input",
-        "EventKey": 260,
-        "EventMod": 2,
-        "EventRune": 0
+        "EventKey": 256,
+        "EventMod": 4,
+        "EventRune": 107
     },
     {
         "Identifier": "move_cursor_to_word_right",
         "ScopeIdentifier": "multiline_text_input",
-        "EventKey": 259,
-        "EventMod": 2,
-        "EventRune": 0
+        "EventKey": 256,
+        "EventMod": 4,
+        "EventRune": 109
     },
     {
         "Identifier": "move_cursor_to_start_of_line",
         "ScopeIdentifier": "multiline_text_input",
-        "EventKey": 268,
-        "EventMod": 0,
-        "EventRune": 0
+        "EventKey": 256,
+        "EventMod": 4,
+        "EventRune": 106
     },
     {
         "Identifier": "move_cursor_to_end_of_line",
         "ScopeIdentifier": "multiline_text_input",
-        "EventKey": 269,
-        "EventMod": 0,
-        "EventRune": 0
+        "EventKey": 256,
+        "EventMod": 4,
+        "EventRune": 37
     },
     {
         "Identifier": "move_cursor_to_start_of_text",
@@ -289,44 +289,44 @@
     {
         "Identifier": "focus_up",
         "ScopeIdentifier": "global",
-        "EventKey": 257,
-        "EventMod": 4,
-        "EventRune": 0
+        "EventKey": -1,
+        "EventMod": -1,
+        "EventRune": -1
     },
     {
         "Identifier": "focus_down",
         "ScopeIdentifier": "global",
         "EventKey": 258,
-        "EventMod": 4,
+        "EventMod": 2,
         "EventRune": 0
     },
     {
         "Identifier": "focus_left",
         "ScopeIdentifier": "global",
         "EventKey": 260,
-        "EventMod": 4,
+        "EventMod": 2,
         "EventRune": 0
     },
     {
         "Identifier": "focus_right",
         "ScopeIdentifier": "global",
         "EventKey": 259,
-        "EventMod": 4,
+        "EventMod": 2,
         "EventRune": 0
     },
     {
         "Identifier": "focus_channel_container",
         "ScopeIdentifier": "global",
-        "EventKey": 256,
-        "EventMod": 4,
-        "EventRune": 99
+        "EventKey": 15,
+        "EventMod": 6,
+        "EventRune": 15
     },
     {
         "Identifier": "focus_user_container",
         "ScopeIdentifier": "global",
-        "EventKey": 256,
-        "EventMod": 4,
-        "EventRune": 117
+        "EventKey": 10,
+        "EventMod": 6,
+        "EventRune": 10
     },
     {
         "Identifier": "focus_guild_container",
@@ -352,37 +352,37 @@
     {
         "Identifier": "focus_message_input",
         "ScopeIdentifier": "global",
-        "EventKey": 12,
+        "EventKey": 0,
         "EventMod": 2,
-        "EventRune": 12
+        "EventRune": 0
     },
     {
         "Identifier": "focus_message_container",
         "ScopeIdentifier": "global",
-        "EventKey": 256,
-        "EventMod": 4,
-        "EventRune": 116
+        "EventKey": 16,
+        "EventMod": 6,
+        "EventRune": 16
     },
     {
         "Identifier": "focus_command_input",
         "ScopeIdentifier": "global",
-        "EventKey": -1,
-        "EventMod": -1,
-        "EventRune": -1
+        "EventKey": 2,
+        "EventMod": 2,
+        "EventRune": 2
     },
     {
         "Identifier": "focus_command_output",
         "ScopeIdentifier": "global",
-        "EventKey": -1,
-        "EventMod": -1,
-        "EventRune": -1
+        "EventKey": 7,
+        "EventMod": 2,
+        "EventRune": 7
     },
     {
         "Identifier": "toggle_user_container",
         "ScopeIdentifier": "global",
-        "EventKey": 21,
+        "EventKey": 10,
         "EventMod": 2,
-        "EventRune": 21
+        "EventRune": 10
     },
     {
         "Identifier": "toggle_command_view",
@@ -394,23 +394,23 @@
     {
         "Identifier": "toggle_bare_chat",
         "ScopeIdentifier": "global",
-        "EventKey": 2,
+        "EventKey": 14,
         "EventMod": 2,
-        "EventRune": 2
+        "EventRune": 14
     },
     {
         "Identifier": "group_channel_mark_muted",
         "ScopeIdentifier": "global",
-        "EventKey": 21,
+        "EventKey": 25,
         "EventMod": 2,
-        "EventRune": 21
+        "EventRune": 25
     },
     {
         "Identifier": "guild_mark_muted",
         "ScopeIdentifier": "guildlist",
-        "EventKey": 21,
+        "EventKey": 25,
         "EventMod": 2,
-        "EventRune": 21
+        "EventRune": 25
     },
     {
         "Identifier": "guild_mark_read",
@@ -422,9 +422,9 @@
     {
         "Identifier": "channel_mark_muted",
         "ScopeIdentifier": "channeltree",
-        "EventKey": 21,
+        "EventKey": 25,
         "EventMod": 2,
-        "EventRune": 21
+        "EventRune": 25
     },
     {
         "Identifier": "channel_mark_read",
