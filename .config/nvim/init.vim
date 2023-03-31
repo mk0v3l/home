@@ -366,12 +366,21 @@ let g:which_key_map.g = {
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
 let g:which_key_map.g.m= {
-	  \ 'name' : '+GenerateMainTemplate Language' ,
+	  \ 'name' : '+MainTemplate Language' ,
 	  \ 'p' : [';gmp'     , 'Python main template'],
 	  \ 'c' : [';gmc'     , 'C++ main template'],
 	  \ 'j' : [';gmj'     , 'Java main template'],
 	  \ 'q' : ['<Esc>'    , 'Exit menu WhichKey'],
 	  \ }
+map <Leader>gMc :call GenerateCMakefile()<CR>
+map <Leader>gM+ :call GenerateCppMakefile()<CR>
+let g:which_key_map.g.M= {
+	  \ 'name' : '+Makefile C/C++' ,
+	  \ 'q' : ['<Esc>'    , 'Exit menu WhichKey'],
+	  \ 'c' : [';gMc'     , 'C Makefile'],
+	  \ '+' : [';gM+'     , 'C++ Makefile'],
+	  \ }
+
 
 " Register which key map
 call which_key#register(';', "g:which_key_map")
@@ -562,13 +571,97 @@ function PreInitCpp()
 	call setline(1, '#include "'.expand('%:t:r').'.hpp"')	
 	
 endfunction
-
 function GenerateCPP()
 	execute "w"
 	call InitCpp()
 	let cppfile = expand('%:t:r').".cpp"
     execute "vs ".fnameescape(cppfile)
 endfunction
+
+
+" CC = gcc
+
+" CFLAGS = -Wall -Wextra -std=c11
+
+" EXEC = main 
+
+" SRC = $(wildcard *.c)
+
+" OBJ = $(SRC:.c=.o)
+
+" all: $(EXEC)
+
+" %.o: %.c
+" 	$(CC) -c $(CFLAGS) $< -o $@
+
+" $(EXEC): $(OBJ)
+" 	$(CC) $(CFLAGS) $^ -o $@
+
+" clean:
+" 	rm -f $(OBJ) $(EXEC)
+" run: all
+" 	rm -f *.o
+" 	./$(EXEC)
+
+" function GenerateCMakefile()
+" 	call setline(1, 'CC = gcc')
+" 	call setline(2, 'CFLAGS = -Wall -Wextra -std=c11')
+" 	call setline(3, 'EXEC = main')
+" 	call setline(4, 'SRC = $(wildcard *.c)')
+" 	call setline(5, 'OBJ = $(SRC:.c=.o)')
+" 	call setline(6, 'all: $(EXEC)')
+" 	call setline(7, '%.o: %.c')
+" 	call setline(8, '	$(CC) -c $(CFLAGS) $< -o $@')
+" 	call setline(9, '$(EXEC): $(OBJ)')
+" 	call setline(10, '	$(CC) $(CFLAGS) $^ -o $@')
+" 	call setline(11, 'clean:')
+" 	call setline(12, '	rm -f $(OBJ) $(EXEC)')
+" 	call setline(13, 'run: all')
+" 	call setline(14, '	rm -f *.o')
+" 	call setline(15, '	./$(EXEC)')
+" endfunction
+
+
+
+function GenerateGeneriqueCorpsMakefile()
+	call setline(3, '# CPPFLAGS += -Werror')
+	call setline(4, '')
+	call setline(5, 'EXEC = main')
+	call setline(6, 'SRC = $(wildcard *.cpp)')
+	call setline(7, 'OBJ = $(SRC:.cpp=.o)')
+	call setline(8, '')
+	call setline(9, 'all: $(EXEC)')
+	call setline(10, '')
+	call setline(11, '%.o: %.cpp')
+	call setline(12, '	$(CC) -c $(CFLAGS) $< -o $@')
+	call setline(13, '')
+	call setline(14, '$(EXEC): $(OBJ)')
+	call setline(15, '	$(CC) $(CFLAGS) $^ -o $@')
+	call setline(16, '')
+	call setline(17, 'clean:')
+	call setline(18, '	rm -f $(OBJ) $(EXEC)')
+	call setline(19, '')
+	call setline(20, 'run: all')
+	call setline(21, '	rm -f *.o')
+	call setline(22, '	./$(EXEC)')
+	execute "w"
+endfunction
+
+function GenerateCppMakefile()
+	call setline(1, 'CC = g++')
+	call setline(2, 'CFLAGS = -Wall -Wextra -std=c++17')
+	call GenerateGeneriqueCorpsMakefile()
+	endfunction
+
+function GenerateCMakefile()
+	call setline(1, 'CC = gcc')
+	call setline(2, 'CFLAGS = -Wall -Wextra -std=c11')
+	call GenerateGeneriqueCorpsMakefile()
+endfunction
+
+
+
+
 
 function InitClassIfCapHpp()
     if expand('%:t') =~ '^[A-Z]'
