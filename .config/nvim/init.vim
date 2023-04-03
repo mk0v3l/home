@@ -690,7 +690,8 @@ endfunction
 
 
 
-function GenerateGeneriqueCorpsMakefile()
+function Foo()
+" function GenerateGeneriqueCorpsMakefile()
 	call setline(3, '# CPPFLAGS += -Werror')
 	call setline(4, '')
 	call setline(5, 'EXEC = main')
@@ -717,13 +718,13 @@ endfunction
 function GenerateCppMakefile()
 	call setline(1, 'CC = g++')
 	call setline(2, 'CFLAGS = -Wall -Wextra -std=c++17')
-	call GenerateGeneriqueCorpsMakefile()
+	call Foo()
 	endfunction
 
 function GenerateCMakefile()
 	call setline(1, 'CC = gcc')
 	call setline(2, 'CFLAGS = -Wall -Wextra -std=c11')
-	call GenerateGeneriqueCorpsMakefile()
+	call Foo()
 endfunction
 
 
