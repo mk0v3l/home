@@ -165,6 +165,7 @@ alias transfert="cd /home/mkovel/Documents/transfert"
 
 
 alias cl="clear"
+alias c="clear"
 
 #Discord
 alias cordless="/home/mkovel/cordless/cordless"
@@ -181,8 +182,12 @@ alias clone="gh repo clone"
 alias tma="tmux a"
 alias tms="tmux source-file ~/.tmux.conf"
 
-alias cleanVimSession="rm ~/.local/share/nvim/sessions/%home%mkovel* "
-alias nv="cleanVimSession; /snap/bin/nvim -p "
+# function cleanVimSession() {
+# 	rm ~/.local/share/nvim/sessions/%home%mkovel* > /dev/null 2>&1
+# }
+
+alias cleanVimSession="rm ~/.local/share/nvim/sessions/%home%mkovel* & "
+alias nv="(cleanVimSession) > /dev/null 2>&1; /snap/bin/nvim -p "
 # alias nv="nvim"
 
 alias DirectBackup_="sudo dd if=/dev/mmcblk0 of=/dev/sda bs=4096 status=progress conv=notrunc,noerror"
@@ -270,7 +275,9 @@ function isDefFunc(){
 	done
 	return 1
 }
-
+function install(){
+	sudo apt install $@
+}
 # var=/file.torrent 
 # transmission-edit  $var -d $(transmission-show $var |egrep -o 'https?://[^ ]+')
 

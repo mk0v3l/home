@@ -1,3 +1,6 @@
+ " set guifont=JetBrains\ Mono\ Nerd\ Font\ Mono:h14
+ " set guifont=DroidSansMono_Nerd_Font:h11
+" set guifont=DroidSansMono\ Nerd\ Font\ 11
 "  Plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'https://github.com/Mofiqul/dracula.nvim'
@@ -14,7 +17,7 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/jiangmiao/auto-pairs'
 Plug 'https://github.com/tpope/vim-commentary'
-Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+" Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'https://github.com/preservim/tagbar'
@@ -27,7 +30,7 @@ Plug 'https://github.com/github/copilot.vim.git'
 Plug 'liuchengxu/vim-which-key'
 set encoding=UTF-8
 call plug#end()
-
+set encoding=UTF-8
 " Default settings
 set number
 set relativenumber
@@ -327,9 +330,9 @@ map <Leader>cj :term mvn clean compile<CR>i
 map <Leader>cc :term make<CR>i
 map <Leader>cp :term python3 %<CR>i
 map <Leader>cb :term 
+map <Leader>ct :term mvn test<CR>i
 map <Leader>cec :term make run<CR>i
 map <Leader>cej :term mvn clean compile exec:java<CR>i
-
 
 map <Leader>d :NERDTreeToggle <CR>
 map <Leader>f :NERDTreeFocus <CR>
@@ -387,6 +390,7 @@ let g:which_key_map.c = {
 	  \ 'p' : [';cp'     , 'Python exec'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
 	  \ 'b' : [';cb'    , 'Bash command ...'],
+	  \ 't' : [';ct'    , 'Java test with maven'],
       \ }
 
 let g:which_key_map.c.e= {
