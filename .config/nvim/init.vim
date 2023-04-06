@@ -79,6 +79,10 @@ noremap l j
 noremap o k
 nnoremap m l
 
+vnoremap k h
+vnoremap l j
+vnoremap o k
+vnoremap m l
 " Begin/End of l ine
 noremap j 0
 map ù $
@@ -246,16 +250,22 @@ nnoremap <C-f> :Telescope find_files cwd=/home/mkovel hidden=true<CR>
 map <Leader>s. :Telescope find_files cwd=. <CR>
 map <Leader>sh :Telescope find_files cwd=/home/mkovel hidden=true<CR>
 
+
+" imap <silent><script><expr> <C-Space> copilot#Accept("\<CR>")
+imap <silent><script><expr> <Right> copilot#Accept('<Right>')
+let g:copilot_no_tab_map = v:true
 " Coc.nvim
 let g:coc_disable_startup_warning = 1
 " S-Tab for autocomplete coc
-inoremap <expr> <S-Tab> pumvisible() ? coc#_select_confirm() : "<S-Tab>"
+" imap <expr> <S-Tab> pumvisible() ? coc#_select_confirm() : "<S-Tab>"
+inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
+" vim.api.nvim_set_keymap( "i", "<C-J>", 'copilot#accept("<CR>")', {silent = true, expr = true})
 
 " goto def/ref
-map <silent> gd <Plug>(coc-definition)
-map <silent> gy <Plug>(coc-type-definition)
-map <silent> gi <Plug>(coc-implementation)
-map <silent> gr <Plug>(coc-references)
+" map <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 " keyset ("n", "gd", "<Plug>(coc-definition)", {silent = true})
 " keyset ("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
 " keyset ("n", "gi", "<Plug>(coc-implementation)", {silent = true})
@@ -347,6 +357,13 @@ map <Leader>sc :Telescope treesitter<CR>
 
 map <Leader>st :TagbarToggle<CR>
 
+" noremap gd :call CocAction('jumpDefinition')<CR>
+" map <Leader>Gd :call CocAction('jumpDefinition')<CR>
+map <Leader>Gd <Plug>(coc-definition)
+map <Leader>Gr :call CocAction('jumpReferences')<CR>
+map <Leader>r :call CocActionAsync('rename') <CR>
+map <Leader>Ff <Plug>(coc-fix-current)
+map <Leader>Fa :call CocActionAsync('codeAction')<CR>
 " Single mappings
 let g:which_key_map['/'] = [ '<C-a>'  , 'comment' ]
 let g:which_key_map.w = [ 'dw'        , 'Delete word' ]
@@ -363,7 +380,23 @@ let g:which_key_map[':'] = [ ';:'     , '| TERM split vertical' ]
 let g:which_key_map[';'] = [ ';;'     , 'Insert mode again' ]
 let g:which_key_map.d = [ ';d'        , 'Tree Toogle ' ]
 let g:which_key_map.f = [ ';f'        , 'Tree focus' ]
+let g:which_key_map.r = [ ';r'        , 'Rename' ]
+" let g:which_key_m ap.F = [ ';F'        , 'Fix (quick)' ]
 
+let g:which_key_map.F = {
+      \ 'name' : '+Fix' ,
+	  \ 'f' : [';Ff'     , 'Quick'],
+	  \ 'a' : [';Fa'      , 'Actions'],
+	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
+      \ }
+
+
+let g:which_key_map.V = {
+      \ 'name' : '+Goto' ,
+	  \ 'd' : [';Gd'     , 'Definition'],
+	  \ 'r' : [';Gr'      , 'References'],
+	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
+      \ }
 " Sub-mappings
 let g:which_key_map.S = {
       \ 'name' : '+Search Strings (live_grep)' ,
@@ -694,7 +727,7 @@ endfunction
 
 
 
-function Foo()
+function GenerateMainCorps()
 " function GenerateGeneriqueCorpsMakefile()
 	call setline(3, '# CPPFLAGS += -Werror')
 	call setline(4, '')
@@ -722,13 +755,13 @@ endfunction
 function GenerateCppMakefile()
 	call setline(1, 'CC = g++')
 	call setline(2, 'CFLAGS = -Wall -Wextra -std=c++17')
-	call Foo()
+	call GenerateMainCorps()
 	endfunction
 
 function GenerateCMakefile()
 	call setline(1, 'CC = gcc')
 	call setline(2, 'CFLAGS = -Wall -Wextra -std=c11')
-	call Foo()
+	call GenerateMainCorps()
 endfunction
 
 

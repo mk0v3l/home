@@ -1,5 +1,5 @@
-
-source .profile
+TERM=xterm-256color
+source ~/.profile
 #tmux
 #tmux source-file ~/.tmux.config 
 # source ~/.zsh/zsh-dircolors-nord/zsh-dircolors-nord.zsh
