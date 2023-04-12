@@ -1,5 +1,9 @@
+
+echo -e '\033[?6c'
+source .profile
+# xmodmap ~/.xmaptoazerty
 TERM=xterm-256color
-source ~/.profile
+setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz
 #tmux
 #tmux source-file ~/.tmux.config 
 # source ~/.zsh/zsh-dircolors-nord/zsh-dircolors-nord.zsh
@@ -9,22 +13,40 @@ source ~/.profile
 
 # Path to your oh-my-zsh installation.
 # export ZSH="$HOME/.oh-my-zsh"
+export EDITOR=/snap/bin/nvim
+
 export PATH="/usr/lib/w3m/:$PATH"
 export PATH="$HOME/snap/:$PATH"
-export PATH="$HOME/.gord/:$PATH"
+# export PATH="$HOME/.gord/:$PATH"
 export PATH="/snap/bin/nvim:$PATH"
 export PATH="$HOME/.stubgen-2.07/:$PATH"
-
+export PATH=$PATH:/usr/local/go/bin
 mkpi=192.168.1.77 
 ipi=192.168.1.25
 cm4=192.168.1.71
+hp=192.168.1.61
+ilinux=192.168.1.17
+
+function gord() {
+	if [ -d $DISPLAY ]; then
+		TERM=linux
+	fi
+	
+	~/.gord/gord 
+	
+	if [ -d $DISPLAY ]; then
+		TERM=xterm-256color
+	fi
+}
+
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
  # ZSH_THEME="mlh"
- ZSH_THEME="gozilla"
-# ZSH_THEME="nord-extended/nord"
+ # ZSH_THEME="gozilla"
+ZSH_THEME="nord-extended/nord"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -211,6 +233,7 @@ alias reload_torrent="scp /home/mkovel/Downloads/*.torrent mkovel@mkpi.local:/ho
 alias reload="source ~/.zshrc"
 alias dk="w3m https://duckduckgo.com"
 alias gg="w3m https://google.com"
+alias ygg="w3m yggtorrent.do"
 alias cleanVim="rm ~/.local/state/nvim/swap/*"
 # alias cleanVim="rm ~/.local/share/nvim/swap/*.swp* "
 alias cloneGenie="git clone ssh://git@gitlab.ulb.be:30422/ulb-infof307/2023-groupe-3.git"
@@ -278,6 +301,28 @@ function isDefFunc(){
 function install(){
 	sudo apt install $@
 }
+ # pdftoppm -png test.pdf test
+function pdf2jpg(){
+	filename=$(basename -- "$1")
+	mkdir -p ${filename%.*}PdfJpg
+	pdftoppm -jpeg -progress $1 ${filename%.*}PdfJpg/${filename%.*}
+}
+function pdf2png(){
+	filename=$(basename -- "$1")
+	mkdir -p ${filename%.*}PdfPng
+	pdftoppm -png $1 ${filename%.*}PdfPng/${filename%.*}
+}
+function pdftojpg(){
+	pdf2jpg $@
+}
+function pdftopng(){
+	pdf2png $@
+}
+# function pdftopng(){
+# 	filename=$(basename -- "$1")
+# 	mkdir -p ${filename%.*}
+# 	pdftoppm -png $1 ${filename%.*}/${filename%.*}
+# }
 # var=/file.torrent 
 # transmission-edit  $var -d $(transmission-show $var |egrep -o 'https?://[^ ]+')
 
@@ -286,10 +331,13 @@ function install(){
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias comandLine="sudo systemctl isolate multi-user.target"
 alias graphics="sudo systemctl isolate graphical.target"
-alias M="setfont /usr/share/consolefonts/Lat38-TerminusBold32x16.psf.gz"
+alias M="setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz"
+# alias M="setfont /usr/share/consolefonts/Lat38-TerminusBold22x11.psf.gz"
+# alias M="setfont /usr/share/consolefonts/Lat38-TerminusBold16.psf.gz"
 alias m="setfont /usr/share/consolefonts/Lat38-Terminus12x6.psf.gz"
 # alias b="acpi | cowsay -f stegosaurus"
-alias b="acpi | cowsay  -f bulbasaur"
+# alias b="acpi | cowsay  -f bulbasaur"
+alias d="date > /tmp/date; acpi >> /tmp/date; cat /tmp/date|cowsay -f bulbasaur; rm /tmp/date" 
 alias battery="acpi"
 alias shutdown="sudo shutdown now"
 alias reboot="sudo reboot now"
@@ -297,6 +345,9 @@ alias meteo="curl wttr.in/bruxelles"
 alias weather="curl wttr.in/bruxelles"
 alias loadKeyboard="sudo loadkeys ~/.keymap"
 # alias d="date | cowsay -f www"
-alias d="date | cowsay -f charmander"
+# alias d="date | cowsay -f charmander"
 alias nvimLua="rm -rf .config/nvim; mkdir .config/nvim; cp -r .config/nvimLuaOnly/* .config/nvim/ " 
 alias nvimclassic="rm -rf .config/nvim; mkdir .config/nvim; cp -r .config/oldNvim/* .config/nvim/ " 
+
+alias torrentDowload="sudo rtorrent -n -d ~/Téléchargements/torrents/"
+alias hibernate="sudo echo suspend in 3 secs; sleep 3 ;sudo pm-suspend"
