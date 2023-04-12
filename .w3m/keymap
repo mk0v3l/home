@@ -1,7 +1,7 @@
 keymap C-p COMMAND "OPTIONS"
 
-keymap - COMMAND "NEXT_TAB"
-keymap ) COMMAND "PREV_TAB"
+keymap = COMMAND "NEXT_TAB"
+keymap - COMMAND "PREV_TAB"
 # keymap ç COMMAND "TAB_RIGHT"
 
 keymap o COMMAND "MOVE_UP"
@@ -23,3 +23,5 @@ keymap L COMMAND "UP"
 
 keymap I COMMAND "VIEW_IMAGE"
 keymap i COMMAND "SAVE_IMAGE"
+keymap p COMMAND "PREV"
+keymap P COMMAND "NEXT"

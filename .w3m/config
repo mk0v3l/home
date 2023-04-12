@@ -1,7 +1,7 @@
 tabstop 8
 indent_incr 4
-pixel_per_char 7
-pixel_per_line 14
+pixel_per_char 10
+pixel_per_line 20
 frame 0
 target_self 0
 open_tab_blank 0
@@ -27,7 +27,7 @@ pseudo_inlines 1
 auto_image 1
 max_load_image 4
 ext_image_viewer 0
-image_scale 100
+image_scale 75
 imgdisplay w3mimgdisplay
 image_map_list 1
 fold_line 0
@@ -156,3 +156,5 @@ use_jisx0213 0
 strict_iso2022 1
 gb18030_as_ucs 0
 simple_preserve_space 0
+# image_scale 48
+image_scale 10
