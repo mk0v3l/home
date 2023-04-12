@@ -62,7 +62,7 @@ set clipboard+=unnamedplus
 
 
 " KEY MAPPING
-let mapleader = ';' " Leader Key
+let mapleader = ',' " Leader Key
 
 " Default Key Mapping
 
@@ -70,7 +70,7 @@ let mapleader = ';' " Leader Key
 map m <Nop> 
 
 " Another way to go in insert mode
-map <Leader>; i
+map <Leader>, i
 
 
 " Directions
@@ -85,7 +85,7 @@ vnoremap o k
 vnoremap m l
 " Begin/End of l ine
 noremap j 0
-map ù $
+map ' $
 
 " Fast move
 noremap <C-k> b
@@ -127,13 +127,13 @@ map <C-y> :source ~/.config/nvim/init.vim<CR>
 
 " Binds to Save and Quit
 map <C-s> :w<CR>
-map <C-q> :q<CR>
+nmap <C-a> :q<CR>
 map <S-q> :q!<CR>
 map <C-a-Q> :q!<CR>
 map <C-S-Q> :q!<CR>
 imap <C-s> <Esc>:w<CR>
 
-imap <C-q> <Esc>:q<CR>
+imap <C-a> <Esc>:q<CR>
 nmap <C-v> :vs N<CR> 
 
 " Color Scheme
@@ -227,7 +227,7 @@ imap <C-t> <Esc>:sp term://zsh<CR>i<CR>
 map <C-t> :sp term://zsh<CR>i<CR>
 " tmap <C-q> <C-\><C-n>:q<CR>
 tmap <C-s> <C-\><C-n>
-tmap <C-q> <C-\><C-n>:q<CR>
+tmap <C-a> <C-\><C-n>:q<CR>
 tmap <C-Left>  <C-\><C-n><C-w>h
 tmap <C-Right>  <C-\><C-n><C-w>l
 tmap <C-Up>  <C-\><C-n><C-w>k
@@ -272,8 +272,8 @@ inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 " keyset ("n", "gr", "<Plug>(coc-references)", {silent = true})
 
 
-imap <C-a> <Esc>:Commentary<CR>i 
-map <C-a> :Commentary<CR>
+imap <C-q> <Esc>:Commentary<CR>i 
+map <C-q> :Commentary<CR>
 
 " Tagbar
 nmap <F1> :TagbarToggle<CR>
@@ -281,7 +281,7 @@ let g:tagbar_map_togglefold=''
 
 " WhichKey
 " Map leader to which_key
-noremap <silent> <leader> :WhichKeyVisual ';'<CR>
+noremap <silent> <leader> :WhichKeyVisual ','<CR>
 noremap <silent>= :WhichKeyVisual '='<CR>
 noremap <silent>C :WhichKeyVisual 'C'<CR>
 set timeoutlen=50
@@ -318,13 +318,13 @@ map <Leader>b :BookmarkToggle<CR>
 map <Leader>m :bnext<CR>
 
 map <Leader>l :bprevious<CR>
-map <Leader>, :sp term://zsh<CR>i<CR>
-map <Leader>: :vs term://zsh<CR>i<CR>
-imap <Leader>, <Esc>:sp term://zsh<CR>i<CR>
-imap <Leader>: <Esc>:vs term://zsh<CR>i<CR>
-tmap <Leader>, <C-\><C-n>:q<CR>
-tmap <Leader>: <C-\><C-n>:q<CR>
-tmap <Leader>; <C-\><C-n>
+map <Leader>; :sp term://zsh<CR>i<CR>
+map <Leader>. :vs term://zsh<CR>i<CR>
+imap <Leader>; <Esc>:sp term://zsh<CR>i<CR>
+imap <Leader>. <Esc>:vs term://zsh<CR>i<CR>
+tmap <Leader>. <C-\><C-n>:q<CR>
+tmap <Leader>; <C-\><C-n>:q<CR>
+tmap <Leader>, <C-\><C-n>
 
 map <Leader>Gp :call CapitalPythonTemplate()<CR>
 map <Leader>Gc :call PreInitCpp()<CR>
@@ -365,113 +365,113 @@ map <Leader>r :call CocActionAsync('rename') <CR>
 map <Leader>Ff <Plug>(coc-fix-current)
 map <Leader>Fa :call CocActionAsync('codeAction')<CR>
 " Single mappings
-let g:which_key_map['/'] = [ '<C-a>'  , 'comment' ]
+let g:which_key_map['/'] = [ '<C-q>'  , 'comment' ]
 let g:which_key_map.w = [ 'dw'        , 'Delete word' ]
 let g:which_key_map.q = [ '<Esc>'     , 'Exit menu WhichKey' ]
 let g:which_key_map.Q = [ 'Q'         , 'Exit (force)' ]
-let g:which_key_map.h = [ ';h'        , '╴ split horizontal ...' ]
-let g:which_key_map.v = [ ';v'		  , '| split vertical ...' ]
-let g:which_key_map.t = [ ';t'        , 'terminal' ]
-let g:which_key_map.b = [ ';b'        , 'bookmark' ]
-let g:which_key_map.m = [ ';m'        , 'next buffer' ]
-let g:which_key_map.l = [ ';l'        , 'previous buffer' ]
-let g:which_key_map[','] = [ ';,'     , '╴ TERM split horizontal' ]
-let g:which_key_map[':'] = [ ';:'     , '| TERM split vertical' ]
-let g:which_key_map[';'] = [ ';;'     , 'Insert mode again' ]
-let g:which_key_map.d = [ ';d'        , 'Tree Toogle ' ]
-let g:which_key_map.f = [ ';f'        , 'Tree focus' ]
-let g:which_key_map.r = [ ';r'        , 'Rename' ]
-" let g:which_key_m ap.F = [ ';F'        , 'Fix (quick)' ]
+let g:which_key_map.h = [ ',h'        , '╴ split horizontal ...' ]
+let g:which_key_map.v = [ ',v'		  , '| split vertical ...' ]
+let g:which_key_map.t = [ ',t'        , 'terminal' ]
+let g:which_key_map.b = [ ',b'        , 'bookmark' ]
+let g:which_key_map.m = [ ',m'        , 'next buffer' ]
+let g:which_key_map.l = [ ',l'        , 'previous buffer' ]
+let g:which_key_map['.'] = [ ',.'     , '╴ TERM split horizontal' ]
+let g:which_key_map[';'] = [ ',;'     , '| TERM split vertical' ]
+let g:which_key_map[','] = [ ',,'     , 'Insert mode again' ]
+let g:which_key_map.d = [ ',d'        , 'Tree Toogle ' ]
+let g:which_key_map.f = [ ',f'        , 'Tree focus' ]
+let g:which_key_map.r = [ ',r'        , 'Rename' ]
+" let g:which_key_m ap.F = [ ',F'        , 'Fix (quick)' ]
 
 let g:which_key_map.F = {
       \ 'name' : '+Fix' ,
-	  \ 'f' : [';Ff'     , 'Quick'],
-	  \ 'a' : [';Fa'      , 'Actions'],
+	  \ 'f' : [',Ff'     , 'Quick'],
+	  \ 'a' : [',Fa'      , 'Actions'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
 
 
 let g:which_key_map.V = {
       \ 'name' : '+Goto' ,
-	  \ 'd' : [';Gd'     , 'Definition'],
-	  \ 'r' : [';Gr'      , 'References'],
+	  \ 'd' : [',Gd'     , 'Definition'],
+	  \ 'r' : [',Gr'      , 'References'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
 " Sub-mappings
 let g:which_key_map.S = {
       \ 'name' : '+Search Strings (live_grep)' ,
-	  \ '.' : [';S.'     , 'here'],
-	  \ 'h' : [';Sh'     , 'home'],
-	  \ 'H' : [';SH'     , 'home hidden'],
+	  \ '.' : [',S.'     , 'here'],
+	  \ 'h' : [',Sh'     , 'home'],
+	  \ 'H' : [',SH'     , 'home hidden'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
 
 let g:which_key_map.s = {
       \ 'name' : '+Search Files' ,
-	  \ '.' : [';s.'     , 'here'],
-	  \ 'h' : [';sh'     , 'home'],
-	  \ 'H' : [';sH'     , 'home hidden'],
-	  \ 'c' : [';sc'     , 'Class view (treesitter)'],
-	  \ 't' : [';st'     , 'Class view (tagbar)'],
+	  \ '.' : [',s.'     , 'here'],
+	  \ 'h' : [',sh'     , 'home'],
+	  \ 'H' : [',sH'     , 'home hidden'],
+	  \ 'c' : [',sc'     , 'Class view (treesitter)'],
+	  \ 't' : [',st'     , 'Class view (tagbar)'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
 
 let g:which_key_map.c = {
       \ 'name' : '+Compile/Exec Language' ,
-	  \ 'j' : [';cj'     , 'Java compile with maven'],
-	  \ 'c' : [';cp'     , 'C++ compile with make'],
-	  \ 'p' : [';cp'     , 'Python exec'],
+	  \ 'j' : [',cj'     , 'Java compile with maven'],
+	  \ 'c' : [',cp'     , 'C++ compile with make'],
+	  \ 'p' : [',cp'     , 'Python exec'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
-	  \ 'b' : [';cb'    , 'Bash command ...'],
-	  \ 't' : [';ct'    , 'Java test with maven'],
+	  \ 'b' : [',cb'    , 'Bash command ...'],
+	  \ 't' : [',ct'    , 'Java test with maven'],
       \ }
 
 let g:which_key_map.c.e= {
 	  \ 'name' : '+Exec Language' ,
-	  \ 'c' : [';cec'    , 'C++ Exec with make'],
-	  \ 'j' : [';cej'    , 'Java exec with maven'],
+	  \ 'c' : [',cec'    , 'C++ Exec with make'],
+	  \ 'j' : [',cej'    , 'Java exec with maven'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
 
 let g:which_key_map.G = {
       \ 'name' : '+GenerateCode Language' ,
-      \ 'c' : [';Gc'     , 'CPP source from HPP file'],
-	  \ 'p' : [';Gp'     , 'Python class template'],
-	  \ 'j' : [';Gj'     , 'Java class template'],
-	  \ 'h' : [';Gh'     , 'HPP class template'],
+      \ 'c' : [',Gc'     , 'CPP source from HPP file'],
+	  \ 'p' : [',Gp'     , 'Python class template'],
+	  \ 'j' : [',Gj'     , 'Java class template'],
+	  \ 'h' : [',Gh'     , 'HPP class template'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
 let g:which_key_map.G.m= {
 	  \ 'name' : '+MainTemplate Language' ,
-	  \ 'p' : [';Gmp'     , 'Python main template'],
-	  \ 'c' : [';Gmc'     , 'C++ main template'],
-	  \ 'j' : [';Gmj'     , 'Java main template'],
+	  \ 'p' : [',Gmp'     , 'Python main template'],
+	  \ 'c' : [',Gmc'     , 'C++ main template'],
+	  \ 'j' : [',Gmj'     , 'Java main template'],
 	  \ 'q' : ['<Esc>'    , 'Exit menu WhichKey'],
 	  \ }
 let g:which_key_map.G.M= {
 	  \ 'name' : '+Makefile C/C++' ,
 	  \ 'q' : ['<Esc>'    , 'Exit menu WhichKey'],
-	  \ 'c' : [';GMc'     , 'C Makefile'],
-	  \ '+' : [';GM+'     , 'C++ Makefile'],
+	  \ 'c' : [',GMc'     , 'C Makefile'],
+	  \ '+' : [',GM+'     , 'C++ Makefile'],
 	  \ }
 map <Leader>gs :term git status<CR>i
 let g:which_key_map.g = {
       \ 'name' : '+Git Commands' ,
-	  \ 's' : [';gs'     , 'git status'],
-	  \ 'c' : [';gc'     , 'git add and commit'],
-	  \ 'a' : [';ga'     , 'git add'],
-	  \ 'p' : [';gp'     , 'git push'],
+	  \ 's' : [',gs'     , 'git status'],
+	  \ 'c' : [',gc'     , 'git add and commit'],
+	  \ 'a' : [',ga'     , 'git add'],
+	  \ 'p' : [',gp'     , 'git push'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
 	  \ }
 
 " Register which key map
-call which_key#register(';', "g:which_key_map")
+call which_key#register(',', "g:which_key_map")
 let g:which_key_map2 = {}
 
 let g:which_key_map2['C-u'] = [ ''     , 'Move line(s) up' ]
 let g:which_key_map2['C-j'] = [ ''     , 'Move line(s) down' ]
 let g:which_key_map2['C-a'] = [ ''     , 'Comment line(s)' ]
-let g:which_key_map2[';'] = [ ''     , 'Leader key' ]
+let g:which_key_map2[','] = [ ''     , 'Leader key' ]
 let g:which_key_map2['='] = [ '<Esc>'     , 'Exit menu WhichKey' ]
 call which_key#register('=', "g:which_key_map2")
 
