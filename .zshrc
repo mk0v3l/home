@@ -348,6 +348,5 @@ alias loadKeyboard="sudo loadkeys ~/.keymap"
 # alias d="date | cowsay -f charmander"
 alias nvimLua="rm -rf .config/nvim; mkdir .config/nvim; cp -r .config/nvimLuaOnly/* .config/nvim/ " 
 alias nvimclassic="rm -rf .config/nvim; mkdir .config/nvim; cp -r .config/oldNvim/* .config/nvim/ " 
-
 alias torrentDowload="sudo rtorrent -n -d ~/Téléchargements/torrents/"
 alias hibernate="sudo echo suspend in 3 secs; sleep 3 ;sudo pm-suspend"
