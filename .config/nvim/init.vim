@@ -3,6 +3,10 @@
 " set guifont=DroidSansMono\ Nerd\ Font\ 11
 "  Plugins
 call plug#begin('~/.config/nvim/plugged')
+Plug 'floobits/floobits-neovim'
+Plug 'jbyuki/instant.nvim'
+Plug 'RRethy/vim-illuminate'
+Plug 'lervag/vimtex'
 Plug 'https://github.com/Mofiqul/dracula.nvim'
 Plug 'https://github.com/mg979/docgen.vim'
 Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
@@ -28,6 +32,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'https://github.com/github/copilot.vim.git'
 " Plug 'JASONews/glow-hover'
 Plug 'liuchengxu/vim-which-key'
+Plug 'NoahTheDuke/vim-just'
 set encoding=UTF-8
 call plug#end()
 set encoding=UTF-8
@@ -35,7 +40,7 @@ set encoding=UTF-8
 set number
 set relativenumber
 syntax on
-set tabstop=4
+" set tabstop=4
 set backspace=indent,eol,start
 set incsearch
 set wildmenu
@@ -43,8 +48,8 @@ set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set mouse=a
 set autoindent
-set smarttab
-set softtabstop=4
+" set smarttab
+" set softtabstop=4
 set shiftwidth=4
 set splitbelow splitright
 autocmd InsertEnter,InsertLeave * set cul!
@@ -57,8 +62,8 @@ set clipboard+=unnamedplus
 " unmap <k>
 " set t_Co=256
 " colorscheme solarized 
-
-
+set shell=zsh
+let g:shell_cmd = 'zsh -i -l'
 
 
 " KEY MAPPING
@@ -84,8 +89,11 @@ vnoremap l j
 vnoremap o k
 vnoremap m l
 " Begin/End of l ine
-noremap j 0
-map ' $
+" noremap j 0
+noremap j b
+map { 0
+map ' w
+map [ $
 
 " Fast move
 noremap <C-k> b
@@ -166,7 +174,8 @@ xnoremap <C-j> :m'>+<CR>gv=gv
 inoremap <C-u> <Esc>: m-2<CR>a
 inoremap <C-j> <Esc> :m+<CR>i
 
-
+let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog = '/usr/bin/python3'
 
 
 
@@ -272,7 +281,7 @@ inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 " keyset ("n", "gr", "<Plug>(coc-references)", {silent = true})
 
 
-imap <C-q> <Esc>:Commentary<CR>i 
+imap <C-q> <Esc>:Commentary<CR>i
 map <C-q> :Commentary<CR>
 
 " Tagbar
@@ -294,6 +303,8 @@ let g:which_key_map =  {}
 let g:which_key_sep = '→'
 " set timeoutlen=100
 
+" Collaboration
+let g:instant_username = 'mkovel'
 
 " Not a fan of floating windows for this
 let g:which_key_use_floating_win = 1
@@ -311,7 +322,8 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 " Define the mappings
 map <Leader>q :q<CR>
-map <Leader>v :vs 
+map <Leader>v <CR> :vs
+" map <Leader>v :vs 
 map <Leader>h :sp 
 map <Leader>t :term<CR>i
 map <Leader>b :BookmarkToggle<CR>
@@ -359,8 +371,17 @@ map <Leader>st :TagbarToggle<CR>
 
 " noremap gd :call CocAction('jumpDefinition')<CR>
 " map <Leader>Gd :call CocAction('jumpDefinition')<CR>
-map <Leader>Gd <Plug>(coc-definition)
-map <Leader>Gr :call CocAction('jumpReferences')<CR>
+" map <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+map <Leader>Vy <Plug>(coc-type-definition)
+map <Leader>Vi <Plug>(coc-implementation)
+
+
+map <Leader>Vd <Plug>(coc-definition)
+map <Leader>Vr <Plug>(coc-references)
+" map <Leader>Vr :call CocAction('jumpReferences')<CR>
 map <Leader>r :call CocActionAsync('rename') <CR>
 map <Leader>Ff <Plug>(coc-fix-current)
 map <Leader>Fa :call CocActionAsync('codeAction')<CR>
@@ -393,8 +414,8 @@ let g:which_key_map.F = {
 
 let g:which_key_map.V = {
       \ 'name' : '+Goto' ,
-	  \ 'd' : [',Gd'     , 'Definition'],
-	  \ 'r' : [',Gr'      , 'References'],
+	  \ 'd' : [',Vd'     , 'Definition'],
+	  \ 'r' : [',Vr'      , 'References'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
 " Sub-mappings
@@ -787,7 +808,10 @@ function InitClassIfCapHpp()
 		call GenerateCPP()
 	endif
 endfunction
-
+autocmd FileType cpp setlocal commentstring=//\ %s
+autocmd FileType hpp setlocal commentstring=//\ %s
+autocmd FileType c setlocal commentstring=//\ %s
+autocmd FileType h setlocal commentstring=//\ %s
 augroup initLanguage
     autocmd!
 	if !filereadable(expand("%:p"))

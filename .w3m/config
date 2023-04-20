@@ -157,4 +157,4 @@ strict_iso2022 1
 gb18030_as_ucs 0
 simple_preserve_space 0
 # image_scale 48
-image_scale 10
+image_scale 90

