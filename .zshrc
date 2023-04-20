@@ -1,3 +1,7 @@
+# source ~/.clock.sh
+# source ~/.controlbat.sh
+# setopt PROMPT_SUBST
+# PROMPT_SUBST='%B%F{red}%n@%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 
 # echo 255 > /tmp/brightness; sudo cp /tmp/brightness /sys/class/leds/smc::kbd_backlight/brightness; rm /tmp/brightness
 echo -e '\033[?6c'
@@ -34,7 +38,12 @@ cwtp=wlx30de4b20e988
 cw=wlp3s0
 cwm=prism0
 mkpiTmate=taQJkT5qyKqTJnef9k5RMfjuZ@lon1.tmate.io
-
+function showdate(){
+    printf '\033[;H'
+    date
+    # sleep 1
+    # showdate
+}
 
 function testInject(){
     # sudo aireplay-ng --test $cwm
@@ -465,3 +474,31 @@ alias jr="just run"
 alias jmr="just make run"
 alias updateTmateiLinux="scp mkovel@192.168.1.17:~/airlinux.tmate ~/tmate/"
 eval "$(zoxide init zsh)"
+# PROMPT_SUBST='%B%F{red}%n@%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
+# PROMPT='%B%F{red}%n%f%F{yellow}@%F{blue}%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
+# setopt PROMPT_SUBST
+# PROMPT='%B%F{red}%n@%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
+setopt PROMPT_SUBST
+# PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}] ($(acpi | awk "{print \$4}" | tr -d ",")%) %f:%F{green}${${(%):-%~}}%f$ %b'
+output=$(acpi);
+percentage=$(echo $output | awk '{print $4}' | tr -d ',%');
+# echo $percentage
+export colorBat=green
+# export colorBat=$(cat ~/.colorBat)
+if [ "$percentage" -lt 10 ]; then
+    # if test "$percentage" -lt 10; then
+    # if ((percentage < 10)); then
+    # if (( $percentage < 10 )); then
+	export colorBat=red
+	PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{red}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+	# PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{red}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+    else
+	export colorBat=green
+	PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{green}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+    fi
+# PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{green}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+TMOUT=1
+TRAPALRM() {
+    zle reset-prompt
+}
