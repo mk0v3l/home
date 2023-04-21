@@ -107,7 +107,7 @@ function crack(){
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
  # ZSH_THEME="mlh"
  # ZSH_THEME="gozilla"
-ZSH_THEME="nord-extended/nord"
+# ZSH_THEME="nord-extended/nord"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -435,7 +435,7 @@ alias m="setfont /usr/share/consolefonts/Lat38-Terminus12x6.psf.gz"
 # alias b="acpi | cowsay -f stegosaurus"
 # alias b="acpi | cowsay  -f bulbasaur"
 alias d="date > /tmp/date; acpi >> /tmp/date; cat /tmp/date|cowsay -f bulbasaur; rm /tmp/date" 
-alias battery="acpi"
+# alias battery="acpi"
 alias shutdown="sudo shutdown now"
 alias reboot="sudo reboot now"
 alias meteo="curl wttr.in/bruxelles|less"
@@ -478,27 +478,133 @@ eval "$(zoxide init zsh)"
 # PROMPT='%B%F{red}%n%f%F{yellow}@%F{blue}%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 # setopt PROMPT_SUBST
 # PROMPT='%B%F{red}%n@%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
-setopt PROMPT_SUBST
-# PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}] ($(acpi | awk "{print \$4}" | tr -d ",")%) %f:%F{green}${${(%):-%~}}%f$ %b'
-output=$(acpi);
-percentage=$(echo $output | awk '{print $4}' | tr -d ',%');
-# echo $percentage
-export colorBat=green
-# export colorBat=$(cat ~/.colorBat)
-if [ "$percentage" -lt 10 ]; then
-    # if test "$percentage" -lt 10; then
-    # if ((percentage < 10)); then
-    # if (( $percentage < 10 )); then
+# function battery(){
+    # output=$(acpi);
+    # percentage=$(echo $output | awk '{print $4}' | tr -d ',%');
+    # export colorBat=green
+    # if [ $percentage -lt 94 ]; then
+    # if [ $percentage -lt 11 ]; then
+	# export colorBat=red
+    # else
+	# export colorBat=green
+    # fi
+
+    # PROMPT='%B%F{blue}%n%f%F{white} at %F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+    # TMOUT=1
+    # TMOUT=10
+
+    # PROMPT='%B%F{blue}%n%f%F{white} at %F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+# blinkFlag=false
+# blinkFlag=true
+
+# TRAPALRM() {
+    # output=$(acpi)
+    # percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
+
+    # if [ $percentage -lt 94 ]; then
+    # # if [ $percentage -lt 11 ]; then
+    #     if [ $blinkFlag = false ]; then
+    #         colorBat=red
+    #         blinkFlag=true
+    #     else
+    #         colorBat=white
+    #         blinkFlag=false
+    #     fi
+    # else
+    #     colorBat=green
+    #     blinkFlag=false
+    # fi
+
+#     zle reset-prompt
+# }
+
+    setopt PROMPT_SUBST
+
+LIGHTBAT=21
+LOWBAT=16
+CRTICALBAT=11
+# LOWBAT=16
+# CRTICALBAT=11
+# LIGHTBAT=20
+    output=$(acpi)
+    percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
+    if [ $percentage -lt $LIGHTBAT ]; then
 	export colorBat=red
-	PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{red}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
-	# PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{red}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
-    else
+	else
 	export colorBat=green
-	PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{green}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+	fi
+
+    PROMPT='%B%F{blue}%n%f%F{white} at %F{cyan}%m%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+
+export TMOUT=5
+# TRAPALRM() {
+#     output=$(acpi)
+#     percentage=$(echo $output | awk '{print $5}' | tr -d ',%')
+
+#     if [ $percentage -lt $CRTICALBAT ]; then
+# 	export TMOUT=2
+#         if [ $colorBat = "red" ]; then
+#             export colorBat=white
+#         else
+#             export colorBat=red
+# 	fi
+#     else
+# 	if [ $percentage -lt $LOWBAT ]; then
+# 	    if [ $colorBat = "red" ]; then
+# 		export colorBat=white
+# 	    else
+# 		export colorBat=red
+# 		if ! [ $percentage -lt $LOWBAT ]; then
+# 		    export TMOUT=6
+# 		fi
+# 	    fi
+# 	fi
+#     else 
+# 	if  [ $percentage -lt $LIGHTBAT ]; then
+# 	    export colorBat=red 
+# 	fi
+#     else 
+# 	export colorBat=green
+#     fi
+
+# 	zle reset-prompt
+# }
+funcion battery(){
+# TRAPALRM() {
+    output=$(acpi)
+    percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
+    charging=$(echo $output | awk '{print $3}' | tr -d ',%')
+
+    if [ $percentage -lt $CRTICALBAT ]; then
+        export TMOUT=1
+        if [ $colorBat = "red" ]; then
+	    # echo "red"
+            export colorBat=white
+        else
+            export colorBat=red
+        fi
+    elif [ $percentage -lt $LOWBAT ]; then
+        if [ $colorBat = "red" ]; then
+            export colorBat=white
+	    export TMOUT=1
+        else
+            export colorBat=red
+            if ! [ $percentage -lt $CRTICALBAT ]; then
+                export TMOUT=5
+            fi
+        fi
+    elif [ $percentage -lt $LIGHTBAT ]; then
+        export colorBat=red 
+    else 
+        export colorBat=green
     fi
-# PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{green}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
-PROMPT='%B%F{blue}%n%f%F{white}@%F{cyan}%m%f%F{yellow}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
-TMOUT=1
+    if [ $charging = "Charging" ]; then
+		export colorBat=green
+	fi
+}
+
+battery
 TRAPALRM() {
+    battery
     zle reset-prompt
 }
