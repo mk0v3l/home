@@ -1,9 +1,12 @@
- " set guifont=JetBrains\ Mono\ Nerd\ Font\ Mono:h14
+" set guifont=JetBrains\ Mono\ Nerd\ Font\ Mono:h14
  " set guifont=DroidSansMono_Nerd_Font:h11
 " set guifont=DroidSansMono\ Nerd\ Font\ 11
 "  Plugins
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'voldikss/vim-floaterm'
+Plug 'akinsho/toggleterm.nvim',{'tag': '*'}
+Plug 'https://tpope.io/vim/fugitive.git'
 Plug 'floobits/floobits-neovim'
 Plug 'jbyuki/instant.nvim'
 Plug 'RRethy/vim-illuminate'
@@ -36,6 +39,9 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'NoahTheDuke/vim-just'
 set encoding=UTF-8
 call plug#end()
+
+
+" require('toggleterm').setup{}
 set encoding=UTF-8
 " Default settings
 set number
@@ -230,11 +236,41 @@ let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_theme = 'onedark'
+" let g:airline_section_y = '$%{strftime("%H:%M:%S")}'
+let g:airline#statusline = 'hello'
 set showtabline=2
 
 " Terminal
-imap <C-t> <Esc>:sp term://zsh<CR>i<CR>
-map <C-t> :sp term://zsh<CR>i<CR>
+" imap <C-t> <Esc>:sp term://zsh<CR>i<CR>
+" map <C-t> <Cmd>exe v:count1 , "ToggleTerm"<CR>
+let g:floaterm_height = 35
+let g:floaterm_width = 120
+let g:floaterm_autoclose = 0
+" noremap <Leader>t :FloatermNew --height=35 --width=120<CR>
+" autocmd VimEnter * FloatermNew --height=30 --width=120 | FloatermToggle
+" autocmd VimEnter * call OpenTerminal()
+" autocmd VimEnter * FloatermToggle
+" tnoremap <silent><C-n> <C-\><C-n>:FloatermNew --height=30 --width=120 <CR>
+" tnoremap <silent><C-q> exit<CR>
+nnoremap <silent><C-t> :FloatermToggle<CR>
+tnoremap <silent><C-t> <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent><C-o> <C-\><C-n>:FloatermPrev<CR>
+tnoremap <silent><C-p> <C-\><C-n>:FloatermNext<CR>
+tnoremap <silent><C-x> <C-\><C-n>:FloatermKill<CR>
+tnoremap <silent><C-b> <C-\><C-n>:FloatermNew<CR>
+map <Leader>z :FloatermNew lazygit<CR>
+" tnoremap <silent><C-n> <C-\><C-n>:FloatermPrev<CR>
+" tnoremap <silent><C-a> <C-\><C-n>:FloatermToggle<CR>
+
+function! OpenTerminal()
+    FloatermNew --height=35 --width=120
+    " execute 'normal FloatermToggle'
+    FloatermKill
+    " execute 'normal \<C-\\>\<C-n>'
+endfunction
+
+
+" map <C-t> :sp term://zsh<CR>i<CR>
 " tmap <C-q> <C-\><C-n>:q<CR>
 tmap <C-s> <C-\><C-n>
 tmap <C-a> <C-\><C-n>:q<CR>
@@ -326,18 +362,22 @@ map <Leader>q :q<CR>
 map <Leader>v <CR> :vs
 " map <Leader>v :vs 
 map <Leader>h :sp 
-map <Leader>t :term<CR>i
+" map <Leader>t :term<CR>i
 map <Leader>b :BookmarkToggle<CR>
 map <Leader>m :bnext<CR>
 
 map <Leader>l :bprevious<CR>
-map <Leader>; :sp term://zsh<CR>i<CR>
-map <Leader>. :vs term://zsh<CR>i<CR>
-imap <Leader>; <Esc>:sp term://zsh<CR>i<CR>
-imap <Leader>. <Esc>:vs term://zsh<CR>i<CR>
-tmap <Leader>. <C-\><C-n>:q<CR>
-tmap <Leader>; <C-\><C-n>:q<CR>
+" map <Leader>; :sp term://zsh<CR>i<CR>
+map <Leader>; :FloatermNew --wintype=split --height=20<CR>
+" map <Leader>. :vs term://zsh<CR>i<CR>
+map <Leader>. :FloatermNew --wintype=vsplit --width=70<CR>
+" imap <Leader>; <Esc>:sp term://zsh<CR>i<CR>
+" imap <Leader>. <Esc>:vs term://zsh<CR>i<CR>
+" tmap <Leader>. <C-\><C-n>:q<CR>
+" tmap <Leader>; <C-\><C-n>:q<CR>
 tmap <Leader>, <C-\><C-n>
+tmap <Leader>. <C-\><C-n>:FloatermKill<CR>
+tmap <Leader>; <C-\><C-n>:FloatermKill<CR>
 
 map <Leader>Gp :call CapitalPythonTemplate()<CR>
 map <Leader>Gc :call PreInitCpp()<CR>
@@ -349,13 +389,13 @@ map <Leader>Gmj :call MainJavaTemplate()<CR>
 map <Leader>GMc :call GenerateCMakefile()<CR>
 map <Leader>GM+ :call GenerateCppMakefile()<CR>
 
-map <Leader>cj :term mvn clean compile<CR>i
-map <Leader>cc :term make<CR>i
-map <Leader>cp :term python3 %<CR>i
-map <Leader>cb :term 
-map <Leader>ct :term mvn test<CR>i
-map <Leader>cec :term make run<CR>i
-map <Leader>cej :term mvn clean compile exec:java<CR>i
+map <Leader>cj :FloatermNew mvn clean compile<CR>i
+map <Leader>cc :FloatermNew make<CR>i
+map <Leader>cp :FloatermNew python3 %<CR>i
+map <Leader>cb :FloatermNew 
+map <Leader>ct :FloatermNew mvn test<CR>i
+map <Leader>cec :FloatermNew make run<CR>i
+map <Leader>cej :FloatermNew mvn clean compile exec:java<CR>i
 
 map <Leader>d :NERDTreeToggle <CR>
 map <Leader>f :NERDTreeFocus <CR>
@@ -393,7 +433,7 @@ let g:which_key_map.q = [ '<Esc>'     , 'Exit menu WhichKey' ]
 let g:which_key_map.Q = [ 'Q'         , 'Exit (force)' ]
 let g:which_key_map.h = [ ',h'        , '╴ split horizontal ...' ]
 let g:which_key_map.v = [ ',v'		  , '| split vertical ...' ]
-let g:which_key_map.t = [ ',t'        , 'terminal' ]
+" let g:which_key_map.t = [ ',t'        , 'terminal' ]
 let g:which_key_map.b = [ ',b'        , 'bookmark' ]
 let g:which_key_map.m = [ ',m'        , 'next buffer' ]
 let g:which_key_map.l = [ ',l'        , 'previous buffer' ]
@@ -403,6 +443,7 @@ let g:which_key_map[','] = [ ',,'     , 'Insert mode again' ]
 let g:which_key_map.d = [ ',d'        , 'Tree Toogle ' ]
 let g:which_key_map.f = [ ',f'        , 'Tree focus' ]
 let g:which_key_map.r = [ ',r'        , 'Rename' ]
+let g:which_key_map.z = [ ',z'        , 'LazyGit' ]
 " let g:which_key_m ap.F = [ ',F'        , 'Fix (quick)' ]
 
 let g:which_key_map.F = {
@@ -454,6 +495,22 @@ let g:which_key_map.c.e= {
 	  \ 'j' : [',cej'    , 'Java exec with maven'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
+map <Leader>tl :FloatermNew lazygit<CR>
+map <Leader>tg :FloatermNew w3m https://www.google.com<CR>
+map <Leader>tk :FloatermNew w3m https://duckduckgo.com<CR>
+map <Leader>ty :FloatermNew w3m https://www.yggtorrent.do<CR>
+map <Leader>tn :FloatermNew <CR>
+map <Leader>tr :FloatermNew ranger<CR>
+let g:which_key_map.t = {
+	  \ 'name' : '+Terminal Language' ,
+	  \ 'l' : [',tl'     , 'LazyGit'],
+	  \ 'g' : [',tg'   , 'Google'],
+	  \ 'k' : [',tk'   , 'DuckDuckGo'],
+	  \ 'y' : [',ty'   , 'YggTorrent'],
+	  \ 'n' : [',tn'   , 'New Terminal'],
+	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
+	  \ }
+
 
 let g:which_key_map.G = {
       \ 'name' : '+GenerateCode Language' ,
@@ -477,6 +534,7 @@ let g:which_key_map.G.M= {
 	  \ '+' : [',GM+'     , 'C++ Makefile'],
 	  \ }
 map <Leader>gs :term git status<CR>i
+map <Leader>ga :Gwrite<CR> 
 let g:which_key_map.g = {
       \ 'name' : '+Git Commands' ,
 	  \ 's' : [',gs'     , 'git status'],
@@ -809,6 +867,14 @@ function InitClassIfCapHpp()
 		call GenerateCPP()
 	endif
 endfunction
+function GitAdd()
+	execute "!git add ".expand('%:p')
+endfunction
+" autocmd TermEnter term://*toggleterm#* 
+	    " \tnoremap <silent><c-t> <Cmd>exe v:count1 . 'ToggleTerm direction=horizontal' <CR>
+		    
+
+set statusline=Hello
 autocmd FileType cpp setlocal commentstring=//\ %s
 autocmd FileType hpp setlocal commentstring=//\ %s
 autocmd FileType c setlocal commentstring=//\ %s
