@@ -9,7 +9,7 @@ echo -e '\033[?6c'
 source ~/.profile
 # xmodmap ~/.xmaptoazerty
 TERM=xterm-256color
-setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz
+setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz 2> /dev/null
 #tmux
 #tmux source-file ~/.tmux.config 
 # source ~/.zsh/zsh-dircolors-nord/zsh-dircolors-nord.zsh
@@ -256,6 +256,7 @@ alias cordless="/home/mkovel/cordless/cordless"
 # alias gord="/home/mkovel/gord/gord"
 
 alias python="python3"
+alias py="python3"
 
 alias work="cd ~/work"
 
@@ -275,7 +276,7 @@ alias cleanVimSession="rm ~/.local/share/nvim/sessions/%home%mkovel* & "
 alias nv="/snap/bin/nvim -p"
 alias nvdiff="/snap/bin/nvim -d"
 alias nvd="nvdiff"
-alias nvt="nv +term"
+alias nvt="nv +FloatermToggle"
 
 funcion nv() {
 	if [[ -z $1 ]]; then
@@ -477,6 +478,7 @@ alias updateTmateiLinux="scp mkovel@192.168.1.17:~/airlinux.tmate ~/tmate/"
 eval "$(zoxide init zsh)"
 alias gdc="git difftool"
 alias mc="make clean; make"
+# alias tmateConnect="~/tmate/command"
 # PROMPT_SUBST='%B%F{red}%n@%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 # PROMPT='%B%F{red}%n%f%F{yellow}@%F{blue}%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 # setopt PROMPT_SUBST
@@ -572,6 +574,22 @@ export TMOUT=5
 
 # 	zle reset-prompt
 # }
+
+funcion tmateConnect(){
+    scp mkovel@$1:~/connect.tmate ~/tmate/$1.tmate
+    # tail -1 ~/tmate/$1.tmate | cut -d ' ' -f 9,10
+    tail -1 ~/tmate/$1.tmate | cut -d ' ' -f 9,10 > ~/tmate/$1.tmate.ssh
+    chmod +x ~/tmate/$1.tmate.ssh
+    ~/tmate/$1.tmate.ssh
+}
+function tmateSave(){
+    tmate show-messages > ~/tmate/connect.tmate
+    tail -1 ~/tmate/connect.tmate | cut -d ' ' -f 9,10 > ~/tmate/connect.tmate.ssh
+    chmod +x ~/tmate/connect.tmate.ssh
+	# tmate show-messages | tail -1 | cut -d ' ' -f 9,10 > ~/tmate/connect.tmate
+}
+
+
 funcion battery(){
 # TRAPALRM() {
     output=$(acpi)

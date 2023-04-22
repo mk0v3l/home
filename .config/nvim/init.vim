@@ -4,9 +4,11 @@
 "  Plugins
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'emgram769/vim-multiuser'
 " Plug 'neovim/nvim-lspconfig'
 " Plug 'hrsh7th/nvim-cmp'
 " Plug 'jremmen/vim-ripgrep'
+Plug 'BurntSushi/ripgrep'
 Plug 'voldikss/vim-floaterm'
 Plug 'akinsho/toggleterm.nvim',{'tag': '*'}
 Plug 'https://tpope.io/vim/fugitive.git'
@@ -19,7 +21,7 @@ Plug 'https://github.com/mg979/docgen.vim'
 Plug 'https://github.com/neoclide/coc.nvim' ,{'branch':'release'} " Auto Completion
 " Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 " " Plug 'https://github.com/glepnir/dashboard-nvim'
-" Plug 'junegunn/fzf'
+Plug 'junegunn/fzf'
 Plug 'https://github.com/vim-airline/vim-airline'
 Plug 'https://github.com/preservim/nerdtree'
 Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
@@ -30,6 +32,8 @@ Plug 'https://github.com/jiangmiao/auto-pairs'
 Plug 'https://github.com/tpope/vim-commentary'
 " Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'https://github.com/preservim/tagbar'
 Plug 'nvim-lua/plenary.nvim'
@@ -85,7 +89,8 @@ let mapleader = ',' " Leader Key
 map m <Nop> 
 
 " Another way to go in insert mode
-map <Leader>, i
+" map <Leader>, i
+" map <Leader>, 
 
 
 " Directions
@@ -251,6 +256,7 @@ set showtabline=2
 let g:floaterm_height = 35
 let g:floaterm_width = 120
 let g:floaterm_autoclose = 0
+let g:floaterm_opener = 'edit'
 " noremap <Leader>t :FloatermNew --height=35 --width=120<CR>
 " autocmd VimEnter * FloatermNew --height=30 --width=120 | FloatermToggle
 " autocmd VimEnter * call OpenTerminal()
@@ -284,7 +290,7 @@ tmap <C-Left>  <C-\><C-n><C-w>h
 tmap <C-Right>  <C-\><C-n><C-w>l
 tmap <C-Up>  <C-\><C-n><C-w>k
 tmap <C-Down>  <C-\><C-n><C-w>j
-tmap <Esc> <C-\><C-n>map <C-s> :w<CR>
+tmap <Esc> <C-\><C-n>
 
 " NERDTree
 map <C-d> :NERDTreeToggle <CR>
@@ -367,18 +373,19 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 " Define the mappings
 map <Leader>q :q<CR>
-map <Leader>v <CR> :vs
+" map <Leader>v <CR> :vs
+map <Leader>v <Esc>:vs 
 " map <Leader>v :vs 
-map <Leader>h :sp 
+map <Leader>h <Esc>:sp 
 " map <Leader>t :term<CR>i
 map <Leader>b :BookmarkToggle<CR>
-map <Leader>m :bnext<CR>
+map <Leader>m <Esc>:bnext<CR>
 
-map <Leader>l :bprevious<CR>
+map <Leader>l <Esc>:bprevious<CR>
 " map <Leader>; :sp term://zsh<CR>i<CR>
-map <Leader>; :FloatermNew --wintype=split --height=20<CR>
+map <Leader>; <Esc>:FloatermNew --wintype=split --height=20<CR>
 " map <Leader>. :vs term://zsh<CR>i<CR>
-map <Leader>. :FloatermNew --wintype=vsplit --width=70<CR>
+map <Leader>. <Esc>:FloatermNew --wintype=vsplit --width=70<CR>
 " imap <Leader>; <Esc>:sp term://zsh<CR>i<CR>
 " imap <Leader>. <Esc>:vs term://zsh<CR>i<CR>
 " tmap <Leader>. <C-\><C-n>:q<CR>
@@ -434,10 +441,12 @@ map <Leader>Vr <Plug>(coc-references)
 map <Leader>r :call CocActionAsync('rename') <CR>
 map <Leader>Ff <Plug>(coc-fix-current)
 map <Leader>Fa :call CocActionAsync('codeAction')<CR>
+map <Leader>W :wqa!<CR>
 " Single mappings
 let g:which_key_map['/'] = [ '<C-q>'  , 'comment' ]
 let g:which_key_map.w = [ 'dw'        , 'Delete word' ]
 let g:which_key_map.q = [ '<Esc>'     , 'Exit menu WhichKey' ]
+let g:which_key_map[','] = [ '<Esc>'     , 'Exit menu WhichKey' ]
 let g:which_key_map.Q = [ 'Q'         , 'Exit (force)' ]
 let g:which_key_map.h = [ ',h'        , '╴ split horizontal ...' ]
 let g:which_key_map.v = [ ',v'		  , '| split vertical ...' ]
@@ -447,11 +456,12 @@ let g:which_key_map.m = [ ',m'        , 'next buffer' ]
 let g:which_key_map.l = [ ',l'        , 'previous buffer' ]
 let g:which_key_map['.'] = [ ',.'     , '╴ TERM split horizontal' ]
 let g:which_key_map[';'] = [ ',;'     , '| TERM split vertical' ]
-let g:which_key_map[','] = [ ',,'     , 'Insert mode again' ]
+" let g:which_key_map[','] = [ ',,'     , 'Insert mode again' ]
 let g:which_key_map.d = [ ',d'        , 'Tree Toogle ' ]
 let g:which_key_map.f = [ ',f'        , 'Tree focus' ]
 let g:which_key_map.r = [ ',r'        , 'Rename' ]
 let g:which_key_map.z = [ ',z'        , 'LazyGit' ]
+let g:which_key_map.W = [ ',W'    , 'Save and exit all (force)' ]
 " let g:which_key_m ap.F = [ ',F'        , 'Fix (quick)' ]
 
 let g:which_key_map.F = {
