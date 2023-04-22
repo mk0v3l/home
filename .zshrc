@@ -474,6 +474,8 @@ alias jr="just run"
 alias jmr="just make run"
 alias updateTmateiLinux="scp mkovel@192.168.1.17:~/airlinux.tmate ~/tmate/"
 eval "$(zoxide init zsh)"
+alias gdc="git difftool"
+alias mc="make clean; make"
 # PROMPT_SUBST='%B%F{red}%n@%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 # PROMPT='%B%F{red}%n%f%F{yellow}@%F{blue}%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 # setopt PROMPT_SUBST
