@@ -2,6 +2,7 @@
  " set guifont=DroidSansMono_Nerd_Font:h11
 " set guifont=DroidSansMono\ Nerd\ Font\ 11
 "  Plugins
+
 call plug#begin('~/.config/nvim/plugged')
 Plug 'floobits/floobits-neovim'
 Plug 'jbyuki/instant.nvim'
