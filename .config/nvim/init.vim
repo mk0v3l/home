@@ -4,6 +4,9 @@
 "  Plugins
 
 call plug#begin('~/.config/nvim/plugged')
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'hrsh7th/nvim-cmp'
+" Plug 'jremmen/vim-ripgrep'
 Plug 'voldikss/vim-floaterm'
 Plug 'akinsho/toggleterm.nvim',{'tag': '*'}
 Plug 'https://tpope.io/vim/fugitive.git'
@@ -13,7 +16,7 @@ Plug 'RRethy/vim-illuminate'
 Plug 'lervag/vimtex'
 Plug 'https://github.com/Mofiqul/dracula.nvim'
 Plug 'https://github.com/mg979/docgen.vim'
-Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
+Plug 'https://github.com/neoclide/coc.nvim' ,{'branch':'release'} " Auto Completion
 " Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 " " Plug 'https://github.com/glepnir/dashboard-nvim'
 " Plug 'junegunn/fzf'
@@ -142,13 +145,15 @@ map <C-y> :source ~/.config/nvim/init.vim<CR>
 
 " Binds to Save and Quit
 map <C-s> :w<CR>
-nmap <C-a> :q<CR>
+" nmap <C-q> :q<CR>
+nmap <C-q> :q<CR>
 map <S-q> :q!<CR>
-map <C-a-Q> :q!<CR>
+" map <C-a-Q> :q!<CR>
 map <C-S-Q> :q!<CR>
 imap <C-s> <Esc>:w<CR>
 
-imap <C-a> <Esc>:q<CR>
+" imap <C-a> <Esc>:q<CR>
+imap <C-q> <Esc>:q<CR>
 nmap <C-v> :vs N<CR> 
 
 " Color Scheme
@@ -261,7 +266,7 @@ tnoremap <silent><C-b> <C-\><C-n>:FloatermNew<CR>
 map <Leader>z :FloatermNew lazygit<CR>
 " tnoremap <silent><C-n> <C-\><C-n>:FloatermPrev<CR>
 " tnoremap <silent><C-a> <C-\><C-n>:FloatermToggle<CR>
-
+hi FloatermBorder guifg=orange
 function! OpenTerminal()
     FloatermNew --height=35 --width=120
     " execute 'normal FloatermToggle'
@@ -273,7 +278,8 @@ endfunction
 " map <C-t> :sp term://zsh<CR>i<CR>
 " tmap <C-q> <C-\><C-n>:q<CR>
 tmap <C-s> <C-\><C-n>
-tmap <C-a> <C-\><C-n>:q<CR>
+" tmap <C-a> <C-\><C-n>:q<CR>
+tmap <C-q> <C-\><C-n>:q<CR>
 tmap <C-Left>  <C-\><C-n><C-w>h
 tmap <C-Right>  <C-\><C-n><C-w>l
 tmap <C-Up>  <C-\><C-n><C-w>k
@@ -318,8 +324,10 @@ inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 " keyset ("n", "gr", "<Plug>(coc-references)", {silent = true})
 
 
-imap <C-q> <Esc>:Commentary<CR>i
-map <C-q> :Commentary<CR>
+" imap <C-q> <Esc>:Commentary<CR>i
+imap <C-a> <Esc>:Commentary<CR>i
+" map <C-q> :Commentary<CR>
+map <C-a> :Commentary<CR>
 
 " Tagbar
 nmap <F1> :TagbarToggle<CR>

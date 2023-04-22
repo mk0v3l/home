@@ -4,8 +4,9 @@
 # PROMPT_SUBST='%B%F{red}%n@%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 
 # echo 255 > /tmp/brightness; sudo cp /tmp/brightness /sys/class/leds/smc::kbd_backlight/brightness; rm /tmp/brightness
+source ~/.cursorStyle
 echo -e '\033[?6c'
-source .profile
+source ~/.profile
 # xmodmap ~/.xmaptoazerty
 TERM=xterm-256color
 setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz
