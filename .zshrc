@@ -515,6 +515,7 @@ alias newTerm="xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &"
 alias firefox="firefox  2>/dev/null --new-tab "
 alias restart="openbox --restart"
 alias disconnect="pkill -u mkovel"
+
 # funcion firefox(){
     # if [[ -z $1 ]]; then
 	# firefox 2>/dev/null & disown
@@ -675,8 +676,19 @@ TRAPALRM() {
     zle reset-prompt
 }
 alias gpt="firefox chat.openai.com &"
+# alias ygg="firefox yggtorrent.com &"
 # alias saveIt="echo \"alias $1=\"!!\"""
 function saveAlias {
     echo "alias $1=\"${@:2}\"" >> ~/.zshrc
+    reload
 }
 
+alias ran="ranger"
+function open(){
+	# if end with .pdf 
+    if [[ $1 == *.pdf ]]; then
+		zathura --mode fullscreen $1 
+	else
+		/usr/bin/open $1
+	fi
+}

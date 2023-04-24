@@ -4,6 +4,8 @@
 "  Plugins
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'emgram769/vim-multiuser'
 " Plug 'neovim/nvim-lspconfig'

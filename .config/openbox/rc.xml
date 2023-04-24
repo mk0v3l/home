@@ -321,112 +321,95 @@
       </action>
     </keybind>
     <!-- Keybindings for running applications -->
-
     <!-- <keybind key="W-e"> -->
-    <keybind key="C-t">
+    <keybind key="C-A-t">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
           <name>Konqueror</name>
         </startupnotify>
-	<!-- <command>lazygit</command> -->
+        <!-- <command>lazygit</command> -->
         <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen</command>
       </action>
     </keybind>
-
     <keybind key="XF86AudioMute">
-	<!-- <action name="Mute Toggle"> -->
+      <!-- <action name="Mute Toggle"> -->
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
           <name>volume0</name>
         </startupnotify>
-	<command>pactl set-sink-mute @DEFAULT_SINK@ toggle</command>
+        <command>pactl set-sink-mute @DEFAULT_SINK@ toggle</command>
       </action>
     </keybind>
-
     <keybind key="XF86AudioLowerVolume">
-	<!-- <action name="Lower Volume"> -->
+      <!-- <action name="Lower Volume"> -->
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
           <name>volume-</name>
         </startupnotify>
-	<command>~/.volumeDOWN.sh</command>
-	<!-- <command>pactl set-sink-volume @DEFAULT_SINK@ -10% ; pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
-	<!-- <command>pactl set-sink-volume @DEFAULT_SINK@ -10%</command> -->
-	<!-- <command>pactl set-sink-volume @DEFAULT_SINK@ -10% &amp; pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
-	<!-- <command>pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
+        <command>~/.volumeDOWN.sh</command>
+        <!-- <command>pactl set-sink-volume @DEFAULT_SINK@ -10% ; pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
+        <!-- <command>pactl set-sink-volume @DEFAULT_SINK@ -10%</command> -->
+        <!-- <command>pactl set-sink-volume @DEFAULT_SINK@ -10% &amp; pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
+        <!-- <command>pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
       </action>
     </keybind>
-
     <keybind key="XF86AudioRaiseVolume">
-	<!-- <action name="Raise Volume"> -->
+      <!-- <action name="Raise Volume"> -->
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
           <name>volume+</name>
-      </startupnotify>
-      <command>~/.volumeUP.sh</command>
-	<!-- <command>pactl set-sink-volume @DEFAULT_SINK@ +10% ; pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
-	<!-- <command>pactl set-sink-volume @DEFAULT_SINK@ +10% &; pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
-	<!-- <command>pactl set-sink-volume @DEFAULT_SINK@ +10%</command> -->
-	<!-- <command>pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
+        </startupnotify>
+        <command>~/.volumeUP.sh</command>
+        <!-- <command>pactl set-sink-volume @DEFAULT_SINK@ +10% ; pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
+        <!-- <command>pactl set-sink-volume @DEFAULT_SINK@ +10% &; pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
+        <!-- <command>pactl set-sink-volume @DEFAULT_SINK@ +10%</command> -->
+        <!-- <command>pactl set-sink-mute @DEFAULT_SINK@ 0</command> -->
       </action>
-  </keybind>
-
+    </keybind>
     <keybind key="XF86MonBrightnessUp">
-	<!-- <action name="Raise Volume"> -->
+      <!-- <action name="Raise Volume"> -->
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
           <name>BrightScreen+</name>
         </startupnotify>
-	<command>brightnessctl set +10%</command>
+        <command>brightnessctl set +10%</command>
       </action>
-  </keybind>
-
+    </keybind>
     <keybind key="XF86MonBrightnessDown">
-	<!-- <action name="Raise Volume"> -->
+      <!-- <action name="Raise Volume"> -->
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
           <name>BrightScreen-</name>
         </startupnotify>
-	<command>brightnessctl set 10%-</command>
+        <command>brightnessctl set 10%-</command>
       </action>
-  </keybind>
-
+    </keybind>
     <keybind key="XF86KbdBrightnessUp">
-	<!-- <action name="Raise Volume"> -->
+      <!-- <action name="Raise Volume"> -->
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
           <name>BrightKeyboard+</name>
         </startupnotify>
-	<command>brightnessctl -d smc::kbd_backlight set 10%+</command>
+        <command>brightnessctl -d smc::kbd_backlight set 10%+</command>
       </action>
-  </keybind>
-
+    </keybind>
     <keybind key="XF86KbdBrightnessDown">
-	<!-- <action name="Raise Volume"> -->
+      <!-- <action name="Raise Volume"> -->
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
           <name>BrightKeyboard-</name>
         </startupnotify>
-	<command>brightnessctl -d smc::kbd_backlight set 10%-</command>
+        <command>brightnessctl -d smc::kbd_backlight set 10%-</command>
       </action>
-  </keybind>
-
-
-
-
-
-
-
-
-
+    </keybind>
     <keybind key="W-t">
       <action name="Execute">
         <startupnotify>
@@ -447,11 +430,12 @@
     <!-- Launch scrot when Print is pressed -->
     <keybind key="W-p">
       <action name="Past">
-	<command>pactl set-sink-mute @DEFAULT_SINK@ toggle</command>
+        <command>pactl set-sink-mute @DEFAULT_SINK@ toggle</command>
       </action>
     </keybind>
   </keyboard>
   <mouse>
+    <acceleration>35.0</acceleration>
     <dragThreshold>1</dragThreshold>
     <!-- number of pixels the mouse must move before a drag begins -->
     <doubleClickTime>500</doubleClickTime>
@@ -815,6 +799,7 @@
   <!-- <applications name="st" fullscreen="true"/> -->
   <applications>
     <!-- <application name="x-terminal-emulator"/> -->
+    <!-- <desktop>1</desktop> -->
     <!-- <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen </command> -->
     <!-- </application> -->
     <!--
@@ -912,14 +897,10 @@
   # end of the example
 -->
   </applications>
-
-
   <!-- <hideCursor> -->
   <!--     <hide-time>0</hide-time> -->
   <!--     <timeout>0</timeout> -->
   <!--     <moveMouse>no</moveMouse> -->
   <!--     <idleMouse>no</idleMouse> -->
   <!-- </hideCursor> -->
-
-
 </openbox_config>
