@@ -4,6 +4,10 @@
 # PROMPT_SUBST='%B%F{red}%n@%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 
 # echo 255 > /tmp/brightness; sudo cp /tmp/brightness /sys/class/leds/smc::kbd_backlight/brightness; rm /tmp/brightness
+
+# if [  $DISPLAY ]; then 
+    # xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &
+# fi
 source ~/.cursorStyle
 echo -e '\033[?6c'
 source ~/.profile
@@ -19,12 +23,13 @@ setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz 2> /dev/null
 
 # Path to your oh-my-zsh installation.
 # export ZSH="$HOME/.oh-my-zsh"
-export EDITOR=/snap/bin/nvim
+# export EDITOR=/snap/bin/nvim
+export EDITOR=/usr/bin/nvim
 
 export PATH="/usr/lib/w3m/:$PATH"
 export PATH="$HOME/snap/:$PATH"
 # export PATH="$HOME/.gord/:$PATH"
-export PATH="/snap/bin/nvim:$PATH"
+# export PATH="/snap/bin/nvim:$PATH"
 export PATH="/snap/bin/:$PATH"
 export PATH="$HOME/.stubgen-2.07/:$PATH"
 export PATH=$PATH:/usr/local/go/bin
@@ -273,8 +278,10 @@ alias tms="tmux source-file ~/.tmux.conf"
 
 alias cleanVimSession="rm ~/.local/share/nvim/sessions/%home%mkovel* & "
 # alias nv="(cleanVimSession) > /dev/null 2>&1; /snap/bin/nvim -p "
-alias nv="/snap/bin/nvim -p"
-alias nvdiff="/snap/bin/nvim -d"
+alias nv="/usr/bin/nvim -p"
+# alias nv="/snap/bin/nvim -p"
+# alias nvdiff="/snap/bin/nvim -d"
+alias nvdiff="/usr/bin/nvim -d"
 alias nvd="nvdiff"
 alias nvt="nv +FloatermToggle"
 
@@ -328,7 +335,33 @@ alias cleanVim="rm ~/.local/state/nvim/swap/*"
 # alias cleanVim="rm ~/.local/share/nvim/swap/*.swp* "
 alias cloneGenie="git clone ssh://git@gitlab.ulb.be:30422/ulb-infof307/2023-groupe-3.git"
 alias gs="git status"
-
+alias daemreload="sudo systemctl daemon-reload"
+function serviceStart() {
+	sudo systemctl start $1
+	sudo systemctl status $1
+}
+function serviceStop() {
+	sudo systemctl stop $1
+	sudo systemctl status $1
+}
+function serviceRestart() {
+	sudo systemctl restart $1
+	sudo systemctl status $1
+}
+function serviceEnable() {
+	sudo systemctl enable $1
+	sudo systemctl status $1
+}
+function serviceDisable() {
+	sudo systemctl disable $1
+	sudo systemctl status $1
+}
+function serviceStatus() {
+	sudo systemctl status $1
+}
+function serviceReload() {
+	sudo systemctl daemon-reload
+}
 # send all files after the second argument
 # send 192.168.1.77 test.txt result.txt
 
@@ -478,6 +511,17 @@ alias updateTmateiLinux="scp mkovel@192.168.1.17:~/airlinux.tmate ~/tmate/"
 eval "$(zoxide init zsh)"
 alias gdc="git difftool"
 alias mc="make clean; make"
+alias newTerm="xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &"
+alias firefox="firefox  2>/dev/null --new-tab "
+alias restart="openbox --restart"
+alias disconnect="pkill -u mkovel"
+# funcion firefox(){
+    # if [[ -z $1 ]]; then
+	# firefox 2>/dev/null & disown
+    # else
+	# firefox --new-window $1 2>/dev/null & disown
+    # fi
+# }
 # alias tmateConnect="~/tmate/command"
 # PROMPT_SUBST='%B%F{red}%n@%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 # PROMPT='%B%F{red}%n%f%F{yellow}@%F{blue}%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
@@ -538,10 +582,11 @@ CRTICALBAT=11
 	else
 	export colorBat=green
 	fi
+# {#FFC500}{#FFA500}{#F080CB}{#00FF7F}{#0000FF}
+    # PROMPT='%B%F{cyan}%n%f%F{blue}@%F{blue}%m%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+    PROMPT='%B%F{blue}%n%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
 
-    PROMPT='%B%F{blue}%n%f%F{white} at %F{cyan}%m%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
-
-export TMOUT=5
+# export TMOUT=5
 # TRAPALRM() {
 #     output=$(acpi)
 #     percentage=$(echo $output | awk '{print $5}' | tr -d ',%')
@@ -590,7 +635,7 @@ function tmateSave(){
 }
 
 
-funcion battery(){
+function battery(){
 # TRAPALRM() {
     output=$(acpi)
     percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
@@ -629,3 +674,9 @@ TRAPALRM() {
     battery
     zle reset-prompt
 }
+alias gpt="firefox chat.openai.com &"
+# alias saveIt="echo \"alias $1=\"!!\"""
+function saveAlias {
+    echo "alias $1=\"${@:2}\"" >> ~/.zshrc
+}
+

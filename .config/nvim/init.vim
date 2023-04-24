@@ -4,6 +4,7 @@
 "  Plugins
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'kdheepak/lazygit.nvim'
 Plug 'emgram769/vim-multiuser'
 " Plug 'neovim/nvim-lspconfig'
 " Plug 'hrsh7th/nvim-cmp'
@@ -12,7 +13,7 @@ Plug 'BurntSushi/ripgrep'
 Plug 'voldikss/vim-floaterm'
 Plug 'akinsho/toggleterm.nvim',{'tag': '*'}
 Plug 'https://tpope.io/vim/fugitive.git'
-Plug 'floobits/floobits-neovim'
+" Plug 'floobits/floobits-neovim'
 Plug 'jbyuki/instant.nvim'
 Plug 'RRethy/vim-illuminate'
 Plug 'lervag/vimtex'
@@ -46,7 +47,8 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'NoahTheDuke/vim-just'
 set encoding=UTF-8
 call plug#end()
-
+" highlight Error ctermbg=1 guibg=red
+let g:coc_highlight_disable = ['Error']
 
 " require('toggleterm').setup{}
 set encoding=UTF-8
@@ -253,8 +255,17 @@ set showtabline=2
 " Terminal
 " imap <C-t> <Esc>:sp term://zsh<CR>i<CR>
 " map <C-t> <Cmd>exe v:count1 , "ToggleTerm"<CR>
-let g:floaterm_height = 35
-let g:floaterm_width = 120
+" let g:floaterm_width = 120
+" only if $DISPLAY is set
+if exists('DISPLAY')
+    let g:floaterm_width = 120
+    let g:floaterm_height = 35
+  else
+    let g:floaterm_width = 110
+    let g:floaterm_height = 28
+endif
+
+" let g:floaterm_width = 110
 let g:floaterm_autoclose = 0
 let g:floaterm_opener = 'edit'
 " noremap <Leader>t :FloatermNew --height=35 --width=120<CR>
@@ -290,8 +301,9 @@ tmap <C-Left>  <C-\><C-n><C-w>h
 tmap <C-Right>  <C-\><C-n><C-w>l
 tmap <C-Up>  <C-\><C-n><C-w>k
 tmap <C-Down>  <C-\><C-n><C-w>j
-tmap <Esc> <C-\><C-n>
-
+tmap <Esc> <Esc>
+" tunmap <Esc> 
+tmap <C-a> <C-\><C-n>
 " NERDTree
 map <C-d> :NERDTreeToggle <CR>
 map <Leader>d :NERDTreeToggle <CR>
@@ -519,6 +531,7 @@ map <Leader>tk :FloatermNew w3m https://duckduckgo.com<CR>
 map <Leader>ty :FloatermNew w3m https://www.yggtorrent.do<CR>
 map <Leader>tn :FloatermNew <CR>
 map <Leader>tr :FloatermNew ranger<CR>
+map <Leader>tN :!xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &<CR><CR>
 let g:which_key_map.t = {
 	  \ 'name' : '+Terminal Language' ,
 	  \ 'l' : [',tl'     , 'LazyGit'],
@@ -526,6 +539,7 @@ let g:which_key_map.t = {
 	  \ 'k' : [',tk'   , 'DuckDuckGo'],
 	  \ 'y' : [',ty'   , 'YggTorrent'],
 	  \ 'n' : [',tn'   , 'New Terminal'],
+	  \ 'N' : [',tN'   , 'New Terminal fullscreen'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
 	  \ }
 
@@ -891,7 +905,9 @@ endfunction
 " autocmd TermEnter term://*toggleterm#* 
 	    " \tnoremap <silent><c-t> <Cmd>exe v:count1 . 'ToggleTerm direction=horizontal' <CR>
 		    
-
+" hi CocErrorHighlight ctermbg=1
+" hi CocWarningSign ctermfg=11
+" colorscheme nord 
 set statusline=Hello
 autocmd FileType cpp setlocal commentstring=//\ %s
 autocmd FileType hpp setlocal commentstring=//\ %s
