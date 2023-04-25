@@ -585,8 +585,8 @@ CRTICALBAT=11
 	fi
 # {#FFC500}{#FFA500}{#F080CB}{#00FF7F}{#0000FF}
     # PROMPT='%B%F{cyan}%n%f%F{blue}@%F{blue}%m%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
-    PROMPT='%B%F{blue}%n%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
-    # PROMPT='%B%F{blue}%n%f%F{yellow}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+    # PROMPT='%B%F{blue}%n%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+    PROMPT='%B%F{blue}%n%f%F{yellow}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
 
 # export TMOUT=5
 # TRAPALRM() {
@@ -637,6 +637,7 @@ function tmateSave(){
 }
 
 
+export TMOUT=5
 function battery(){
 # TRAPALRM() {
     output=$(acpi)
