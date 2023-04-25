@@ -33,7 +33,7 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/jiangmiao/auto-pairs'
 Plug 'https://github.com/tpope/vim-commentary'
-" Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -64,7 +64,7 @@ set incsearch
 set wildmenu
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-set mouse=a
+set mouse= 
 set autoindent
 " set smarttab
 " set softtabstop=4
@@ -145,7 +145,7 @@ noremap T O
 nnoremap <S-o>  <C-w>k
 nnoremap <S-k>  <C-w>h
 nnoremap <S-l>  <C-w>j
-nnoremap <S-m> <C-w>l
+nnoremap <S-m>  <C-w>l
 
 " Reload Vim
 map <C-y> :source ~/.config/nvim/init.vim<CR>
@@ -238,7 +238,7 @@ nmap ,x <Plug>(DocBox)
 nmap ,X <Plug>(DocBox!)
 
 " map <Leader>t :term:<CR>i<CR>
-let g:wheel#map#mouse = -1  
+" let g:wheel#map#mouse = -1  
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
@@ -282,7 +282,9 @@ tnoremap <silent><C-o> <C-\><C-n>:FloatermPrev<CR>
 tnoremap <silent><C-p> <C-\><C-n>:FloatermNext<CR>
 tnoremap <silent><C-x> <C-\><C-n>:FloatermKill<CR>
 tnoremap <silent><C-b> <C-\><C-n>:FloatermNew<CR>
-map <Leader>z :FloatermNew lazygit<CR>
+" map <Leader>z :FloatermNew lazygit<CR>
+map <Leader>z :LazyGit<CR>
+
 " tnoremap <silent><C-n> <C-\><C-n>:FloatermPrev<CR>
 " tnoremap <silent><C-a> <C-\><C-n>:FloatermToggle<CR>
 hi FloatermBorder guifg=orange
@@ -417,7 +419,9 @@ map <Leader>Gmc :call MainCppTemplate()<CR>
 map <Leader>Gmj :call MainJavaTemplate()<CR>
 map <Leader>GMc :call GenerateCMakefile()<CR>
 map <Leader>GM+ :call GenerateCppMakefile()<CR>
+" compile latex file
 
+map <Leader>cl :!pdflatex % >/dev/null; zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
 map <Leader>cj :FloatermNew mvn clean compile<CR>i
 map <Leader>cc :FloatermNew make<CR>i
 map <Leader>cp :FloatermNew python3 %<CR>i
@@ -514,6 +518,7 @@ let g:which_key_map.s = {
 let g:which_key_map.c = {
       \ 'name' : '+Compile/Exec Language' ,
 	  \ 'j' : [',cj'     , 'Java compile with maven'],
+	  \ 'l' : [',cl'     , 'Latex compile'],
 	  \ 'c' : [',cp'     , 'C++ compile with make'],
 	  \ 'p' : [',cp'     , 'Python exec'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
@@ -527,12 +532,14 @@ let g:which_key_map.c.e= {
 	  \ 'j' : [',cej'    , 'Java exec with maven'],
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
-map <Leader>tl :FloatermNew lazygit<CR>
+" map <Leader>tl :FloatermNew lazygit<CR>
+map <Leader>tl :LazyGit<CR>
 map <Leader>tg :FloatermNew w3m https://www.google.com<CR>
 map <Leader>tk :FloatermNew w3m https://duckduckgo.com<CR>
 map <Leader>ty :FloatermNew w3m https://www.yggtorrent.do<CR>
 map <Leader>tn :FloatermNew <CR>
-map <Leader>tr :FloatermNew ranger<CR>
+map <Leader>tr :Ranger<CR>
+" map <Leader>tr :FloatermNew ranger<CR>
 map <Leader>tN :!xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &<CR><CR>
 let g:which_key_map.t = {
 	  \ 'name' : '+Terminal Language' ,

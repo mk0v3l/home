@@ -586,6 +586,7 @@ CRTICALBAT=11
 # {#FFC500}{#FFA500}{#F080CB}{#00FF7F}{#0000FF}
     # PROMPT='%B%F{cyan}%n%f%F{blue}@%F{blue}%m%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
     PROMPT='%B%F{blue}%n%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
+    # PROMPT='%B%F{blue}%n%f%F{yellow}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
 
 # export TMOUT=5
 # TRAPALRM() {
@@ -670,12 +671,8 @@ function battery(){
 	fi
 }
 
-battery
-TRAPALRM() {
-    battery
-    zle reset-prompt
-}
 alias gpt="firefox chat.openai.com &"
+alias discord="discord > /dev/null 2>/dev/null &"
 # alias ygg="firefox yggtorrent.com &"
 # alias saveIt="echo \"alias $1=\"!!\"""
 function saveAlias {
@@ -684,6 +681,7 @@ function saveAlias {
 }
 
 alias ran="ranger"
+
 function open(){
 	# if end with .pdf 
     if [[ $1 == *.pdf ]]; then
@@ -691,4 +689,13 @@ function open(){
 	else
 		/usr/bin/open $1
 	fi
+}
+alias disableMouse="xinput set-prop 11 328 1"
+alias enableMouse="xinput set-prop 11 328 0"
+alias scrollOff="xinput set-prop 11 326 0 0"
+alias scrollOn="xinput set-prop 11 328 0;xinput set-prop 11 326 1 1"
+battery
+TRAPALRM() {
+    battery
+    zle reset-prompt
 }

@@ -1,4 +1,5 @@
 xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &
 xinput set-prop 'bcm5974' 314 1
-xsetroot -solid black
 xinput set-prop 11 312 1
+xinput set-prop 11 328 1
+xsetroot -solid black

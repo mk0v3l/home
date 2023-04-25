@@ -279,6 +279,17 @@
         </finalactions>
       </action>
     </keybind>
+
+    <keybind key="A-Tab">
+      <action name="NextWindow">
+        <finalactions>
+          <action name="Focus"/>
+          <action name="Raise"/>
+          <action name="Unshade"/>
+        </finalactions>
+      </action>
+    </keybind>
+
     <keybind key="A-S-Tab">
       <action name="PreviousWindow">
         <finalactions>
@@ -323,6 +334,17 @@
     <!-- Keybindings for running applications -->
     <!-- <keybind key="W-e"> -->
     <keybind key="C-A-t">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>Konqueror</name>
+        </startupnotify>
+        <!-- <command>lazygit</command> -->
+        <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen</command>
+      </action>
+    </keybind>
+
+    <keybind key="C-W-t">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
