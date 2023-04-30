@@ -586,8 +586,24 @@ CRTICALBAT=11
 # {#FFC500}{#FFA500}{#F080CB}{#00FF7F}{#0000FF}
     # PROMPT='%B%F{cyan}%n%f%F{blue}@%F{blue}%m%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
     # PROMPT='%B%F{blue}%n%f%F{yellow}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
-    PROMPT='%B%F{blue}%n%f%F{yellow}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{black}${${(%):-%~}}%f$ %b'
 
+
+# BRANCHCOLOR=blue
+# BRANCHCOLOR=#00FF7F
+# BRANCHCOLOR=#AD95B9
+BRACKETCOLOR=#AD95B9
+BRANCHCOLOR=#EA63FF
+# PATHCOLOR=#FFA500
+PATHCOLOR=#616161
+# NAMECOLOR=#54b6ff
+NAMECOLOR=#9ad4ff
+CLOCKCOLOR=#FFC500
+# PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRACKETCOLOR}{%F{$BRANCHCOLOR}$((git_prompt_info)  | sed "s/^.*:(\(.*\)\*).*$/\1/")%F{$BRACKETCOLOR}}%f%B$ '
+PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRACKETCOLOR}{%F{$BRANCHCOLOR}$((git_prompt_info)  | sed "s/^.*:(\(.*\)\*).*$/\1/")%F{$BRACKETCOLOR}}%f%B'$'\n'$" "
+# PROMPT=${PROMPT%?}\n'$ '
+# 〉
+# PROMPT='%b$(username)$MLH_AT_SYMBOL$(device)$MLH_IN_SYMBOL$(directory)$(git_prompt_info)%b$(prompt_end)'
+# $(git_prompt_info 2>/dev/null | sed "s/^.*:(\(.*\)\*).*$/\1/")
 # export TMOUT=5
 # TRAPALRM() {
 #     output=$(acpi)
@@ -674,6 +690,8 @@ function battery(){
 
 alias gpt="firefox chat.openai.com &"
 alias discord="discord > /dev/null 2>/dev/null &"
+alias pdflight="cp ~/.config/zathura/zathuraLight ~/.config/zathura/zathurarc"
+alias pdfdark="cp ~/.config/zathura/zathuraDark ~/.config/zathura/zathurarc"
 # alias ygg="firefox yggtorrent.com &"
 # alias saveIt="echo \"alias $1=\"!!\"""
 function saveAlias {
@@ -695,8 +713,15 @@ alias disableMouse="xinput set-prop 11 328 1"
 alias enableMouse="xinput set-prop 11 328 0"
 alias scrollOff="xinput set-prop 11 326 0 0"
 alias scrollOn="xinput set-prop 11 328 0;xinput set-prop 11 326 1 1"
+alias mountSeries="sshfs -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no mkovel@192.168.1.77:/home/mkovel/DD/Series /home/mkovel/remoteDD/Series"
+alias mountFilms="sshfs -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no mkovel@192.168.1.77:/home/mkovel/DD/Films /home/mkovel/remoteDD/Films"
 battery
 TRAPALRM() {
     battery
     zle reset-prompt
 }
+alias spotify="flatpak run io.github.hrkfdn.ncspot"
+alias mountSeriesExt="sshfs -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 13664 mkovel@2.tcp.eu.ngrok.io:/home/mkovel/DD/Series /home/mkovel/remoteDD/Series"
+alias mountFilmsExt="sshfs -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 13664 mkovel@2.tcp.eu.ngrok.io:/home/mkovel/DD/Films /home/mkovel/remoteDD/Films"
+alias umountAll="fusermount -u /home/mkovel/remoteDD/Series;fusermount -u /home/mkovel/remoteDD/Films"
+alias mountAll="mountSeriesExt;mountFilmsExt"

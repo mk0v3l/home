@@ -74,7 +74,7 @@ autocmd InsertEnter,InsertLeave * set cul!
 set nowrap
 set showcmd
 let &t_SI = "\e[6 q]"
-set clipboard+=unnamedplus 
+" set clipboard+=unnamedplus 
 " let mapleader = "\<Space>"
 " nnoremap <SPACE> <Nop>
 " unmap <k>
@@ -110,7 +110,7 @@ vnoremap m l
 " Begin/End of l ine
 " noremap j 0
 noremap j b
-map { 0
+map <S-{> 0
 map ' w
 map [ $
 
@@ -421,7 +421,7 @@ map <Leader>GMc :call GenerateCMakefile()<CR>
 map <Leader>GM+ :call GenerateCppMakefile()<CR>
 " compile latex file
 
-map <Leader>cl :!pdflatex % >/dev/null; zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
+map <Leader>cl :!pdflatex -shell-escape % >/dev/null; zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
 map <Leader>cj :FloatermNew mvn clean compile<CR>i
 map <Leader>cc :FloatermNew make<CR>i
 map <Leader>cp :FloatermNew python3 %<CR>i
@@ -533,14 +533,14 @@ let g:which_key_map.c.e= {
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
       \ }
 " map <Leader>tl :FloatermNew lazygit<CR>
-map <Leader>tl :LazyGit<CR>
-map <Leader>tg :FloatermNew w3m https://www.google.com<CR>
-map <Leader>tk :FloatermNew w3m https://duckduckgo.com<CR>
-map <Leader>ty :FloatermNew w3m https://www.yggtorrent.do<CR>
-map <Leader>tn :FloatermNew <CR>
-map <Leader>tr :Ranger<CR>
+map <Leader>tl <Esc>:LazyGit<CR>
+map <Leader>tg <Esc>:FloatermNew w3m https://www.google.com<CR>
+map <Leader>tk <Esc>:FloatermNew w3m https://duckduckgo.com<CR>
+map <Leader>ty <Esc>:FloatermNew w3m https://www.yggtorrent.do<CR>
+map <Leader>tn <Esc>:FloatermNew <CR>
+map <Leader>tr <Esc>:Ranger<CR>
 " map <Leader>tr :FloatermNew ranger<CR>
-map <Leader>tN :!xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &<CR><CR>
+map <Leader>tN <Esc>:!xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &<CR><CR>
 let g:which_key_map.t = {
 	  \ 'name' : '+Terminal Language' ,
 	  \ 'l' : [',tl'     , 'LazyGit'],

@@ -1,5 +1,8 @@
 xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &
 xinput set-prop 'bcm5974' 314 1
 xinput set-prop 11 312 1
-xinput set-prop 11 328 1
+# xinput set-prop 11 328 1
 xsetroot -solid black
+# synclient MaxTapTime=0
+synclient VertScrollDelta=-237
+syndaemon -i 1 -K -d
