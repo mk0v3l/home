@@ -113,7 +113,8 @@ vnoremap m l
 noremap j b
 map <S-{> 0
 map ' w
-map [ $
+map [ 0
+map ] $
 
 " Fast move
 noremap <C-k> b
@@ -327,14 +328,21 @@ map <Leader>s. :Telescope find_files cwd=. <CR>
 map <Leader>sh :Telescope find_files cwd=/home/mkovel hidden=true<CR>
 
 
-" imap <silent><script><expr> <C-Space> copilot#Accept("\<CR>")
-imap <silent><script><expr> <Right> copilot#Accept('<Right>')
+" imap <silent><script><expr> <C-Right> copilot#Accept("\<CR>")
+imap <silent><script><expr> <C-Right> copilot#Accept("\<CR>")
+imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>") 
+imap <silent><script><expr> <C-Tab> copilot#Accept("\<CR>")
+" imap <silent><script><expr> <C-Tab> copilot#Accept('<Right>')
+" imap <silent><script><expr> <Right> copilot#Accept('<Right>')
 let g:copilot_no_tab_map = v:true
 " Coc.nvim
 let g:coc_disable_startup_warning = 1
 " S-Tab for autocomplete coc
 " imap <expr> <S-Tab> pumvisible() ? coc#_select_confirm() : "<S-Tab>"
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
+" inoremap <expr> <Right> pumvisible() ? coc#_select_confirm() : "<Tab>"
+" inoremap <expr> <C-CR> pumvisible() ? coc#_select_confirm() : "<Tab>"
+" inoremap <expr> <Tab> getline('.')[col('.') - 2] =~ '\w' ? "<C-N>" : "<Tab>"
 " vim.api.nvim_set_keymap( "i", "<C-J>", 'copilot#accept("<CR>")', {silent = true, expr = true})
 
 " goto def/ref
@@ -423,7 +431,7 @@ map <Leader>GMc :call GenerateCMakefile()<CR>
 map <Leader>GM+ :call GenerateCppMakefile()<CR>
 " compile latex file
 
-map <Leader>cl <Esc><Esc>:!pdflatex -shell-escape % >/dev/null; zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
+map <Leader>cl <Esc><Esc>:!pdflatex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
 map <Leader>cm <Esc><Esc>:!octave % <CR><CR>
 map <Leader>cj <Esc><Esc>:FloatermNew mvn clean compile<CR>i
 map <Leader>cc <Esc><Esc>:FloatermNew make<CR>i
@@ -463,6 +471,8 @@ map <Leader>r :call CocActionAsync('rename') <CR>
 map <Leader>Ff <Plug>(coc-fix-current)
 map <Leader>Fa :call CocActionAsync('codeAction')<CR>
 map <Leader>W :wqa!<CR>
+map <Leader>C <Esc><Esc>:Copilot panel<CR>
+" imap <Leader>c <Esc><Esc>:Copilot panel<CR>
 " Single mappings
 let g:which_key_map['/'] = [ '<C-q>'  , 'comment' ]
 let g:which_key_map.w = [ 'dw'        , 'Delete word' ]
@@ -482,6 +492,7 @@ let g:which_key_map.d = [ ',d'        , 'Tree Toogle ' ]
 let g:which_key_map.f = [ ',f'        , 'Tree focus' ]
 let g:which_key_map.r = [ ',r'        , 'Rename' ]
 let g:which_key_map.z = [ ',z'        , 'LazyGit' ]
+let g:which_key_map.C = [ ',C'        , 'Copilot' ]
 let g:which_key_map.W = [ ',W'    , 'Save and exit all (force)' ]
 " let g:which_key_m ap.F = [ ',F'        , 'Fix (quick)' ]
 

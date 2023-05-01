@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{\PYGZbs{}begin}\PYG{n+nb}{\PYGZob{}}figure\PYG{n+nb}{\PYGZcb{}}[t]
+    \PYG{k}{\PYGZbs{}centering}\PYG{n+nb}{\PYGZob{}}\PYG{k}{\PYGZbs{}includegraphics}\PYG{n+na}{[scale=0.5]}\PYG{n+nb}{\PYGZob{}}\PYGZti{}/templates/latex/images/ulbLogo.png\PYG{n+nb}{\PYGZcb{}\PYGZcb{}}
+	\PYG{k}{\PYGZbs{}label}\PYG{n+nb}{\PYGZob{}}fig:ulbLogo\PYG{n+nb}{\PYGZcb{}}
+\PYG{k}{\PYGZbs{}end}\PYG{n+nb}{\PYGZob{}}figure\PYG{n+nb}{\PYGZcb{}}
+\PYG{k}{\PYGZbs{}author} \PYG{n+nb}{\PYGZob{}}Mickael Kovel 000396950\PYG{n+nb}{\PYGZcb{}}
+\PYG{k}{\PYGZbs{}date} \PYG{n+nb}{\PYGZob{}}2 Mai 2023\PYG{n+nb}{\PYGZcb{}}
+\PYG{k}{\PYGZbs{}title} \PYG{n+nb}{\PYGZob{}}Template\PYG{n+nb}{\PYGZcb{}}
+\PYG{k}{\PYGZbs{}maketitle}
+\PYG{k}{\PYGZbs{}newpage}
+\PYG{k}{\PYGZbs{}tableofcontents}
+\PYG{k}{\PYGZbs{}newpage}
+\end{Verbatim}

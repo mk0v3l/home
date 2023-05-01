@@ -92,3 +92,4 @@ alias scrollOff="xinput set-prop 11 326 0 0"
 alias scrollOn="xinput set-prop 11 328 0;xinput set-prop 11 326 1 1"
 alias spotify="flatpak run io.github.hrkfdn.ncspot"
 
+alias matlab="octave"

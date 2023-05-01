@@ -1,0 +1,216 @@
+\documentclass {article}
+\usepackage{minted, xcolor, graphicx, caption, geometry}
+\geometry{
+  left=2.5cm,
+  right=2.5cm,
+  top=2.5cm,
+  bottom=3cm
+}
+\captionsetup{font=footnotesize}
+
+
+\begin {document}
+
+\begin{figure}[t]
+    \centering{\includegraphics[scale=0.5]{~/templates/latex/images/ulbLogo.png}}
+	\label{fig:ulbLogo}
+\end{figure}
+\author {Mickael Kovel 000396950}
+\date {2 Mai 2023}
+\title {Template}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+
+\section {Introduction}
+
+\section {Configuration}
+
+\begin{minted}{latex}
+\documentclass {article}
+\usepackage{minted, xcolor, graphicx, caption, geometry}
+\geometry{
+  left=2.5cm,
+  right=2.5cm,
+  top=2.5cm,
+  bottom=3cm
+}
+\captionsetup{font=footnotesize}
+
+
+\begin {document}
+\end{minted}
+\section {Titre}
+
+\begin{minted}{latex}
+\begin{figure}[t]
+    \centering{\includegraphics[scale=0.5]{~/templates/latex/images/ulbLogo.png}}
+	\label{fig:ulbLogo}
+\end{figure}
+\author {Mickael Kovel 000396950}
+\date {2 Mai 2023}
+\title {Template}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\end{minted}
+
+
+\newpage
+\section {Figures}
+\subsection {Simple}
+\begin{figure}[h]
+	\centering{\includegraphics[scale=0.5]{~/templates/latex/images/ulbLogo.png}}
+	\caption{Logo de l'ULB}
+	\label{fig:ulbLogo}
+\end{figure}
+
+\begin{minted}{latex}
+
+\begin{figure}[h]
+	\centering{\includegraphics[scale=0.5]{~/templates/latex/images/ulbLogo.png}}
+	\caption{Logo de l'ULB}
+	\label{fig:ulbLogo}
+\end{figure}
+
+
+\end{minted}
+
+\newpage
+\subsection {Côte à côte}
+
+\begin{figure}[h]
+    \begin{minipage}[t]{0.50\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{~/templates/latex/images/ulbLogo.png}
+	\caption{Logo de l'ULB}
+	\label{fig:model1}				
+    \end{minipage}			
+    \begin{minipage}[t]{0.50\textwidth}				
+	\centering
+	\includegraphics[width=\textwidth]{~/templates/latex/images/ulbLogo.png}
+	\caption{Logo de l'ULB}
+	\label{fig:model2}
+    \end{minipage}
+\end{figure}
+\begin{verbatim}
+
+\begin{figure}[h]
+    \begin{minipage}[t]{0.50\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{~/templates/latex/images/ulbLogo.png}
+	\caption{Logo de l'ULB}
+	\label{fig:model1}				
+    \end{minipage}			
+    \begin{minipage}[t]{0.50\textwidth}				
+	\centering
+	\includegraphics[width=\textwidth]{~/templates/latex/images/ulbLogo.png}
+	\caption{Logo de l'ULB}
+	\label{fig:model2}
+    \end{minipage}
+\end{figure}
+
+\end{verbatim}
+
+
+\section {Références}
+Comment référencer une figure : \ref{fig:ulbLogo}
+\begin{verbatim}
+Comment référencer une figure : \ref{fig:ulbLogo}
+\end{verbatim}
+
+\newpage
+\section {Code}
+\subsection {Code C++}
+\begin{minted}{cpp}
+#include <iostream>
+using namespace std;
+int main() {
+	cout << "Hello, World!";
+	return 0;
+}
+\end{minted}
+
+\begin{verbatim}
+\begin{minted}{cpp}
+#include <iostream>
+using namespace std;
+int main() {
+	cout << "Hello, World!";
+	return 0;
+}
+\end{minted}
+\end{verbatim}
+
+\subsection {Code Python}
+
+\begin{minted}{python}
+def main():
+	print("Hello, World!")
+if __name__ == "__main__":
+    main()
+\end{minted}
+
+\begin{verbatim}
+\begin{minted}{python}
+def main():
+	print("Hello, World!")
+if __name__ == "__main__":
+	main()
+\end{minted}
+\end{verbatim}
+
+\subsection {Code Java}
+\begin{minted}{java}
+public class HelloWorld {
+	public static void main(String[] args) {
+		System.out.println("Hello, World!");
+	}
+}
+\end{minted}
+
+\begin{verbatim}
+\begin{minted}{java}
+public class HelloWorld {
+	public static void main(String[] args) {
+		System.out.println("Hello, World!");
+	}
+}
+\end{minted}
+\end{verbatim}
+
+\subsection {Code Bash}
+\begin{minted}{bash}
+#!/bin/bash
+echo "Hello, World!"
+\end{minted}
+
+\begin{verbatim}
+\begin{minted}{bash}
+#!/bin/bash
+echo "Hello, World!"
+\end{minted}
+\end{verbatim}
+
+
+
+\subsection {Code Matlab}
+
+\begin{minted}{matlab}
+D = 20;gamma = ones(1,nn+1)/D; 
+y1 = 100.*ones(1,10);y2 = 75.*ones(1,10);y3 = 50.*ones(1,10);y4 = 25.*ones(1,10);y5 = 0.*ones(1,10);
+gamma(1:50) = [y1 y2 y3 y4 y5].*gamma(1:50);
+\end{minted}
+
+\begin{verbatim}
+\begin{minted}{matlab}
+D = 20;gamma = ones(1,nn+1)/D; 
+y1 = 100.*ones(1,10);y2 = 75.*ones(1,10);y3 = 50.*ones(1,10);y4 = 25.*ones(1,10);y5 = 0.*ones(1,10);
+gamma(1:50) = [y1 y2 y3 y4 y5].*gamma(1:50);
+\end{minted}
+\end{verbatim}
+
+\end {document}
