@@ -4,6 +4,7 @@
 "  Plugins
 
 call plug#begin('~/.config/nvim/plugged')
+" Plug 'daeyun/vim-matlab'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'kdheepak/lazygit.nvim'
@@ -118,6 +119,7 @@ map [ $
 noremap <C-k> b
 " noremap <S-h> b
 noremap <C-l> 5j
+" map <C-l> 5j
 " noremap <S-j> 5j
 " noremap <S-k> 5k
 noremap <C-m> w 
@@ -421,14 +423,15 @@ map <Leader>GMc :call GenerateCMakefile()<CR>
 map <Leader>GM+ :call GenerateCppMakefile()<CR>
 " compile latex file
 
-map <Leader>cl :!pdflatex -shell-escape % >/dev/null; zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
-map <Leader>cj :FloatermNew mvn clean compile<CR>i
-map <Leader>cc :FloatermNew make<CR>i
-map <Leader>cp :FloatermNew python3 %<CR>i
-map <Leader>cb :FloatermNew 
-map <Leader>ct :FloatermNew mvn test<CR>i
-map <Leader>cec :FloatermNew make run<CR>i
-map <Leader>cej :FloatermNew mvn clean compile exec:java<CR>i
+map <Leader>cl <Esc><Esc>:!pdflatex -shell-escape % >/dev/null; zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
+map <Leader>cm <Esc><Esc>:!octave % <CR><CR>
+map <Leader>cj <Esc><Esc>:FloatermNew mvn clean compile<CR>i
+map <Leader>cc <Esc><Esc>:FloatermNew make<CR>i
+map <Leader>cp <Esc><Esc>:FloatermNew python3 %<CR>i
+map <Leader>cb <Esc><Esc>:FloatermNew 
+map <Leader>ct <Esc><Esc>:FloatermNew mvn test<CR>i
+map <Leader>cec <Esc><Esc>:FloatermNew make run<CR>i
+map <Leader>cej <Esc><Esc>:FloatermNew mvn clean compile exec:java<CR>i
 
 map <Leader>d :NERDTreeToggle <CR>
 map <Leader>f :NERDTreeFocus <CR>
@@ -524,6 +527,7 @@ let g:which_key_map.c = {
 	  \ 'q' : ['<Esc>'   , 'Exit menu WhichKey'],
 	  \ 'b' : [',cb'    , 'Bash command ...'],
 	  \ 't' : [',ct'    , 'Java test with maven'],
+	  \ 'm' : [',cm'    , 'Matlab/Octave run'],
       \ }
 
 let g:which_key_map.c.e= {
