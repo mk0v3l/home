@@ -3,8 +3,9 @@
 
 # $ pdflatex --shell-escape -output-directory=/tmp/latex ex.tex && mv /tmp/latex/ex.pdf . && open ex.pdf
 function latex(){
-	mkdir -p /tmp/latex
-	pdflatex --shell-escape -output-directory=/tmp/latex $1 && mv /tmp/latex/${1%.*}.pdf . && open ${1%.*}.pdf
+	# mkdir -p /tmp/latex
+	# pdflatex --shell-escape -output-directory=/tmp/latex $1 && mv /tmp/latex/${1%.*}.pdf . && open ${1%.*}.pdf
+	pdflatex --shell-escape $1 && open ${1%.*}.pdf
 }
 
 function showdate(){

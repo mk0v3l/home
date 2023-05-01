@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{\PYGZbs{}\PYGZbs{}}begin\PYG{n+nb}{\PYGZob{}}minted\PYG{n+nb}{\PYGZcb{}\PYGZob{}}matlab\PYG{n+nb}{\PYGZcb{}}
-D = 20;gamma = ones(1,nn+1)/D;
-y1 = 100.*ones(1,10);y2 = 75.*ones(1,10);y3 = 50.*ones(1,10);y4 = 25.*ones(1,10);y5 = 0.*ones(1,10);
-gamma(1:50) = [y1 y2 y3 y4 y5].*gamma(1:50);
-\end{Verbatim}

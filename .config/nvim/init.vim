@@ -432,7 +432,8 @@ map <Leader>GM+ :call GenerateCppMakefile()<CR>
 " compile latex file
 
 " map <Leader>cl <Esc><Esc>:! mkdir -p /tmp/latex;  pdflatex -shell-escape -output-directory=/tmp/latex % >/dev/null && mv /tmp/latex/%:r.pdf . && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
-map <Leader>cl <Esc><Esc>:! mkdir -p /tmp/latex;  pdflatex -shell-escape -output-directory=/tmp/latex % && mv /tmp/latex/%:r.pdf . && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
+" map <Leader>cl <Esc><Esc>:! mkdir -p /tmp/latex;  pdflatex -shell-escape -output-directory=/tmp/latex % && mv /tmp/latex/%:r.pdf . && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
+map <Leader>cl <Esc><Esc>:! pdflatex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
 map <Leader>cm <Esc><Esc>:!octave % <CR><CR>
 map <Leader>cj <Esc><Esc>:FloatermNew mvn clean compile<CR>i
 map <Leader>cc <Esc><Esc>:FloatermNew make<CR>i
