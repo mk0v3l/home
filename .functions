@@ -1,0 +1,304 @@
+#!/bin/bash
+function showdate(){
+    clear
+    printf '\033[;H'
+    date
+    # sleep 1
+    # showdate
+}
+
+function testInject(){
+    # sudo aireplay-ng --test $cwm
+    sudo aireplay-ng --test $cwtp
+}
+
+function initMonitor(){
+    sudo ifconfig $cw down
+    sudo iwconfig $cw mode monitor
+    sudo ifconfig $cw up
+}
+function startMonitor(){
+    sudo airmon-ng check kill
+    sudo airmon-ng start $1
+}
+
+function monitor(){
+    # if [[ -z $1 ]] ; then
+        # sudo airodump-ng $cwm
+    # else
+	sudo airodump-ng $1
+    # fi
+
+}
+
+function attack(){
+    sudo airodump-ng -c $1 --bssid $2 -w /tmp/attack $cwtp
+}
+
+function inject (){
+    sudo aireplay-ng -0 $1 -a $2 $cwtp
+}
+
+
+function gord() {
+	if [ -d $DISPLAY ]; then
+		TERM=linux
+	fi
+	
+	~/.gord/gord 
+	
+	if [ -d $DISPLAY ]; then
+		TERM=xterm-256color
+	fi
+	echo -e '\033[?6c'
+}
+ALL_CHARACTERS=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+
+function crack(){
+    crunch 1 15 $ALL_CHARACTERS | aircrack-ng /tmp/attack*.cap -w h:- -b $1 
+}
+funcion nv() {
+	if [[ -z $1 ]]; then
+		/snap/bin/nvim -p
+	fi
+	if [[ $1 == "-d" ]]; then
+	    /snap/bin/nvim -d
+	    # local args=$@
+	    # /snap/bin/nvim $args
+	fi
+
+}
+function serviceStart() {
+	sudo systemctl start $1
+	sudo systemctl status $1
+}
+function serviceStop() {
+	sudo systemctl stop $1
+	sudo systemctl status $1
+}
+function serviceRestart() {
+	sudo systemctl restart $1
+	sudo systemctl status $1
+}
+function serviceEnable() {
+	sudo systemctl enable $1
+	sudo systemctl status $1
+}
+function serviceDisable() {
+	sudo systemctl disable $1
+	sudo systemctl status $1
+}
+function serviceStatus() {
+	sudo systemctl status $1
+}
+function serviceReload() {
+	sudo systemctl daemon-reload
+}
+function send() {
+    ip_address="$1"
+    shift
+    files=("$@")  # utilise des tableaux pour stocker les noms de fichiers
+	scp "${files[@]}" mkovel@$ip_address:/home/mkovel/transfert
+    # scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "${files[@]}" mkovel@$ip_address:/home/mkovel/transfert
+}
+
+
+function ga() {
+	for i in "${@:1}"; do
+		git add $i
+	done
+	gs
+}
+function gc() {
+	txt=$1
+	for i in "${@:2}"; do
+		txt="$txt $i"
+	done
+	git commit -m "$txt"
+	gs
+}
+function gitall() {
+    local msg=""
+    for i in "${@:1}"; do
+        if [[ $i == "-m" ]]; then
+            msg=$(printf '%s ' "${@: $(( $i + 1 ))}") && msg=${msg#*-m }
+            break
+        fi
+        git add $i
+    done
+    git commit -m "$msg"
+}
+function temp() {
+	cpu=$(</sys/class/thermal/thermal_zone0/temp) 
+	echo "$((cpu/1000))°C"
+}
+
+function isDefFunc(){
+	comp1=(
+	comp2=)
+	for arg in "$@"; do
+		if [[ $arg == *$comp1*$comp2* ]]; then    
+		# if [[ "$arg" == *#* ]]; then
+			return 0
+		fi
+	done
+	return 1
+}
+function install(){
+	sudo apt install $@
+}
+function pdf2jpg(){
+	filename=$(basename -- "$1")
+	mkdir -p ${filename%.*}PdfJpg
+	pdftoppm -jpeg -progress $1 ${filename%.*}PdfJpg/${filename%.*}
+}
+function pdf2png(){
+	filename=$(basename -- "$1")
+	mkdir -p ${filename%.*}PdfPng
+	pdftoppm -png $1 ${filename%.*}PdfPng/${filename%.*}
+}
+function pdftojpg(){
+	pdf2jpg $@
+}
+function pdftopng(){
+	pdf2png $@
+}
+function hibernate(){
+	sudo echo "suspend in 3 secs"
+	sleep 1
+	sudo echo "suspend in 2 secs"
+	sleep 1
+	sudo echo "suspend in 1 secs"
+	sleep 1
+	sudo pm-suspend
+}
+funcion tmateConnect(){
+    scp mkovel@$1:~/connect.tmate ~/tmate/$1.tmate
+    # tail -1 ~/tmate/$1.tmate | cut -d ' ' -f 9,10
+    tail -1 ~/tmate/$1.tmate | cut -d ' ' -f 9,10 > ~/tmate/$1.tmate.ssh
+    chmod +x ~/tmate/$1.tmate.ssh
+    ~/tmate/$1.tmate.ssh
+}
+function tmateSave(){
+    tmate show-messages > ~/tmate/connect.tmate
+    tail -1 ~/tmate/connect.tmate | cut -d ' ' -f 9,10 > ~/tmate/connect.tmate.ssh
+    chmod +x ~/tmate/connect.tmate.ssh
+	# tmate show-messages | tail -1 | cut -d ' ' -f 9,10 > ~/tmate/connect.tmate
+}
+function saveAlias {
+    echo "alias $1=\"${@:2}\"" >> ~/.aliases
+    reload
+}
+
+
+function open(){
+	# if end with .pdf 
+    if [[ $1 == *.pdf ]]; then
+		zathura --mode fullscreen $1 
+	else
+		/usr/bin/open $1
+	fi
+}
+export TMOUT=5
+function battery(){
+    output=$(acpi)
+    percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
+    charging=$(echo $output | awk '{print $3}' | tr -d ',%')
+
+    if [ $percentage -lt $CRTICALBAT ]; then
+        export TMOUT=1
+        if [ $colorBat = "red" ]; then
+	    # echo "red"
+            export colorBat=white
+        else
+            export colorBat=red
+        fi
+    elif [ $percentage -lt $LOWBAT ]; then
+        if [ $colorBat = "red" ]; then
+            export colorBat=white
+	    export TMOUT=1
+        else
+            export colorBat=red
+            if ! [ $percentage -lt $CRTICALBAT ]; then
+                export TMOUT=5
+            fi
+        fi
+    elif [ $percentage -lt $LIGHTBAT ]; then
+        export colorBat=red 
+    else 
+        export colorBat=green
+    fi
+    if [ $charging = "Charging" ]; then
+		export colorBat=green
+	fi
+}
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{\1}/'
+}
+setopt PROMPT_SUBST
+LIGHTBAT=21
+LOWBAT=16
+CRTICALBAT=11
+# LOWBAT=16
+# CRTICALBAT=11
+# LIGHTBAT=20
+output=$(acpi)
+percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
+if [ $percentage -lt $LIGHTBAT ]; then
+    export colorBat=red
+else
+    export colorBat=green
+fi
+
+# {#FFC500}{#FFA500}{#F080CB}{#00FF7F}{#0000FF}
+# BRANCHCOLOR=blue
+# BRANCHCOLOR=#00FF7F
+# BRANCHCOLOR=#AD95B9
+BRACKETCOLOR=#AD95B9
+BRANCHCOLOR=#EA63FF
+# PATHCOLOR=#FFA500
+PATHCOLOR=#616161
+# NAMECOLOR=#54b6ff
+NAMECOLOR=#9ad4ff
+CLOCKCOLOR=#FFC500
+# PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'$" "
+PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'$" "
+battery
+TRAPALRM() {
+    battery
+    zle reset-prompt
+}
+
+# function cleanVimSession() {
+# 	rm ~/.local/share/nvim/sessions/%home%mkovel* > /dev/null 2>&1
+# }
+
+
+
+
+# funcion nv() {
+#     if [[ -z $1 ]]; then
+# 		/snap/bin/nvim -p
+# 	else if [[ $1 == "-d" ]]; then
+# 	    /snap/bin/nvim -d
+# 	    # local args=$@
+# 	    # /snap/bin/nvim $args
+# 	fi
+# }
+
+# function scp(){
+#     if [[ $1 == "-r" ]]; then
+# 		shift
+# 		scp -ro UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"
+# 	else
+# 		# scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"
+# 		# scp "$@" 
+# 		echo "$@"
+# 	fi
+# }
+
+# function pdftopng(){
+# 	filename=$(basename -- "$1")
+# 	mkdir -p ${filename%.*}
+# 	pdftoppm -png $1 ${filename%.*}/${filename%.*}
+# }
