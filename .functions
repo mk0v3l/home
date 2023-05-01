@@ -271,7 +271,7 @@ PATHCOLOR=#616161
 NAMECOLOR=#9ad4ff
 CLOCKCOLOR=#FFC500
 # PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'$" "
-PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'$" "
+PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'"› "
 battery
 TRAPALRM() {
     battery

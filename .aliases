@@ -97,4 +97,5 @@ alias matlab="octave"
 # alias cleanPdf="(rp  *.aux ;rp *.log ;rp *.toc ;rp _minted-*) >/dev/null"
 # alias cleanPdf="(rm *.aux *.log *.toc _minted-*) 1>/dev/null 2>/dev/null"
 alias cleanPdf="(rm *.aux) 1>/dev/null 2>/dev/null; (rm *.log) 1>/dev/null 2>/dev/null; (rm *.toc) 1>/dev/null 2>/dev/null; (rm -rf _minted-*) 1>/dev/null 2>/dev/null"
-
+alias clear="tput clear"
+# alias clear="echo 'hello'"
