@@ -1,0 +1,12 @@
+git:
+  paging:
+    colorArg: always
+    # colorArg: never
+    # pager: 
+    pager: delta --dark --side-by-side --paging=never
+    # pager: delta --dark --side-by-side 
+    # pager: ydiff -p cat  -s --wrap --width={{columnWidth}} 
+    # pager: diff -y
+    # pager: nvim -d 
+    # pager: git difftool
+    # pager: diff-so-fancy
