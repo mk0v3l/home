@@ -92,6 +92,7 @@ let mapleader = ',' " Leader Key
 
 " Disable original mapping for m
 map m <Nop> 
+map ; :
 
 " Another way to go in insert mode
 " map <Leader>, i
@@ -328,13 +329,39 @@ map <Leader>s. :Telescope find_files cwd=. <CR>
 map <Leader>sh :Telescope find_files cwd=/home/mkovel hidden=true<CR>
 
 
+
+
+
+" Gihub copilot
+
+
 " imap <silent><script><expr> <C-Right> copilot#Accept("\<CR>")
-imap <silent><script><expr> <C-Right> copilot#Accept("\<CR>")
-imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>") 
-imap <silent><script><expr> <C-Tab> copilot#Accept("\<CR>")
+" imap <silent><script><expr> <C-Right> copilot#Accept("\<CR>")
+" imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>") 
 " imap <silent><script><expr> <C-Tab> copilot#Accept('<Right>')
 " imap <silent><script><expr> <Right> copilot#Accept('<Right>')
 let g:copilot_no_tab_map = v:true
+
+function! SuggestOneCharacter()
+    let suggestion = copilot#Accept("")
+    let bar = copilot#TextQueuedForInsertion()
+    return bar[0]
+endfunction
+function! SuggestOneWord()
+    let suggestion = copilot#Accept("")
+    let bar = copilot#TextQueuedForInsertion()
+    return split(bar, '[ .]\zs')[0]
+endfunction
+
+imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
+imap <script><expr> <C-right> SuggestOneWord()
+imap <script><expr> <C-Tab> SuggestOneWord()
+imap <script><expr> <C-down> SuggestOneCharacter()
+
+
+
+
+
 " Coc.nvim
 let g:coc_disable_startup_warning = 1
 " S-Tab for autocomplete coc
@@ -928,6 +955,36 @@ endfunction
 function GitAdd()
 	execute "!git add ".expand('%:p')
 endfunction
+
+
+
+
+
+
+
+
+" function SuggestOneCharacter()
+"     local suggestion = vim.fn['copilot#Accept']("")
+"     local bar = vim.fn['copilot#TextQueuedForInsertion']()
+"     return bar:sub(1, 1)
+" endfunction
+" function SuggestOneWord()
+"     local suggestion = vim.fn['copilot#Accept']("")
+"     local bar = vim.fn['copilot#TextQueuedForInsertion']()
+"     return vim.fn.split(bar,  [[[ .]\zs]])[1]
+" endfunction
+
+" " local map = vim.keymap.set
+" map('i', '<C-down>', SuggestOneCharacter, {expr = true, remap = false})
+" map('i', '<C-left>', SuggestOneWord, {expr = true, remap = false})
+" map('i', '<C-p>', SuggestOneWord, {expr = true, remap = false})
+
+
+
+
+
+
+
 " autocmd TermEnter term://*toggleterm#* 
 	    " \tnoremap <silent><c-t> <Cmd>exe v:count1 . 'ToggleTerm direction=horizontal' <CR>
 		    
