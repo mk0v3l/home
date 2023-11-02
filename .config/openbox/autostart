@@ -1,6 +1,8 @@
-xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &
+xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen -ls -xrm 'XTerm*selectToClipboard: true'&
 xinput set-prop 'bcm5974' 314 1
-xinput set-prop 11 312 1
+xinput set-prop 'bcm5974' 312 1
+xinput set-prop 'bcm5974' 345 0
+xinput set-prop 'bcm5974' 318 0
 # xinput set-prop 11 328 1
 xsetroot -solid black
 # synclient MaxTapTime=0

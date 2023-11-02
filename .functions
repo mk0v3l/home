@@ -1,17 +1,25 @@
 #!/bin/bash
 
-
-# $ pdflatex --shell-escape -output-directory=/tmp/latex ex.tex && mv /tmp/latex/ex.pdf . && open ex.pdf
+# /home/mkovel/.local/share/JetBrains/Toolbox/scripts/idea 1>/dev/null 2>/dev/null &
+function idea(){
+	/home/mkovel/.local/share/JetBrains/Toolbox/scripts/idea $@ 1>/dev/null 2>/dev/null &
+}
+function code(){
+    idea $@ 
+}
 function latex(){
 	# mkdir -p /tmp/latex
 	# pdflatex --shell-escape -output-directory=/tmp/latex $1 && mv /tmp/latex/${1%.*}.pdf . && open ${1%.*}.pdf
 	pdflatex --shell-escape $1 && open ${1%.*}.pdf
+	echo "run cleanPdf to clean all temp files"
 }
 
 function showdate(){
     clear
     printf '\033[;H'
-    date
+echo $(date) $(temp) $(acpi | awk '{print $4}' | tr -d ',')
+    # date
+    # temp
     # sleep 1
     # showdate
 }
@@ -28,7 +36,12 @@ function initMonitor(){
 }
 function startMonitor(){
     sudo airmon-ng check kill
-    sudo airmon-ng start $1
+    sudo airmon-ng start $cwtp
+    # sudo airmon-ng start $1
+}
+funcion resetWifi(){
+	# sudo systemctl stop NetworkManager
+	sudo systemctl start NetworkManager
 }
 
 function monitor(){
@@ -54,7 +67,8 @@ function gord() {
 		TERM=linux
 	fi
 	
-	~/.gord/gord 
+	gnome-terminal --full-screen --hide-menubar -e ~/.gord/gord & 
+	# ~/.gord/gord 
 	
 	if [ -d $DISPLAY ]; then
 		TERM=xterm-256color
@@ -211,8 +225,11 @@ function open(){
 export TMOUT=5
 function battery(){
     output=$(acpi)
-    percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
-    charging=$(echo $output | awk '{print $3}' | tr -d ',%')
+    # percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
+    # percentage=$(echo "$output" | tail -n 1 | awk '{gsub(/,/, "", $4); sub(/%/, "", $4); print $4}')
+    charging=$(echo "$output" | tail -n 1 | awk '{gsub(/,/, "", $3); sub(/%/, "", $3); print $3}')
+    # charging=$(echo $output | awk '{print $3}' | tr -d ',%')
+    percentage=$(echo "$(acpi)" | head -n 1 | awk '{gsub(/[^0-9]/, "", $4); print $4}')
 
     if [ $percentage -lt $CRTICALBAT ]; then
         export TMOUT=1
@@ -252,7 +269,16 @@ CRTICALBAT=11
 # CRTICALBAT=11
 # LIGHTBAT=20
 output=$(acpi)
-percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
+# percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
+# percentage=$(echo "$test" | tail -n 1 | awk '{gsub(/,/, "", $4); print $4}')
+# percentage=$(echo "$output" | tail -n 1 | awk '{gsub(/,/, "", $4); sub(/%/, "", $4); print $4}')
+
+# percentage=$(echo $output | head -n 1 | awk '{gsub(/[^0-9]/, "", $4); print $4}'
+
+percentage=$(echo "$(acpi)" | head -n 1 | awk '{gsub(/[^0-9]/, "", $4); print $4}')
+
+
+
 if [ $percentage -lt $LIGHTBAT ]; then
     export colorBat=red
 else
@@ -270,8 +296,16 @@ PATHCOLOR=#616161
 # NAMECOLOR=#54b6ff
 NAMECOLOR=#9ad4ff
 CLOCKCOLOR=#FFC500
-# PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'$" "
-PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'"› "
+# PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "NR==1 {print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'$" "
+PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "NR==1 {print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'$" "
+
+# PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'"› "
+
+# PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | tail -n 1 | awk "{gsub(/,/, "", $4); sub(/%/, "", $4); print $4}")'
+
+# PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | tail -n 1 | awk '{gsub(/,/, "", $4); sub(/%/, "", $4); print $4}'))%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'"› "
+
+# PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{gsub(/,/, "", $4); sub(/%/, "", $4); print $4}")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'"› "
 battery
 TRAPALRM() {
     battery

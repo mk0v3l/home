@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Nightmare-02</name>
+    <name>Artwiz-boxed</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -338,7 +338,9 @@
           <name>Konqueror</name>
         </startupnotify>
         <!-- <command>lazygit</command> -->
-        <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen</command>
+        <!-- <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen</command> -->
+	<command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen -ls -xrm 'XTerm*selectToClipboard: true'</command>
+
       </action>
     </keybind>
     <keybind key="C-W-t">
@@ -348,7 +350,8 @@
           <name>Konqueror</name>
         </startupnotify>
         <!-- <command>lazygit</command> -->
-        <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen</command>
+        <!-- <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen</command> -->
+	<command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen -ls -xrm 'XTerm*selectToClipboard: true'</command>
       </action>
     </keybind>
     <keybind key="XF86AudioMute">
@@ -474,8 +477,6 @@
         <command>brightnessctl -d smc::kbd_backlight set 10%-</command>
       </action>
     </keybind>
-
-
     <keybind key="XF86LaunchA">
       <!-- <action name="Raise Volume"> -->
       <action name="Execute">
@@ -483,10 +484,9 @@
           <enabled>true</enabled>
           <name>???</name>
         </startupnotify>
-	<command>~/.mountDDExt.sh</command>
+        <command>~/.mountDDExt.sh</command>
       </action>
     </keybind>
-
     <keybind key="XF86LaunchB">
       <!-- <action name="Raise Volume"> -->
       <action name="Execute">
@@ -497,24 +497,6 @@
         <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen -hold -e flatpak run io.github.hrkfdn.ncspot</command>
       </action>
     </keybind>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </keyboard>
   <mouse>
     <acceleration>35.0</acceleration>
