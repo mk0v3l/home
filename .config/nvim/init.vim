@@ -352,11 +352,15 @@ function! SuggestOneWord()
     let bar = copilot#TextQueuedForInsertion()
     return split(bar, '[ .]\zs')[0]
 endfunction
-imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
-imap <script><expr> <C-right> SuggestOneWord()
+" imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
+" imap <script><expr> <C-right> SuggestOneWord()
+imap <silent><script><expr> <S-Tab> SuggestOneWord()
+imap <script><expr> <C-right> copilot#Accept("\<CR>")
 imap <script><expr> <C-Tab> SuggestOneWord()
-imap <script><expr> <S-C> SuggestOneWord()
+" imap <script><expr> <> SuggestOneWord()
 imap <script><expr> <C-down> SuggestOneCharacter()
+
+
 
 
 
