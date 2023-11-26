@@ -337,9 +337,9 @@
           <enabled>true</enabled>
           <name>Konqueror</name>
         </startupnotify>
-        <!-- <command>lazygit</command> -->
+        <command>lazygit</command>
         <!-- <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen</command> -->
-	<command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen -ls -xrm 'XTerm*selectToClipboard: true'</command>
+	<!-- <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen -ls -xrm 'XTerm*selectToClipboard: true' -e tmux</command> -->
 
       </action>
     </keybind>
@@ -349,9 +349,9 @@
           <enabled>true</enabled>
           <name>Konqueror</name>
         </startupnotify>
-        <!-- <command>lazygit</command> -->
+        <command>lazygit</command>
         <!-- <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen</command> -->
-	<command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen -ls -xrm 'XTerm*selectToClipboard: true'</command>
+	<!-- <command>xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen -ls -xrm 'XTerm*selectToClipboard: true' -e tmux</command> -->
       </action>
     </keybind>
     <keybind key="XF86AudioMute">

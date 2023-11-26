@@ -15,6 +15,7 @@ echo -e '\033[?6c'
 source ~/.profile
 TERM=xterm-256color
 setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz 2> /dev/null
+SHELL=tmux
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -33,8 +34,12 @@ export PATH="/snap/bin/:$PATH"
 export PATH="$HOME/.stubgen-2.07/:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/go/bin/:$PATH"
-export PATH=/home/mkovel/work/Unif/reseauLab/info-f-303/netkit/bin:/home/mkovel/go/bin/:/home/mkovel/.stubgen-2.07/:/snap/bin/:/home/mkovel/snap/:/usr/lib/w3m/:/home/mkovel/.cargo/bin:/home/mkovel/.local/bin:/home/mkovel/go/bin/:/home/mkovel/.stubgen-2.07/:/snap/bin/:/home/mkovel/snap/:/usr/lib/w3m/:/home/mkovel/.cargo/bin:/home/mkovel/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mkovel/.local/share/JetBrains/Toolbox/scripts:/usr/local/go/bin:/home/mkovel/.local/share/JetBrains/Toolbox/scripts:/usr/local/go/bin
-export NETKIT_HOME=/home/mkovel/Téléchargements/info-f-303/netkit
+# export PATH=/home/mkovel/work/Unif/reseauLab/info-f-303/netkit/bin:/home/mkovel/go/bin/:/home/mkovel/.stubgen-2.07/:/snap/bin/:/home/mkovel/snap/:/usr/lib/w3m/:/home/mkovel/.cargo/bin:/home/mkovel/.local/bin:/home/mkovel/go/bin/:/home/mkovel/.stubgen-2.07/:/snap/bin/:/home/mkovel/snap/:/usr/lib/w3m/:/home/mkovel/.cargo/bin:/home/mkovel/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mkovel/.local/share/JetBrains/Toolbox/scripts:/usr/local/go/bin:/home/mkovel/.local/share/JetBrains/Toolbox/scripts:/usr/local/go/bin
+# export NETKIT_HOME=/home/mkovel/Téléchargements/info-f-303/netkit
+
+
+
+# 
 # cw=wlx30de4b20e988
 cwtp=wlx30de4b20e988
 cw=wlp3s0
@@ -42,9 +47,12 @@ cwm=prism0
 
 
 # Netkit
-export NETKIT_HOME=/home/mkovel/work/Unif/reseauLab/info-f-303/netkit
+export NETKIT_HOME=/home/mkovel/netkit-jh
 export MANPATH=:$NETKIT_HOME/man
 export PATH=$NETKIT_HOME/bin:$PATH
+# export NETKIT_HOME=/home/mkovel/work/Unif/reseauLab/info-f-303/netkit
+# export MANPATH=:$NETKIT_HOME/man
+# export PATH=$NETKIT_HOME/bin:$PATH
 # sudo airodump-ng -c 11 --bssid A8:6A:BB:89:C0:9E -w /tmp/dictio wlx30de4b20e988
 
 # Set name of the theme to load --- if set to "random", it will

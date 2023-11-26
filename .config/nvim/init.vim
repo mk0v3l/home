@@ -352,11 +352,12 @@ function! SuggestOneWord()
     let bar = copilot#TextQueuedForInsertion()
     return split(bar, '[ .]\zs')[0]
 endfunction
-
 imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
 imap <script><expr> <C-right> SuggestOneWord()
 imap <script><expr> <C-Tab> SuggestOneWord()
+imap <script><expr> <S-C> SuggestOneWord()
 imap <script><expr> <C-down> SuggestOneCharacter()
+
 
 
 
@@ -460,11 +461,13 @@ map <Leader>GM+ :call GenerateCppMakefile()<CR>
 
 " map <Leader>cl <Esc><Esc>:! mkdir -p /tmp/latex;  pdflatex -shell-escape -output-directory=/tmp/latex % >/dev/null && mv /tmp/latex/%:r.pdf . && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
 " map <Leader>cl <Esc><Esc>:! mkdir -p /tmp/latex;  pdflatex -shell-escape -output-directory=/tmp/latex % && mv /tmp/latex/%:r.pdf . && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
-map <Leader>cl <Esc><Esc>:! pdflatex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
-map <Leader>cm <Esc><Esc>:!octave % <CR><CR>
+" map <Leader>cl <Esc><Esc>:! pdflatex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
+map <Leader>cl <Esc>:! pdflatex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>
+" map <Leader>cm <Esc><Esc>:!octave % <CR><CR>
+map <Leader>cm <Esc><Esc>:FloatermNew octave %<CR>
 map <Leader>cj <Esc><Esc>:FloatermNew mvn clean compile<CR>i
 map <Leader>cc <Esc><Esc>:FloatermNew make<CR>i
-map <Leader>cp <Esc><Esc>:FloatermNew python3 %<CR>i
+map <Leader>cp <Esc><Esc>:FloatermNew python3 %<CR>
 map <Leader>cb <Esc><Esc>:FloatermNew 
 map <Leader>ct <Esc><Esc>:FloatermNew mvn test<CR>i
 map <Leader>cec <Esc><Esc>:FloatermNew make run<CR>i
@@ -639,6 +642,11 @@ let g:which_key_map2['C-a'] = [ ''     , 'Comment line(s)' ]
 let g:which_key_map2[','] = [ ''     , 'Leader key' ]
 let g:which_key_map2['='] = [ '<Esc>'     , 'Exit menu WhichKey' ]
 call which_key#register('=', "g:which_key_map2")
+" command Lz LazyGit
+" cnoreabbrev lz LazyGit
+" nmap lz :LazyGit<CR>
+nmap <silent>lz :LazyGit<CR>
+nmap <silent>lr :Ranger<CR>
 
 " let g:which_key_map = {}
 " let g:which_key_sep = '>'
