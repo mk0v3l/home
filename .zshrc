@@ -37,14 +37,13 @@ export PATH="$HOME/go/bin/:$PATH"
 # export PATH=/home/mkovel/work/Unif/reseauLab/info-f-303/netkit/bin:/home/mkovel/go/bin/:/home/mkovel/.stubgen-2.07/:/snap/bin/:/home/mkovel/snap/:/usr/lib/w3m/:/home/mkovel/.cargo/bin:/home/mkovel/.local/bin:/home/mkovel/go/bin/:/home/mkovel/.stubgen-2.07/:/snap/bin/:/home/mkovel/snap/:/usr/lib/w3m/:/home/mkovel/.cargo/bin:/home/mkovel/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mkovel/.local/share/JetBrains/Toolbox/scripts:/usr/local/go/bin:/home/mkovel/.local/share/JetBrains/Toolbox/scripts:/usr/local/go/bin
 # export NETKIT_HOME=/home/mkovel/Téléchargements/info-f-303/netkit
 
-
+export BATCOL="red"
 
 # 
 # cw=wlx30de4b20e988
 cwtp=wlx30de4b20e988
 cw=wlp3s0
 cwm=prism0
-
 
 # Netkit
 export NETKIT_HOME=/home/mkovel/netkit-jh
@@ -169,6 +168,8 @@ export PATH=$NETKIT_HOME/bin:$PATH
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions web-search zsh-dircolors-nord)
 source ~/.oh-my-zsh/oh-my-zsh.sh
+# ZSH_AUTOSUGGEST_STRATEGY=(completion)
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -210,8 +211,12 @@ source ~/.oh-my-zsh/oh-my-zsh.sh
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-
+bindkey '^[[Z' forward-word
+# bindkey '^ ' autosuggest-accept
+# bindkey '\e' autosuggest-accept
+# bindkey '\e' complete-word
+bindkey '^a' forward-word
+bindkey '^^i' forward-word
 
 eval "$(zoxide init zsh)"
 
