@@ -5,6 +5,7 @@
 
 call plug#begin('~/.config/nvim/plugged')
 " Plug 'daeyun/vim-matlab'
+" Plug 'christoomey/vim-tmux-navigator'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'kdheepak/lazygit.nvim'
@@ -53,6 +54,8 @@ call plug#end()
 " highlight Error ctermbg=1 guibg=red
 let g:coc_highlight_disable = ['Error']
 
+set guifont=FiraCode\ Nerd\ Font\ Proto-Regular:h14:cANSI
+
 " require('toggleterm').setup{}
 set encoding=UTF-8
 " Default settings
@@ -93,6 +96,7 @@ let mapleader = ',' " Leader Key
 " Disable original mapping for m
 map m <Nop> 
 map ; :
+map ` %
 
 " Another way to go in insert mode
 " map <Leader>, i
