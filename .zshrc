@@ -23,7 +23,7 @@ SHELL=tmux
 # Path to your oh-my-zsh installation.
 # export ZSH="$HOME/.oh-my-zsh"
 # export EDITOR=/snap/bin/nvim
-export EDITOR=/usr/bin/nvim
+export EDITOR=/home/mkovel/nvim.appimage
 export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="/usr/lib/w3m/:$PATH"
@@ -202,7 +202,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 
 
-#Discord
+#Discord0000
 
 
 
