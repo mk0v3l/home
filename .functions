@@ -14,6 +14,33 @@ function latex(){
 	echo "run cleanPdf to clean all temp files"
 }
 
+function vimsave (){
+  mv ~/.config/nvim/ ~/.config/vimold/config.bak
+  mv ~/.local/share/nvim/ ~/.config/vimold/local.bak
+}
+
+function vimrestore (){
+  mv ~/.config/vimold/config.bak ~/.config/nvim/ 
+  mv ~/.config/vimold/local.bak ~/.local/share/nvim/ 
+}
+
+
+function vimswitch(){
+  mv ~/.config/nvim/ ~/.config/vimSw/config.tmp
+  mv ~/.local/share/nvim/ ~/.config/vimSw/local.tmp
+  
+  mv ~/.config/vimSw/config.bak ~/.config/nvim/ 
+  mv ~/.config/vimSw/local.bak ~/.local/share/nvim/ 
+  
+  mv ~/.config/vimSw/config.tmp ~/.config/vimSw/config.bak 
+  mv ~/.config/vimSw/local.tmp ~/.config/vimSw/local.bak
+}
+# function nvd ()
+# {
+#   vimswitch; /usr/bin/nvim -d ${@} ; vimswitch
+# }
+
+
 function showdate(){
     clear
     printf '\033[;H'
