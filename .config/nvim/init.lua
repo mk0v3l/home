@@ -4,11 +4,11 @@ require("config.lazy")
 
 vim.g.tutor_is_loaded = 1
 vim.cmd.colorscheme("habamax")
-vim.cmd(":RltvNmbr")
-function hidenotif()
-    require("notify").dismiss({ silent = true, pending = true })
-end
-hidenotif()
+-- vim.cmd(":RltvNmbr")
+-- function hidenotif()
+--     require("notify").dismiss({ silent = true, pending = true })
+-- end
+-- hidenotif()
 
 vim.g.floaterm_width = 120
 vim.g.floaterm_height = 35

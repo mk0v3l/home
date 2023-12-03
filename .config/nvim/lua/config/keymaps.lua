@@ -5,6 +5,11 @@ local Util = require("lazyvim.util")
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
 local map = Util.safe_keymap_set
+local togglenum = function()
+    -- vim.wo.number = not vim.wo.number
+    vim.wo.relativenumber = not vim.wo.relativenumber
+end
+map("n", "<leader>N", togglenum, { desc = "Toggle Line Numbers" })
 
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -182,7 +187,6 @@ map("n", ",m", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("n", ",l", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
 
 
 
@@ -485,9 +489,15 @@ map("n", "T", "O", { silent = true })
 -- Terminal
 map("n", "<leader>z", ":LazyGit<CR>", { silent = true, desc = "LazyGit" })
 map("n", "<leader>cp", ":FloatermNew  python3 %<CR>", { silent = true, desc = "Python run" })
-map("n", "<leader>t", ":FloatermNew --height=35 --width=120<CR>", { silent = true, desc = "Terminal" })
+-- map("n", "<leader>t", ":FloatermNew --height=35 --width=120<CR>", { silent = true, desc = "Terminal" })
+map("n", "<leader>t", ":FloatermNew<CR>", { silent = true, desc = "Terminal" })
+map("t", "<C-n>", "<C-\\><C-n> :FloatermNext<CR>", { silent = true, desc = "Terminal" })
+map("t", "<C-b>", "<C-\\><C-n> :FloatermPrev<CR>", { silent = true, desc = "Terminal" })
+-- map("t", "<C-n>", "<C-\><C-n> :FloatermNext<CR>", { silent = true, desc = "Terminal" })
 map("n", "<C-t>", ":FloatermToggle<CR>", { silent = true, desc = "Terminal" })
 map("n", "<leader>r", ":Ranger<CR>", { silent = true, desc = "Ranger" })
+            --<er>td {action = "FloatermNew  ~/.gord/gord",                                 desc = " DisGord",         icon = "🎮", key = "d" },
+map("n", "<leader>D", ":FloatermNew  ~/.gord/gord<CR>", { silent = true, desc = "DisGord" })
 
 -- Visual mode
 map("v", ";", ":", { silent = false })
