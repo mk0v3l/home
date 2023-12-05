@@ -44,3 +44,9 @@ require("lazy").setup({
         },
     },
 })
+vim.keymap.set(
+    "n",
+    "<leader>cl",
+    ":FloatermNew pdflatex -shell-escape % 0<&- && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR>",
+    { silent = true, desc = "  LaTeX Compile" }
+)

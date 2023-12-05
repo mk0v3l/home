@@ -1,10 +1,14 @@
 -------------------------------------------------------------------------------------------------------------------
 -- This file is automatically loaded by lazyvim.config.init
 local Util = require("lazyvim.util")
+-- local M = {}
+
+-- local fn = require("fn")
 
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
-local map = Util.safe_keymap_set
+-- local map = Util.safe_keymap_set
+local map = vim.keymap.set
 local togglenum = function()
     -- vim.wo.number = not vim.wo.number
     vim.wo.relativenumber = not vim.wo.relativenumber
@@ -95,9 +99,9 @@ map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 
 -- formatting
-map({ "n", "v" }, "<leader>cf", function()
-    Util.format({ force = true })
-end, { desc = "Format" })
+-- map({ "n", "v" }, "<leader>cf", function()
+--     Util.format({ force = true })
+-- end, { desc = "Format" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
@@ -118,40 +122,40 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 -- stylua: ignore start
 
 -- toggle options
-map("n", "<leader>uf", function() Util.format.toggle() end, { desc = "Toggle auto format (global)" })
-map("n", "<leader>uF", function() Util.format.toggle(true) end, { desc = "Toggle auto format (buffer)" })
-map("n", "<leader>us", function() Util.toggle("spell") end, { desc = "Toggle Spelling" })
-map("n", "<leader>uw", function() Util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
-map("n", "<leader>uL", function() Util.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
-map("n", "<leader>ul", function() Util.toggle.number() end, { desc = "Toggle Line Numbers" })
-map("n", "<leader>ud", function() Util.toggle.diagnostics() end, { desc = "Toggle Diagnostics" })
-local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
-map("n", "<leader>uc", function() Util.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
-if vim.lsp.inlay_hint then
-  map("n", "<leader>uh", function() vim.lsp.inlay_hint(0, nil) end, { desc = "Toggle Inlay Hints" })
-end
+-- map("n", "<leader>uf", function() Util.format.toggle() end, { desc = "Toggle auto format (global)" })
+-- map("n", "<leader>uF", function() Util.format.toggle(true) end, { desc = "Toggle auto format (buffer)" })
+-- map("n", "<leader>us", function() Util.toggle("spell") end, { desc = "Toggle Spelling" })
+-- map("n", "<leader>uw", function() Util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
+-- map("n", "<leader>uL", function() Util.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
+-- map("n", "<leader>ul", function() Util.toggle.number() end, { desc = "Toggle Line Numbers" })
+-- map("n", "<leader>ud", function() Util.toggle.diagnostics() end, { desc = "Toggle Diagnostics" })
+-- local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
+-- map("n", "<leader>uc", function() Util.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
+-- if vim.lsp.inlay_hint then
+  -- map("n", "<leader>uh", function() vim.lsp.inlay_hint(0, nil) end, { desc = "Toggle Inlay Hints" })
+-- end
 map("n", "<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
 
 -- lazygit
-map("n", "<leader>gg", function() Util.terminal({ "lazygit" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false }) end, { desc = "Lazygit (root dir)" })
-map("n", "<leader>gG", function() Util.terminal({ "lazygit" }, {esc_esc = false, ctrl_hjkl = false}) end, { desc = "Lazygit (cwd)" })
+-- map("n", "<leader>gg", function() Util.terminal({ "lazygit" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false }) end, { desc = " Lazygit (root dir)" })
+-- map("n", "<leader>gG", function() Util.terminal({ "lazygit" }, {esc_esc = false, ctrl_hjkl = false}) end, { desc = " Lazygit (cwd)" })
 
 -- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = " Quit all" })
 
 -- highlights under cursor
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 
 -- LazyVim Changelog
-map("n", "<leader>L", function() Util.news.changelog() end, { desc = "LazyVim Changelog" })
+-- map("n", "<leader>L", function() Util.news.changelog() end, { desc = "LazyVim Changelog" })
 
 -- floating terminal
-local lazyterm = function() Util.terminal(nil, { cwd = Util.root() }) end
+-- local lazyterm = function() Util.terminal(nil, { cwd = Util.root() }) end
 -- local pythonrun = function() Util.terminal("ls", { cwd = Util.root() }) end
-map("n", "<leader>fT", lazyterm, { desc = "Terminal (root dir)" })
-map("n", "<leader>ft", function() Util.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<c-/>", lazyterm, { desc = "Terminal (root dir)" })
-map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
+-- map("n", "<leader>fT", lazyterm, { desc = "Terminal (root dir)" })
+-- map("n", "<leader>ft", function() Util.terminal() end, { desc = "Terminal (cwd)" })
+-- map("n", "<c-/>", lazyterm, { desc = "Terminal (root dir)" })
+-- map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
 -- map("n", "<C-t>", lazyterm, { desc = "which_key_ignore" })
 -- map("n", "<leader>t", lazyterm, { desc = "Terminal (root dir)" })
 -- map("n", "<leader>cP", pythonrun, { desc = "Python run" })
@@ -189,139 +193,6 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("n", ",l", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 
-
-
-
-
-
-
-
-
-
--------------------------------------------------------------------------------------------------------------------
-local Util = require("lazyvim.util")
--- function os.capture(cmd, raw)
---   local handle = assert(io.popen(cmd, "r"))
---   local output = assert(handle:read("*a"))
---   handle:close()
---   if raw then
---     return output
---   end
---   output = string.gsub(string.gsub(string.gsub(output, "^%s+", ""), "%s+$", ""), "[\n\r]+", " ")
---   return output
--- end
--- -- local citation = os.capture("motivate --no-colors", true)
--- local citation = os.capture("fortune", true)
-
--- return {
-  -- {
-  --   "rcarriga/nvim-notify",
-  --   keys = {
-  --     {
-  --       "<leader>n",
-  --       function()
-  --         require("notify").dismiss({ silent = true, pending = true })
-  --       end,
-  --       desc = "Dismiss all Notifications",
-  --     },
-  --   },
-  --   opts = {
-  --     timeout = 3000,
-  --     max_height = function()
-  --       return math.floor(vim.o.lines * 0.75)
-  --     end,
-  --     max_width = function()
-  --       return math.floor(vim.o.columns * 0.75)
-  --     end,
-  --     on_open = function(win)
-  --       vim.api.nvim_win_set_config(win, { zindex = 100 })
-  --     end,
-  --   },
-  --   init = function()
-  --     -- when noice is not enabled, install notify on VeryLazy
-  --     if not Util.has("noice.nvim") then
-  --       Util.on_very_lazy(function()
-  --         vim.notify = require("notify")
-  --       end)
-  --     end
-  --   end,
-  -- },
-  -- {
-
-  --   "nvimdev/dashboard-nvim",
-  --   event = "VimEnter",
-  --   opts = function()
-  --     -- local logo = [[
-  --     --      ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
-  --     --      ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z
-  --     --      ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z
-  --     --      ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z
-  --     --      ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
-  --     --      ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
-  --     -- ]]
-  --     local logo = [[
-  --     ███╗   ███╗██╗  ██╗ ██████╗ ██╗   ██╗██████╗ ██╗     
-  --     ████╗ ████║██║ ██╔╝██╔═████╗██║   ██║╚════██╗██║     
-  --     ██╔████╔██║█████╔╝ ██║██╔██║██║   ██║ █████╔╝██║     
-  --     ██║╚██╔╝██║██╔═██╗ ████╔╝██║╚██╗ ██╔╝ ╚═══██╗██║     
-  --     ██║ ╚═╝ ██║██║  ██╗╚██████╔╝ ╚████╔╝ ██████╔╝███████╗
-  --     ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═══╝  ╚═════╝ ╚══════╝
-  --     ]]
-  --     -- logo = string.rep("\n", 8) .. logo .. "\n\n"
-  --     logo = string.rep("\n", 1) .. logo .. "\n\n" .. citation .. "\n\n"
-  --     -- logo = logo .. "\n\n" .. citation .. "\n\n"
-
-  --     local opts = {
-  --       theme = "doom",
-  --       hide = {
-  --         -- this is taken care of by lualine
-  --         -- enabling this messes up the actual laststatus setting after loading a file
-  --         statusline = false,
-  --       },
-  --       config = {
-  --         header = vim.split(logo, "\n"),
-  --         -- stylua: ignore
-  --         center = {
-  --           { action = "Telescope find_files",                                     desc = " Find file",       icon = " ", key = "f" },
-  --           { action = "ene | startinsert",                                        desc = " New file",        icon = " ", key = "n" },
-  --           { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = " ", key = "r" },
-  --           { action = "Telescope live_grep",                                      desc = " Find text",       icon = " ", key = "g" },
-  --           { action = [[lua require("lazyvim.util").telescope.config_files()()]], desc = " Config",          icon = " ", key = "c" },
-  --           { action = 'lua require("persistence").load()',                        desc = " Restore Session", icon = " ", key = "s" },
-  --           { action = 'e /home/mkovel/.config/nvim/vimtutor.txt',                        desc = " Vim Tutor", icon = "🎓", key = "t" },
-  --           { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
-  --           { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
-  --           { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
-  --         },
-  --         footer = function()
-  --           local stats = require("lazy").stats()
-  --           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-  --           return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
-  --         end,
-  --       },
-  --     }
-
-  --     for _, button in ipairs(opts.config.center) do
-  --       button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
-  --       button.key_format = "  %s"
-  --     end
-
-  --     -- close Lazy and re-open when the dashboard is ready
-  --     if vim.o.filetype == "lazy" then
-  --       vim.cmd.close()
-  --       vim.api.nvim_create_autocmd("User", {
-  --         pattern = "DashboardLoaded",
-  --         callback = function()
-  --           require("lazy").show()
-  --         end,
-  --       })
-  --     end
-
-  --     return opts
-  --   end,
-  -- },
--- }
-local a = vim.api
 
 local actions = require "telescope.actions"
 local config = require "telescope.config"
@@ -458,6 +329,10 @@ map("o", "k", "h", { silent = true })
 map("o", "l", "j", { silent = false })
 map("o", "m", "l", { silent = true })
 
+-- map("i", "<C-o>", "<up>", { silent = false })
+-- map("i", "<C-l>", "<down>", { silent = true })
+-- map("i", "<C-k>", "<left>", { silent = true })
+-- map("i", "<C-m>", "<right>", { silent = true })
 map("s", ";", ":", { silent = false })
 
 -- Window keys
@@ -487,17 +362,18 @@ map("n", "T", "O", { silent = true })
 -- map("n", "x", "i<delete><right><esc>", { silent = false })
 
 -- Terminal
-map("n", "<leader>z", ":LazyGit<CR>", { silent = true, desc = "LazyGit" })
-map("n", "<leader>cp", ":FloatermNew  python3 %<CR>", { silent = true, desc = "Python run" })
+map("n", "<leader>z", ":LazyGit<CR>", { silent = true, desc = " LazyGit" })
+map("n", "<leader>cp", ":FloatermNew  python3 %<CR>", { silent = true, desc = " Python run" })
 -- map("n", "<leader>t", ":FloatermNew --height=35 --width=120<CR>", { silent = true, desc = "Terminal" })
-map("n", "<leader>t", ":FloatermNew<CR>", { silent = true, desc = "Terminal" })
+map("n", "<leader>t", ":FloatermNew<CR>", { silent = true, desc = " Terminal" })
 map("t", "<C-n>", "<C-\\><C-n> :FloatermNext<CR>", { silent = true, desc = "Terminal" })
 map("t", "<C-b>", "<C-\\><C-n> :FloatermPrev<CR>", { silent = true, desc = "Terminal" })
 -- map("t", "<C-n>", "<C-\><C-n> :FloatermNext<CR>", { silent = true, desc = "Terminal" })
-map("n", "<C-t>", ":FloatermToggle<CR>", { silent = true, desc = "Terminal" })
-map("n", "<leader>r", ":Ranger<CR>", { silent = true, desc = "Ranger" })
+map("n", "<C-t>", ":FloatermToggle<CR>", { silent = true, desc = " Terminal" })
+map("n", "<leader>r", ":Ranger<CR>", { silent = true, desc = " Ranger" })
             --<er>td {action = "FloatermNew  ~/.gord/gord",                                 desc = " DisGord",         icon = "🎮", key = "d" },
-map("n", "<leader>D", ":FloatermNew  ~/.gord/gord<CR>", { silent = true, desc = "DisGord" })
+map("n", "<leader>D", ":FloatermNew  ~/.gord/gord<CR>", { silent = true, desc = "󰙯 DisGord" })
+map("n", "<leader>i", ":FloatermNew  w3m google.com<CR>", { silent = true, desc = "󰖟 Internet Browser" })
 
 -- Visual mode
 map("v", ";", ":", { silent = false })
@@ -506,51 +382,59 @@ map("v", "-", "$", { silent = true })
 
 map("i", "<C-a>", "<Esc>:Commentary<CR>A", { silent = true })
 
--- map("n", "<C-u>", ":m-2<CR>", { sient = true }
--- map("n", "<Cilent = true })
 
--- map("x", "<C-u>", ":m-2<CR>gv=gv", { silent = true })
--- map("x", "<C-j>", ":m'>+<CR>gv=gv", { silent = true })
+-- local copilot_suggestion = fn.require_on_exported_call 'copilot.suggestion'
+-- local copilot_panel = fn.require_on_exported_call 'copilot.panel'
+-- local copilot_accept_or_insert = function(action, fallback)
+--   return function()
+--     if copilot_suggestion.is_visible() then
+--         copilot_suggestion[action]()
+--     elseif fallback then
+--         vim.api.nvim_put(vim.split(fallback, '\n'), 'c', false, true)
+--     end
+--   end
+-- end
 
--- map("n", "do", "dk", { silent = true, desc = "which_key_ignore" })
--- map("n", "dl", "dj", { silent = true, desc = "which_key_ignore" })
--- map("n", "dk", "dh", { silent = true, desc = "which_key_ignore" })
--- map("n", "dm", "dl", { silent = true, desc = "which_key_ignore" })
--- map("n", "yo", "yk", { silent = true, desc = "which_key_ignore" })
--- map("n", "yl", "yj", { silent = true, desc = "which_key_ignore" })
--- map("n", "yk", "yh", { silent = true, desc = "which_key_ignore" })
--- map("n", "ym", "yl", { silent = true, desc = "which_key_ignore" })
+-- m.inoremap({ xk [[<C-\>]], [[]] }, copilot_accept_or_insert('accept', '\n'), m.silent, 'Copilot: Accept')
+-- m.inoremap([[<M-\>]], copilot_accept_or_insert 'accept_word', m.silent, 'Copilot: Accept Word')
+-- m.inoremap(xk [[<M-S-\>]], copilot_accept_or_insert('accept_line', '\n'), m.silent, 'Copilot: Accept Line')])])]]})
+-- map("i", "xk [[<C-\\>]]", copilot_accept_or_insert('accept', '\n'),{ silent = true, desc = "Coppilot Accept Line" })
+-- map("i", "xk [[<C-l>]]", copilot_accept_or_insert('accept', '\n'),{ silent = true, desc = "Coppilot Accept Line" })
+-- map("i", "[[<C-l>]]", copilot_accept_or_insert('accept', '\n'),{ silent = true, desc = "Coppilot Accept Line" })
+-- map("i", "<C-l>", copilot_accept_or_insert('accept', '\n'),{ silent = true, desc = "Coppilot Accept Line" })
+--
+--
+--
+  -- { xk [[<C-\>]], [[]] }, copilot_accept_or_insert('accept', '\n'), m.silent, 'Copilot: Accept')
+-- m.inoremap([[<M-\>]], copilot_accept_or_insert 'accept_word', m.silent, 'Copilot: Accept Word')
+-- m.inoremap(xk [[<M-S-\>]], copilot_accept_or_insert('accept_line', '\n'), m.silent, 'Copilot: Accept Line')])])]]})
 
--- map("n", "<leader>t", "<leader>ft<CR>", { silent = true })
--- map("n", "<leader>cp", ":! python3 % <CR>", { desc = "compile Python", silent = true })
--- map("n", "<leader>cp", "<leader>fT python3 % <CR>", { desc = "compile Python", silent = true })
--- map("n", "<leader>cp", "<leader>ft ls <CR>", { desc = "compile Python", silent = true })
+map("n", "<C-i>", "<Esc>:Copilot panel<CR>", { silent = true, desc = "Coppilot Panel" })
+-- map("i", "<C-i>", "<Esc>:Copilot panel<CR>", { silent = true, desc = "Coppilot Panel" })
+map("i", "<C-i>", "<up>", { silent = true, desc = "Coppilot Panel" })
+-- map("n", "<leader>F", "<cmd>!~/.keyrepeatfast.sh<CR>", { silent = true, desc = "󰖟 Key Repeat Fast" })
+map("n", "<leader>1", "<cmd>!~/.keyrepeat.sh;cat ~/.speed<CR>", { silent = true, desc = "󰖟 Key Repeat Fast" })
+-- map("n", "<leader>S", "<cmd>!~/.keyrepeatslow.sh<CR>", { silent = true, desc = "󰖟 Key Repeat Slow" })
+-- map("i", "<C-down>", "<cmd>:Copilot suggestion accept_line<CR>", { silent = true, desc = "Coppilot Accept Line" })
+-- map("i", "<C-o>", "<cmd>:Copilot suggestion accept_word<CR>", { silent = true, desc = "Coppilot Accept Word" })
+-- map("i", "<C-right>", "<cmd>Copilot suggestion accept_word<CR>", { silent = true, desc = "Coppilot Accept Word" })
+-- vim.keymap.set('i', '<C-j>', 'copilot#Accept("<CR>")', {})
+-- local map = vim.keymap.set
+-- vim.keymap.del("n", "<leader>cl")
+-- vim.keymap.set("mode", "the keymap", "<nop>", {}) {} is the opt table
+-- vim.keymap.set("n", "<leader>cl",  "<nop>", {})
+map("n", "<leader>cL", "<cmd>LspInfo<cr>", { silent = true, desc = "Lsp Info" })
+-- map("n", "<leader>cl", ":FloatermNew pdflatex -shell-escape % 0<&- && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR>", { silent = true, desc = "  LaTeX Compile" })
 
--- map("n", "<leader>wv", ":vs<CR>", { silent = true })
--- map("n", "<leader>w\\", ":vs<CR>", { silent = true })
-
--- local buf = vim.fn.expand("%")
 -- map(
 --     "n",
---     "<leader>cp",
---     -- ":FloatermToggle python3 % <CR><Esc><Esc>",
--- ":FloatermToggle TERM=xterm<CR> python3 ./"
---         .. buf
---         -- .. "<CR><Esc><Esc>",
---         .. "<CR>",
--- ":FloatermNew --height=35 --width=120 python3 % <CR><Esc><Esc>",
---     { silent = true, desc = "Python run" }
+--     ",cl",
+--     -- "<Esc>:! pdflatex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>",
+--     -- ":FloatermNew pdfltex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>",
+--     -- ":FloatermNew pdflatex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR>",
+--     ":FloatermNew pdflatex -shell-escape % 0<&- && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR>",
+--     { silent = true }
 -- )
-
-map(
-    "n",
-    ",cl",
-    -- "<Esc>:! pdflatex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>",
-    -- ":FloatermNew pdfltex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR><CR>",
-    -- ":FloatermNew pdflatex -shell-escape % >/dev/null && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR>",
-    ":FloatermNew pdflatex -shell-escape % 0<&- && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR>",
-    { silent = true }
-)
 -- local conf = require("lualine").get_config()
 -- map("n", "<leader>ll", ":" .. conf .. "", { silent = true })
 -- map("n", "<leader>h", "i" .. conf .. "", { silent = true })
@@ -565,9 +449,35 @@ map(
       -- { "U", vim.lsp.buf.hover, desc = "Hover" },
 map("n", "U", vim.lsp.buf.hover, { silent = true, desc = "Hover" })
 
+-- local function SuggestOneCharacter()
+--   local suggestion = vim.fn['copilot#Accept']("")
+--   local bar = vim.fn['copilot#TextQueuedForInsertion']()
+--   return bar:sub(1, 1)
+-- end
+-- local function SuggestOneWord()
+--   local suggestion = vim.fn['copilot#Accept']("")
+--   local bar = vim.fn['copilot#TextQueuedForInsertion']()
+--   return vim.fn.split(bar,  [[[ .]\zs]])[1]
+-- end
+
+-- local map = vim.keymap.set
+
 -- }
 --
 --
+
+-- -- local copilot_suggestion = fn.require_on_exported_call 'copilot.suggestion'
+-- local copilot_panel = fn.require_on_exported_call 'copilot.panel'
+-- local copilot_accept_or_insert = function(action, fallback)
+--   return function()
+--     if copilot_suggestion.is_visible() then
+--         copilot_suggestion[action]()
+--     elseif fallback then
+--         vim.api.nvim_put(vim.split(fallback, '\n'), 'c', false, true)
+--     end
+--   end
+-- end
+
 -- local cop = require("copilot")
 -- local function SuggestOneCharacter()
 --   local suggestion = vim.fn['copilot#Accept']("")
@@ -580,9 +490,11 @@ map("n", "U", vim.lsp.buf.hover, { silent = true, desc = "Hover" })
 --     local bar = vim.fn['copilot#TextQueuedForInsertion']()
 --       return vim.fn.split(bar,  [[[ .]\zs]])[1]
 -- end
-
--- local sugg = require("copilot.suggestion").accept_word()
+-- map('i', '<C-l>', SuggestOneCharacter, {expr = true, remap = false})
+-- map('i', '<C-o>', SuggestOneWord, {expr = true, remap = false})
+-- -- local sugg = require("copilot.suggestion").accept_word()
 -- -- local map = vim.keymap.set
 
--- -- map('i', '<C-Tab>', require("copilot.suggestion").accept_word(), {expr = true, remap = false})
--- map('i', '<C-l>', SuggestOneWord, {expr = true, remap = false})
+-- -- require("copilot.suggestion").accept_word()
+-- -- -- map('i', '<C-Tab>', require("copilot.suggestion").accept_word(), {expr = true, remap = false})
+-- -- map('i', '<C-l>', SuggestOneWord, {expr = true, remap = false})

@@ -1,14 +1,75 @@
-# now=$
-# Retrun " %R 󰸗 %d/%m" if it's day time, otherwise return " %R 󰸗 %d/%m"
-# [ $now -gt 6 -a $now -lt 18 ] && echo "#[fg=colour250]#[fg=colour250] %R 󰸗 %d/%m" || echo "#[fg=colour250]#[fg=colour250] %R 󰸗 %d/%m"
-# "󰖔 %R 󰸗 %d/%m"
-#
-# day=" %R 󰸗 %d/%m"
-# day=" %R 󰸗 %d/%m"
-# night=" %R 󰸗 %d/%m"
-# cal="󰸗"
-# moon="󰖔"
-# sun=""
+white='#f8f8f2'
+gray='#44475a'
+dark_gray='#282a36'
+light_purple='#bd93f9'
+dark_purple='#6272a4'
+cyan='#8be9fd'
+green='#50fa7b'
+orange='#ffb86c'
+red='#ff5555'
+red2='#ff8b8b'
+pink='#ff79c6'
+yellow='#f1fa8c'
+brown='#d6af73'
+brown='#e5aa70'
+
+bat0="#[fg=$red]"
+bat25="#[fg=$red] "
+bat50="#[fg=$orange] "
+bat75="#[fg=$green] "
+bat100="#[fg=$green] "
+bat0c="#[fg=$yellow]#[fg=$red]"
+bat25c="#[fg=$yellow]#[fg=$red]"
+bat50c="#[fg=$yellow]#[fg=$orange]"
+bat75c="#[fg=$yellow]#[fg=$green]"
+bat100c="#[fg=$yellow]#[fg=$green]"
+bat100ok="#[fg=$green]"
+
+cal="#[fg=$red]󰸗 #[fg=$dark_gray]"
+sunrise="#[fg=$orange]󰖜 #[fg=$dark_gray]"
+sunset="#[fg=$orange]󰖛 #[fg=$dark_gray]"
+sun="#[fg=$yellow] #[fg=$dark_gray]"
+moon="#[fg=$cyan]󰖔 #[fg=$dark_gray]"
+cloudday="#[fg=$yellow] #[fg=$dark_gray]"
+cloudnight="#[fg=$cyan]󰼱 #[fg=$dark_gray]"
+rainday="#[fg=$yellow] #[fg=$dark_gray]"
+rainnight="#[fg=$cyan] #[fg=$dark_gray]"
+showerday="#[fg=$yellow] #[fg=$dark_gray]"
+showernight="#[fg=$cyan] #[fg=$dark_gray]"
+snowday="#[fg=$yellow] #[fg=$dark_gray]"
+snownight="#[fg=$cyan] #[fg=$dark_gray]"
+overcastday="#[fg=$yellow] #[fg=$dark_gray]"
+overcastnight="#[fg=$cyan]󰼱 #[fg=$dark_gray]"
+err="#[fg=$red] #[fg=$dark_gray]"
+question="#[fg=$red2] #[fg=$dark_gray]"
+therm="#[fg=$red2]#[fg=$dark_gray]"
+rabbit="#[fg=$brown]󰤇 #[fg=$dark_gray]"
+tortoise="#[fg=$green]󰴻 #[fg=$dark_gray]"
+nowifi="#[fg=$red]󰖪 #[fg=$dark_gray]"
+# 
+
+# brown='#693d10'
+# brown='#ca6600'
+# 693d10
+# rabbit='󰤇'
+# nowifi="#[fg=$red]󰤨 #[fg=$dark_gray]"
+# 󰤇󰴻󰖪
+dirr=$(~/.tmux/plugins/tmux/scripts/dir.sh)
+now=$(date +%H)
+giit=$(~/.tmux/plugins/tmux/scripts/git.sh)
+cur_speed=$(cat ~/.speed) #  possible value : 0 and 1
+today=$(date +%d/%m)
+hour=$(date +%H:%M)
+temperature=$(curl -sL wttr.in/$fixedlocation\?format="%C+%t$display_weather" | rev | cut -d ' ' -f 1 | rev | sed 's/+//g' | sed 's/C//g')
+
+if [ $cur_speed -eq 0 ]; then
+	speed=$tortoise
+else
+	speed=$rabbit
+fi
+
+[ $(date +%H) -gt 6 -a $(date +%H) -lt 18 ] && DAY=true || DAY=false
+weather_condition=$(curl -sL wttr.in\?format="%C+%t" | rev | cut -d ' ' -f2- | rev | awk '{print tolower($0)}')
 
 linux_acpi2() {
 	arg=$1
@@ -42,191 +103,146 @@ battery_percent() {
 	[ -n "$percent" ] && echo " $percent"
 }
 
-# red='#ff5555'
-white='#f8f8f2'
-gray='#44475a'
-dark_gray='#282a36'
-light_purple='#bd93f9'
-dark_purple='#6272a4'
-cyan='#8be9fd'
-green='#50fa7b'
-orange='#ffb86c'
-red='#ff5555'
-pink='#ff79c6'
-yellow='#f1fa8c'
-
-# bat75c="#[fg=$yellow]#[fg=$green] #[fg=$dark_gray]"
-bat0="#[fg=$red] "
-bat25="#[fg=$red] "
-bat50="#[fg=$orange] "
-bat75="#[fg=$green] "
-bat100="#[fg=$green] "
-bat0c="#[fg=$yellow]#[fg=$red]"
-bat25c="#[fg=$yellow]#[fg=$red]"
-bat50c="#[fg=$yellow]#[fg=$orange]"
-bat75c="#[fg=$yellow]#[fg=$green]"
-# bat75c="#[fg=$yell"
-bat100c="#[fg=$yellow]#[fg=$green]"
-bat100ok="#[fg=$green]"
-
-# bat0="#[fg=$red]  #[fg=$dark_gray]"
-# bat25="#[fg=$red]  #[fg=$dark_gray]"
-# bat50="#[fg=$orange]  #[fg=$dark_gray]"
-# bat75="#[fg=$green]  #[fg=$dark_gray]"
-# bat100="#[fg=$green]  #[fg=$dark_gray]"
-# bat0c="#[fg=$yellow]#[fg=$red] #[fg=$dark_gray]"
-# bat25c="#[fg=$yellow]#[fg=$red] #[fg=$dark_gray]"
-# bat50c="#[fg=$yellow]#[fg=$orange] #[fg=$dark_gray]"
-# bat75c="#[fg=$yellow]#[fg=$green]"
-# bat100c="#[fg=$yellow]#[fg=$green] #[fg=$dark_gray]"
-# bat100ok="#[fg=$green] #[fg=$dark_gray]"
-
-# echo "#[fg=$green] #[fg=$dark_gray]"
-# echo "#[fg=$green] #[fg=$dark_gray]"
-# echo "#[fg=$orange] #[fg=$dark_gray]"
-# echo "#[fg=$red] #[fg=$dark_gray]"
-# echo "#[fg=$red] #[fg=$dark_gray]"
-# echo "#[fg=$yellow]#[fg=$red] #[fg=$dark_gray]"
-# echo "#[fg=$yellow]#[fg=$red] #[fg=$dark_gray]"
-# echo "#[fg=$yellow]#[fg=$orange] #[fg=$dark_gray]"
-# echo "#[fg=$yellow]#[fg=$green] #[fg=$dark_gray]"
-# echo "#[fg=$yellow]#[fg=$green] #[fg=$dark_gray]"
-# echo "#[fg=$green] #[fg=$dark_gray]"
-# battery_status() {
 status=$(linux_acpi2 status)
 case $status in
 discharging | Discharging)
 	if [ $(battery_percent) -gt 99 ]; then
 		bat=$bat100ok
-		# echo ''
+		colbat=$green
 	elif [ $(battery_percent) -gt 75 ]; then
 		bat=$bat100
-		# echo "#[fg=$green]  #[fg=$dark_gray]"
+		colbat=$green
 	elif [ $(battery_percent) -gt 50 ]; then
 		bat=$bat75
-		# echo "#[fg=$green]  #[fg=$dark_gray]"
+		colbat=$green
 	elif [ $(battery_percent) -gt 25 ]; then
 		bat=$bat50
-		# echo "#[fg=$orange]  #[fg=$dark_gray]"
+		colbat=$orange
 	elif [ $(battery_percent) -gt 10 ]; then
 		bat=$bat25
-		# echo "#[fg=$red]  #[fg=$dark_gray]"
+		colbat=$red
 	else
 		bat=$bat0
-		# echo "#[fg=$red]  #[fg=$dark_gray]"
+		colbat=$red
 	fi
 	;;
 high | Full)
 	if [ $(battery_percent) -gt 99 ]; then
 		bat=$bat100ok
-		# echo ''
+		colbat=$green
 	elif [ $(battery_percent) -gt 80 ]; then
-		# echo "#[fg=$green] #[fg=#282a36]"
 		bat=$bat100c
-		# echo "#[fg=$yellow]#[fg=$green] #[fg=$dark_gray]"
+		colbat=$green
 	fi
 	;;
-	# echo $status
-	# Full)
-	# echo ''
-	# echo $status
-	# ;;
 charging | Charging)
-	if [ $(battery_percent) -gt 99 ]; then
+	if [ $(battery_percent) -ge 95 ]; then
 		bat=$bat100ok
-		# echo "#[fg=$green] #[fg=$dark_gray]"
-		# echo ''
+		colbat=$green
 	elif [ $(battery_percent) -gt 75 ]; then
-		# echo ''
 		bat=$bat100c
-		# echo "#[fg=$yellow]#[fg=$green] #[fg=$dark_gray]"
-		# echo "#[fg=colour250] #[fg=colour250]"
-		# echo "#[fg=colour250]"
-		# 
+		colbat=$green
 	elif [ $(battery_percent) -gt 50 ]; then
-		# echo ''
-		# echo $bat75
 		bat=$bat75c
-
-		# echo "#[fg=$yellow]#[fg=$green] #[fg=$dark_gray]"
+		colbat=$green
 	elif [ $(battery_percent) -gt 25 ]; then
 		bat=$bat50c
-		# echo "#[fg=$yellow]#[fg=$orange] #[fg=$dark_gray]"
-		# echo ''
+		colbat=$orange
 	elif [ $(battery_percent) -gt 10 ]; then
 		bat=$bat25c
-		# echo "#[fg=$yellow]#[fg=$red] #[fg=$dark_gray]"
-		# echo ''
+		colbat=$red
 	else
 		bat=$bat0c
-		# echo "#[fg=$yellow]#[fg=$red] #[fg=$dark_gray]"
-		# echo ''
+		colbat=$red
 	fi
-	# echo '⚡'
 	;;
 *)
 	echo 'AC'
 	;;
 esac
-# echo $bat
 
-# }
-
-today=$(date +%d/%m)
-hour=$(date +%H:%M)
-# 󰖛󰖜󰖨󰖔
-# cal="󰸗"
-cal="#[fg=$red]󰸗 #[fg=$dark_gray]"
-sunrise="#[fg=$orange]󰖜 #[fg=$dark_gray]"
-sunset="#[fg=$orange]󰖛 #[fg=$dark_gray]"
-sun="#[fg=$yellow]#[fg=$dark_gray]"
-moon="#[fg=$cyan]󰖔#[fg=$dark_gray]"
-
-# sunrise='󰖜'
-# sunset='󰖛'
-# moon="#[fg=$yellow] #[fg=$cyan]"
-# moon="#[fg=$orange]󰖜 #[fg=$cyan]"
-# day='󰖨'
-
-# sunrise=6->8
-# day=8->18
-# sunset=18->20
-# night=20->6
-
-now=$(date +%H)
-if [ $now -gt 6 -a $now -lt 8 ]; then
+if [ $now -ge 6 -a $now -lt 8 ]; then
 	label=$sunrise
-elif [ $now -gt 8 -a $now -lt 18 ]; then
+elif [ $now -ge 8 -a $now -lt 18 ]; then
 	label=$sun
-elif [ $now -gt 18 -a $now -lt 20 ]; then
+elif [ $now -ge 18 -a $now -lt 20 ]; then
 	label=$sunset
 else
 	label=$moon
 fi
 
-bat_stat=$(battery_status)
-# bat_perc=$(battery_percent)
-# bat= $bat_stat + $bat_perc%
-# bat= $bat_stat $bat_perc%
+case $weather_condition in
+*cloud*)
+	if $DAY; then
+		cond=$cloudday
+	else
+		cond=$cloudnight
+	fi
+	;;
+*clear*)
+	if $DAY; then
+		cond=$sun
+	else
+		cond=$moon
+	fi
+	;;
+*rain*)
+	if $DAY; then
+		cond=$rainday
+	else
+		cond=$rainnight
+	fi
+	;;
+*shower*)
+	if $DAY; then
+		cond=$showerday
+	else
+		cond=$showernight
+	fi
+	;;
+*snow*)
+	if $DAY; then
+		cond=$snowday
+	else
+		cond=$snownight
+	fi
+	;;
+# overcast or mist
+*overcast* | *mist*)
+	# *overcast*)
+	if $DAY; then
+		cond=$overcastday
+	else
+		cond=$overcastnight
+	fi
+	;;
 
-# echo "$label $hour $cal $today #[fg=colour250]$bat_stat $bat_perc%"
-# echo "$label $hour $cal $today $bat_stat$bat_perc%"
-# echo "$bat_stat $hour $label $cal $today"
-# echo "$hour $label #[fg=$red]$cal#[fg=$dark_gray] $today $bat_stat"
-# echo "$hour $label #[fg=$red]$cal#[fg=$dark_gray] $today $bat_stat"
-# echo "$label $hour $cal$today $bat_stat"
-# echo "$label $hour $cal$today$bat"
-echo "$cal$today $label $hour$bat"
+# *mist*)
+# 	if $DAY; then
+# 		cond=$overcastday
+# 	else
+# 		cond=$overcastnight
+# 	fi
+# 	;;
 
-# after 20 heour
-# now=$(date +%H)
-# echo $now
-# ret_val=$night
-# echo "#[fg=colour250]$moon $hour $cal $today"
-# ret_val=$day
-#
-# if [ $(date +%H) -gt 20 ]; then
-# 	echo "$moon $hour $cal $today"
-# else
-# 	echo "#[fg=colour250]$sun $hour $cal $today"
-# fi
+*NA*)
+	cond=$err
+	#
+	;;
+*)
+	cond=$question
+	;;
+esac
+# ${${(%):-%~}}
+# bat_stat=$(battery_status)
+bsd="#[fg=$colbat]#[bg=$colbat]#[fg=$dark_gray]ד״סב"
+if ping -q -c 1 -W 1 ipinfo.io >/dev/null; then
+	echo "$dirr#[bg=$gray]$giit#[fg=$dark_purple]#[bg=$dark_purple]$speed$cal$today $cond$temperature$therm $hour$bat $bsd"
+
+	# PROMPT="%F{green}󰞦%{$reset_color%}%f%B"
+	# export PROMPT="yo"
+else
+	echo "$dirr#[bg=$dark_purple]$giit$speed$cal$today $nowifi$hour$bat $bsd"
+	# echo "$cal$today $err$hour$bat"
+	# echo "$cal$today $nowifi$hour$bat"
+fi

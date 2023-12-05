@@ -249,7 +249,7 @@ function open(){
 		/usr/bin/open $1
 	fi
 }
-export TMOUT=5
+# export TMOUT=5
 function battery(){
     output=$(acpi)
     # percentage=$(echo $output | awk '{print $4}' | tr -d ',%')
@@ -325,7 +325,8 @@ NAMECOLOR=#9ad4ff
 CLOCKCOLOR=#FFC500
 # PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M:%S}]%F{$colorBat}($(acpi | awk "NR==1 {print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'$" "
 # PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "NR==1 {print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'%F{green}󰞦%{$reset_color%}" "
-PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "NR==1 {print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)'$'\n'%F{green}󰞦%{$reset_color%}%f%B" "
+
+
 
 # PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'"› "
 
@@ -334,11 +335,18 @@ PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk
 # PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | tail -n 1 | awk '{gsub(/,/, "", $4); sub(/%/, "", $4); print $4}'))%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'"› "
 
 # PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "{gsub(/,/, "", $4); sub(/%/, "", $4); print $4}")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)%f%B'$'\n'"› "
-battery
-TRAPALRM() {
-    battery
-    zle reset-prompt
-}
+
+
+
+# ok
+# PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "NR==1 {print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)'$'\n'%F{green}󰞦%{$reset_color%}%f%B" "
+# PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "NR==1 {print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)'$'\n'%F{green}󰞦%{$reset_color%}%f%B" "
+PROMPT="%F{green}󰞦%{$reset_color%}%f%B"
+# battery
+# TRAPALRM() {
+#     battery
+#     zle reset-prompt
+# }
 
 # function cleanVimSession() {
 # 	rm ~/.local/share/nvim/sessions/%home%mkovel* > /dev/null 2>&1
