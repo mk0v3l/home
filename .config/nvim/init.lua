@@ -11,6 +11,7 @@ vim.cmd.colorscheme("habamax")
 --     require("notify").dismiss({ silent = true, pending = true })
 -- end
 -- hidenotif()
+-- blbl
 
 vim.g.floaterm_width = 120
 vim.g.floaterm_height = 35
