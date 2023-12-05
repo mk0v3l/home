@@ -64,6 +64,7 @@ cmp.setup({
 -- require("gp").setup(configGPT)
 -- require("gp").setup({ openai_api_key = os.getenv("GPT_KEY_NEOVIM") })
 require("gp").setup({ openai_api_key = "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" })
+
 -- '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'
 -- require("copilot").setup({
 --     panel = {
