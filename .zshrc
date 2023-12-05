@@ -11,7 +11,7 @@
 source ~/.aliases
 source ~/.sensible
 source ~/.cursorStyle
-echo -e '\033[?6c'
+# echo -e '\033[?6c'
 source ~/.profile
 TERM=xterm-256color
 setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz 2> /dev/null
@@ -216,6 +216,7 @@ bindkey '^[[Z' forward-word
 # bindkey '\e' autosuggest-accept
 # bindkey '\e' complete-word
 bindkey '^a' forward-word
+bindkey '^o' forward-word
 bindkey '^^i' forward-word
 
 eval "$(zoxide init zsh)"

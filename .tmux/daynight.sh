@@ -242,7 +242,7 @@ if ping -q -c 1 -W 1 ipinfo.io >/dev/null; then
 	# PROMPT="%F{green}󰞦%{$reset_color%}%f%B"
 	# export PROMPT="yo"
 else
-	echo "$dirr#[bg=$dark_purple]$giit$speed$cal$today $nowifi$hour$bat $bsd"
+	echo "$dirr#[bg=$gray]$giit#[fg=$dark_purple]#[bg=$dark_purple]$speed$cal$today $nowifi$hour$bat $bsd"
 	# echo "$cal$today $err$hour$bat"
 	# echo "$cal$today $nowifi$hour$bat"
 fi

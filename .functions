@@ -341,7 +341,7 @@ CLOCKCOLOR=#FFC500
 # ok
 # PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "NR==1 {print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)'$'\n'%F{green}󰞦%{$reset_color%}%f%B" "
 # PROMPT='%F{$NAMECOLOR}%n%f%b%F{$CLOCKCOLOR}[%D{%L:%M}]%F{$colorBat}($(acpi | awk "NR==1 {print \$4}" | tr -d ",")%)%f:%F{$PATHCOLOR}${${(%):-%~}}%F{$BRANCHCOLOR}$(parse_git_branch)'$'\n'%F{green}󰞦%{$reset_color%}%f%B" "
-PROMPT="%F{green}󰞦%{$reset_color%}%f%B"
+PROMPT="%F{green}󰞦 %{$reset_color%}%f%B"
 # battery
 # TRAPALRM() {
 #     battery
