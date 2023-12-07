@@ -169,6 +169,7 @@ return {
                 ["<leader><tab>"] = { name = " 󰓩 tabs" },
                 ["<leader>b"] = { name = "  buffer" },
                 ["<leader>c"] = { name = "  code" },
+                ["<leader>cc"] = { name = "         Compile" },
                 ["<leader>f"] = { name = " 󰱼 file/find" },
                 ["<leader>g"] = { name = "  git" },
                 ["<leader>gh"] = { name = "+hunks" },
@@ -420,6 +421,21 @@ return {
     {
         "robitx/gp.nvim",
     },
+
+    {
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        keys = { { "<leader>cM", "<cmd>Mason<cr>", desc = "Mason" } },
+        build = ":MasonUpdate",
+        opts = {
+            ensure_installed = {
+                "stylua",
+                "shfmt",
+                -- "flake8",
+            },
+        },
+    },
+
     -- require("gp").setup(config),
     -- local config = {
     -- openai_api_key = os.getenv("GPT_KEY_NEOVIM") ,

@@ -387,9 +387,9 @@
     {
         "Identifier": "toggle_command_view",
         "ScopeIdentifier": "global",
-        "EventKey": 20,
+        "EventKey": 24,
         "EventMod": 2,
-        "EventRune": 20
+        "EventRune": 24
     },
     {
         "Identifier": "toggle_bare_chat",

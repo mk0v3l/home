@@ -363,7 +363,7 @@ map("n", "T", "O", { silent = true })
 
 -- Terminal
 map("n", "<leader>z", ":LazyGit<CR>", { silent = true, desc = " LazyGit" })
-map("n", "<leader>cp", ":FloatermNew  python3 %<CR>", { silent = true, desc = " Python run" })
+map("n", "<leader>ccp", ":FloatermNew  python3 %<CR>", { silent = false, desc = " Python run" })
 -- map("n", "<leader>t", ":FloatermNew --height=35 --width=120<CR>", { silent = true, desc = "Terminal" })
 map("n", "<leader>t", ":FloatermNew<CR>", { silent = true, desc = " Terminal" })
 map("t", "<C-n>", "<C-\\><C-n> :FloatermNext<CR>", { silent = true, desc = "Terminal" })
@@ -423,9 +423,13 @@ map("n", "<leader>1", "<cmd>!~/.keyrepeat.sh;cat ~/.speed<CR>", { silent = true,
 -- vim.keymap.del("n", "<leader>cl")
 -- vim.keymap.set("mode", "the keymap", "<nop>", {}) {} is the opt table
 -- vim.keymap.set("n", "<leader>cl",  "<nop>", {})
-map("n", "<leader>cL", "<cmd>LspInfo<cr>", { silent = true, desc = "Lsp Info" })
--- map("n", "<leader>cl", ":FloatermNew pdflatex -shell-escape % 0<&- && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR>", { silent = true, desc = "  LaTeX Compile" })
-
+map("n", "<leader>cl", "<cmd>LspInfo<cr>", { silent = true, desc = "Lsp Info" })
+map("n", "<leader>ccl", ":FloatermNew pdflatex -shell-escape % 0<&- && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR>", { silent = false, desc = "   LaTeX" })
+-- 
+map("n", "<leader>ccm", ":FloatermNew make<CR>", { silent = false, desc = "  Make" })
+map("n", "<leader>ccM", ":!cat % | pandoc -f markdown -t pdf | zathura - --mode fullscreen 2>/dev/null <cr>", { silent = false, desc = "   Markdown" })
+-- <CR>", { silent = true, desc = "  LaTeX Compile" })
+-- 󰞦 cat README.md| pandoc -t pdf | zathura - --mode fullscreen
 -- map(
 --     "n",
 --     ",cl",

@@ -46,6 +46,9 @@ therm="#[fg=$red2]#[fg=$dark_gray]"
 rabbit="#[fg=$brown]󰤇 #[fg=$dark_gray]"
 tortoise="#[fg=$green]󰴻 #[fg=$dark_gray]"
 nowifi="#[fg=$red]󰖪 #[fg=$dark_gray]"
+# 󰖑
+fogday="#[fg=$yellow]󰖑 #[fg=$dark_gray]"
+fognight="#[fg=$cyan]󰖑 #[fg=$dark_gray]"
 # 
 
 # brown='#693d10'
@@ -208,12 +211,12 @@ case $weather_condition in
 	fi
 	;;
 # overcast or mist
-*overcast* | *mist*)
+*overcast* | *mist* | *fog*)
 	# *overcast*)
 	if $DAY; then
-		cond=$overcastday
+		cond=$fogday
 	else
-		cond=$overcastnight
+		cond=$fognight
 	fi
 	;;
 
