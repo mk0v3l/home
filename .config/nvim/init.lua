@@ -34,7 +34,6 @@ ranger_nvim.setup({
         y = 0.5,
     },
 })
-
 require("neo-tree").setup({
     filesystem = {
         filtered_items = {
