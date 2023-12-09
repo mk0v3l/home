@@ -1,7 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 -- vim.cmd("source ~/.config/nvim/cop.vim")
-
+-- require("spaceless").setup()
 vim.g.tutor_is_loaded = 1
 vim.cmd.colorscheme("habamax")
 -- vim.cmd(":RltvNmbr")
@@ -62,7 +62,7 @@ cmp.setup({
 -- local configGPT = { openai_api_key = os.getenv("GPT_KEY_NEOVIM") }
 -- require("gp").setup(configGPT)
 -- require("gp").setup({ openai_api_key = os.getenv("GPT_KEY_NEOVIM") })
-require("gp").setup({ openai_api_key = "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" })
+-- require("gp").setup({ openai_api_key = "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" })
 
 -- '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'
 -- require("copilot").setup({
@@ -163,3 +163,85 @@ require("gp").setup({ openai_api_key = "sk-xZIqLnNN6BPjimHyQs02T3BlbkFJuGiNWYhI8
 --     sorting = defaults.sorting,
 -- }
 -- end,
+
+-- local Popup = require("nui.popup")
+-- local event = require("nui.utils.autocmd").event
+
+-- local popup = Popup({
+--     enter = false,
+--     focusable = true,
+--     -- enter = true,
+--     -- focusable = false,
+--     border = {
+--         style = "none",
+--     },
+--     position = {
+--         row = 1,
+--         col = 100,
+--     },
+--     size = {
+--         -- width = "45%", -- nonum
+--         -- height = "21%", -- nonum
+--         width = "45%",
+--         height = "25%",
+--     },
+-- })
+-- local ok = popup:map("n", "<esc>", function(bufnr)
+--     -- print("ESC pressed in Normal mode!")
+--     popup:hide()
+-- end, { noremap = true })
+-- -- local ok = popup:unmap("n", "<esc>")
+-- -- mount/open the component
+-- popup:mount()
+
+-- -- unmount component when cursor leaves buffer
+-- popup:on(event.BufLeave, function()
+--     popup:unmount()
+-- end)
+
+-- local nonummaj = {
+--     "┌─┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐",
+--     "│ │ A │ Z │ E │ R │ T │ Y │ U │ I │ O │ P │ { │ } │ | │",
+--     "├─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴───┤",
+--     '│ Q │ S │ D │ F │ G │ H │ J │ K │ L │ M │ " │ <Enter> │',
+--     "├─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─────────┤",
+--     "│ │ W │ X │ C │ V │ B │ N │ : │ < │ > │ ? │  <Shift>  │",
+--     "└─┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───────────┘",
+-- }
+-- local nonum = {
+--     "┌─┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐",
+--     "│ │ a │ z │ e │ r │ t │ y │ u │ i │ o │ p │ [ │ ] │ \\ │",
+--     "├─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴───┤",
+--     "│ q │ s │ d │_f_│ g │ h │_j_│ k │ l │ m │ ' │ <Enter> │",
+--     "├─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─────────┤",
+--     "│ │ w │ x │ c │ v │ b │ n │ ; │ , │ . │ / │  <Shift>  │",
+--     "└─┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───────────┘",
+-- }
+
+-- local nummaj = {
+--     "┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐",
+--     "│ ~ │ ! │ @ │ # │ $ │ % │ ^ │ & │ * │ ( │ ) │ _ │ + │",
+--     "└─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┐",
+--     "  │ A │ Z │ E │ R │ T │ Y │ U │ I │ O │ P │ { │ } │ | │",
+--     "┌─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴───┤",
+--     '│ Q │ S │ D │_F_│ G │ H │_J_│ K │ L │ M │ " │ <Enter> │',
+--     "└─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─────────┤",
+--     "  │ W │ X │ C │ V │ B │ N │ : │ < │ > │ ? │  <Shift>  │",
+--     "  └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───────────┘",
+-- }
+-- local num = {
+--     "┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐",
+--     "│ ` │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │",
+--     "└─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┐",
+--     "  │ a │ z │ e │ r │ t │ y │ u │ i │ o │ p │ [ │ ] │ \\ │",
+--     "┌─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴───┤",
+--     "│ q │ s │ d │_f_│ g │_h_│ j │ k │ l │ m │ ' │ <Enter> │",
+--     "└─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─────────┤",
+--     "  │ w │ x │ c │ v │ b │ n │ ; │ , │ . │ / │  <Shift>  │",
+--     "  └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───────────┘",
+-- }
+
+-- -- vim.api.nvim_buf_set_lines(popup.bufnr, 0, 1, false, nonum)
+-- -- vim.api.nvim_buf_set_lines(popup.bufnr, 0, 1, false, nonummaj)
+-- -- vim.api.nvim_buf_set_lines(popup.bufnr, 0, 1, false, num)
+-- vim.api.nvim_buf_set_lines(popup.bufnr, 0, 1, false, nummaj)

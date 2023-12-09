@@ -421,9 +421,6 @@ return {
     },
     --
     --
-    {
-        "robitx/gp.nvim",
-    },
 
     {
         "williamboman/mason.nvim",
