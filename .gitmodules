@@ -1,7 +1,0 @@
-[submodule "nvim"]
-	path = nvim
-	url = https://github.com/mk0v3l/nvim
-[submodule ".config/nvim"]
-	path = .config/nvim
-	url = https://github.com/mk0v3l/nvim
-	branch = master
