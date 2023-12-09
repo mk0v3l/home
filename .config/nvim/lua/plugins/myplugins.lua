@@ -436,4 +436,12 @@ return {
         },
     },
     "mk0v3l/visualkeyboard.nvim",
+    "braxtons12/blame_line.nvim",
+    {
+        "Febri-i/snake.nvim",
+        dependencies = {
+            "Febri-i/fscreen.nvim",
+        },
+        opts = {},
+    },
 }
