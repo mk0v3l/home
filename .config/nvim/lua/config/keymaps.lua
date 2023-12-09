@@ -34,12 +34,12 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window wi
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move Lines
-map("n", "<C-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("n", "<C-u>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("i", "<C-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<C-u>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<C-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<C-u>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("n", "ê", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "ë", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "ê", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "ë", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "ê", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "ë", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- buffers
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
@@ -238,8 +238,8 @@ mappings.default_mappings = config.values.default_mappings
       -- ["<M-f>"] = actions.results_scrolling_left,
       -- ["<M-k>"] = actions.results_scrolling_right,
 
-      ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-      ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+      -- ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+      -- ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
       -- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
       ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
       -- ["<C-l>"] = actions.complete_tag,
@@ -259,8 +259,8 @@ mappings.default_mappings = config.values.default_mappings
       ["<C-v>"] = actions.select_vertical,
       ["<C-t>"] = actions.select_tab,
 
-      ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-      ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+      -- ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+      -- ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
       -- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
       ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 
@@ -303,31 +303,39 @@ map("n", "<C-s>", ":w<CR>", { silent = true })
 -- Mouvement keys
 -- Normal mode
 -- map("n", "o", "<up>", { silent = true })
-map("n", "o", "k", { silent = true })
-map("n", "k", "h", { silent = true })
-map("n", "l", "j", { silent = false })
-map("n", "m", "l", { silent = true })
+-- map("n", "o", "k", { silent = true })
+-- map("n", "k", "h", { silent = true })
+-- map("n", "l", "j", { silent = false })
+-- map("n", "m", "l", { silent = true })
 -- Fast mouvement
-map("n", "<C-o>", "5k", { silent = true })
-map("n", "<C-k>", "5h", { silent = true })
-map("n", "<C-l>", "5j", { silent = true })
-map("n", "<C-m>", "5l", { silent = true })
+-- map("n", "<C-o>", "5k", { silent = true })
+-- map("n", "<C-k>", "5h", { silent = true })
+-- map("n", "<C-l>", "5j", { silent = true })
+-- map("n", "<C-m>", "5l", { silent = true })
+map("n", "<C-k>", "5k", { silent = true })
+map("n", "<C-h>", "5h", { silent = true })
+map("n", "<C-j>", "5j", { silent = true })
+map("n", "<C-l>", "5l", { silent = true })
 
 -- Visual mode
-map("v", "o", "<up>", { silent = true })
-map("v", "k", "h", { silent = true })
-map("v", "l", "j", { silent = true })
-map("v", "m", "l", { silent = true })
+-- map("v", "o", "<up>", { silent = true })
+-- map("v", "k", "h", { silent = true })
+-- map("v", "l", "j", { silent = true })
+-- map("v", "m", "l", { silent = true })
 -- Fast mouvement
-map("v", "<C-o>", "5k", { silent = true })
-map("v", "<C-k>", "5h", { silent = true })
-map("v", "<C-l>", "5j", { silent = true })
-map("v", "<C-m>", "5l", { silent = true })
+-- map("v", "<C-o>", "5k", { silent = true })
+-- map("v", "<C-k>", "5h", { silent = true })
+-- map("v", "<C-l>", "5j", { silent = true })
+-- map("v", "<C-m>", "5l", { silent = true })
+map("v", "<C-k>", "5k", { silent = true })
+map("v", "<C-h>", "5h", { silent = true })
+map("v", "<C-j>", "5j", { silent = true })
+map("v", "<C-l>", "5l", { silent = true })
 -- Motion mode
-map("o", "o", "<up>", { silent = false })
-map("o", "k", "h", { silent = true })
-map("o", "l", "j", { silent = false })
-map("o", "m", "l", { silent = true })
+-- map("o", "o", "<up>", { silent = false })
+-- map("o", "k", "h", { silent = true })
+-- map("o", "l", "j", { silent = false })
+-- map("o", "m", "l", { silent = true })
 
 -- map("i", "<C-o>", "<up>", { silent = false })
 -- map("i", "<C-l>", "<down>", { silent = true })
@@ -336,10 +344,14 @@ map("o", "m", "l", { silent = true })
 map("s", ";", ":", { silent = false })
 
 -- Window keys
-map("n", "O", "<C-w>k", { silent = true })
-map("n", "L", "<C-w>j", { silent = true })
-map("n", "K", "<C-w>h", { silent = true })
-map("n", "M", "<C-w>l", { silent = true })
+map("n", "K", "<C-w>k", { silent = true })
+map("n", "J", "<C-w>j", { silent = true })
+map("n", "H", "<C-w>h", { silent = true })
+map("n", "L", "<C-w>l", { silent = true })
+-- map("n", "O", "<C-w>k", { silent = true })
+-- map("n", "L", "<C-w>j", { silent = true })
+-- map("n", "K", "<C-w>h", { silent = true })
+-- map("n", "M", "<C-w>l", { silent = true })
 map("n", "<leader>wo", "<C-w>o<CR>", { silent = true, desc = "Close other windows" })
 
 -- Buffer keys
@@ -348,7 +360,7 @@ map("n", ",m", ":bn<CR>", { silent = true })
 
 -- Normal mode
 map("n", ";", ":", { silent = false })
-map("n", "h", "@", { silent = true })
+map("n", "m", "@", { silent = true })
 -- map("n", "<C-y>", ":source ~/.config/nvim/lua/config/keymaps.lua<CR>", { silent = false })
 map("n", "<C-y>", ":source ~/.config/nvim/init.lua<CR>", { silent = false })
 map("n", "<C-a>", ":Commentary<CR>", { silent = true })
@@ -356,8 +368,8 @@ map("n", "<C-a>", ":Commentary<CR>", { silent = true })
 map("n", "-", "$", { silent = true })
 map("n", "`", ".", { silent = true })
 map("n", ".", "%", { silent = true })
-map("n", "t", "o", { silent = false })
-map("n", "T", "O", { silent = true })
+-- map("n", "t", "o", { silent = false })
+-- map("n", "T", "O", { silent = true })
 -- map("n", "x", "x", { silent = false })
 -- map("n", "x", "i<delete><right><esc>", { silent = false })
 
@@ -409,9 +421,9 @@ map("i", "<C-a>", "<Esc>:Commentary<CR>A", { silent = true })
 -- m.inoremap([[<M-\>]], copilot_accept_or_insert 'accept_word', m.silent, 'Copilot: Accept Word')
 -- m.inoremap(xk [[<M-S-\>]], copilot_accept_or_insert('accept_line', '\n'), m.silent, 'Copilot: Accept Line')])])]]})
 
-map("n", "<C-i>", "<Esc>:Copilot panel<CR>", { silent = true, desc = "Coppilot Panel" })
+-- map("n", "<C-i>", "<Esc>:Copilot panel<CR>", { silent = true, desc = "Coppilot Panel" })
 -- map("i", "<C-i>", "<Esc>:Copilot panel<CR>", { silent = true, desc = "Coppilot Panel" })
-map("i", "<C-i>", "<up>", { silent = true, desc = "Coppilot Panel" })
+-- map("i", "<C-i>", "<up>", { silent = true, desc = "Coppilot Panel" })
 -- map("n", "<leader>F", "<cmd>!~/.keyrepeatfast.sh<CR>", { silent = true, desc = "󰖟 Key Repeat Fast" })
 map("n", "<leader>1", "<cmd>!~/.keyrepeat.sh;cat ~/.speed<CR>", { silent = true, desc = "󰖟 Key Repeat Fast" })
 -- map("n", "<leader>S", "<cmd>!~/.keyrepeatslow.sh<CR>", { silent = true, desc = "󰖟 Key Repeat Slow" })
@@ -425,10 +437,12 @@ map("n", "<leader>1", "<cmd>!~/.keyrepeat.sh;cat ~/.speed<CR>", { silent = true,
 -- vim.keymap.set("n", "<leader>cl",  "<nop>", {})
 map("n", "<leader>cl", "<cmd>LspInfo<cr>", { silent = true, desc = "Lsp Info" })
 map("n", "<leader>ccl", ":FloatermNew pdflatex -shell-escape % 0<&- && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR>", { silent = false, desc = "   LaTeX" })
--- 
+map("n", "<leader>ccu", ":luafile %<CR>", { silent = false, desc = "  Lua" })
+map("n", "<leader>k", "<cmd>lua require'visualkeyboard'.toggle()<CR>", { silent = false, desc = " Toggle Keyboard"})
 map("n", "<leader>ccm", ":FloatermNew make<CR>", { silent = false, desc = "  Make" })
 map("n", "<leader>ccM", ":!cat % | pandoc -f markdown -t pdf | zathura - --mode fullscreen 2>/dev/null <cr>", { silent = false, desc = "   Markdown" })
 -- <CR>", { silent = true, desc = "  LaTeX Compile" })
+-- map("n", "<leader>k", ":FloatermNew make<CR>", { silent = false, desc = "  Make" })
 -- 󰞦 cat README.md| pandoc -t pdf | zathura - --mode fullscreen
 -- map(
 --     "n",

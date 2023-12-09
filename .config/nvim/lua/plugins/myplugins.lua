@@ -18,8 +18,10 @@ return {
     -- { "zbirenbaum/copilot", enabled = false },
     -- { "zbirenbaum/copilot-cmp", enabled = false },
     -- { "zbirenbaum/copilot.lua", enabled = false },
+    "MunifTanjim/nui.nvim",
     "myusuf3/numbers.vim",
     "yuratomo/w3m.vim",
+    { "jokajak/keyseer.nvim", version = false },
     "ThePrimeagen/vim-be-good",
     "kdheepak/lazygit.nvim",
     -- "github/copilot.vim",
@@ -170,7 +172,7 @@ return {
                 ["<leader><tab>"] = { name = " 󰓩 tabs" },
                 ["<leader>b"] = { name = "  buffer" },
                 ["<leader>c"] = { name = "  code" },
-                ["<leader>cc"] = { name = "         Compile" },
+                ["<leader>cc"] = { name = "          exec" },
                 ["<leader>f"] = { name = " 󰱼 file/find" },
                 ["<leader>g"] = { name = "  git" },
                 ["<leader>gh"] = { name = "+hunks" },
@@ -291,13 +293,13 @@ return {
             },
             panel = {
                 enabled = false,
-                auto_refresh = true,
+                auto_refresh = false,
                 keymap = {
                     jump_prev = "[[",
                     jump_next = "]]",
                     accept = "<CR>",
                     refresh = "r",
-                    open = "<C-i>",
+                    open = "<C-b>",
                 },
             },
         },
@@ -362,7 +364,7 @@ return {
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.abort(),
-                    ["<tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    -- ["<tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                     ["<S-CR>"] = cmp.mapping.confirm({
                         behavior = cmp.ConfirmBehavior.Replace,
                         select = true,
@@ -419,9 +421,6 @@ return {
     },
     --
     --
-    {
-        "robitx/gp.nvim",
-    },
 
     {
         "williamboman/mason.nvim",
@@ -436,4 +435,5 @@ return {
             },
         },
     },
+    "mk0v3l/visualkeyboard.nvim",
 }
