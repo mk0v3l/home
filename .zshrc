@@ -5,6 +5,19 @@
 #
 source ~/.zshfixe || true
 
+# if [  $DISPLAY ]; then 
+    # xterm -bg black -fg white -fa 'Monospace' -fs 14 -fullscreen &
+# fi
+source ~/.aliases
+source ~/.sensible
+source ~/.cursorStyle
+# echo -e '\033[?6c'
+source ~/.profile
+TERM=xterm-256color
+setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz 2> /dev/null
+SHELL=tmux
+export FAST=1
+PROMPT='%F{green}󰞦 %{%}%f%B'
 # If you come from bash you might have to change your $PATH.
 TERM=xterm-256color
 SHELL=tmux
