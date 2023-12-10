@@ -451,7 +451,7 @@ map("n", "<leader>ccl", ":FloatermNew pdflatex -shell-escape % 0<&- && zathura -
 map("n", "<leader>ccu", ":luafile %<CR>", { silent = false, desc = "  Lua" })
 map("n", "<leader>k", "<cmd>lua require'visualkeyboard'.toggle()<CR>", { silent = false, desc = " Toggle Keyboard"})
 map("n", "<leader>ccm", ":FloatermNew make<CR>", { silent = false, desc = "  Make" })
-map("n", "<leader>ccM", ":!cat % | pandoc -f markdown -t pdf | zathura - --mode fullscreen 2>/dev/null <cr>", { silent = false, desc = "   Markdown" })
+map("n", "<leader>ccM", ":FloatermNew cat % | pandoc -f markdown -t pdf | zathura - --mode fullscreen 2>/dev/null <cr>", { silent = false, desc = "   Markdown" })
 -- <CR>", { silent = true, desc = "  LaTeX Compile" })
 -- map("n", "<leader>k", ":FloatermNew make<CR>", { silent = false, desc = "  Make" })
 -- 󰞦 cat README.md| pandoc -t pdf | zathura - --mode fullscreen

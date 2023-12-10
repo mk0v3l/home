@@ -2,7 +2,7 @@
 # See man `man zathurarc'
 
 # Open document in fit-width mode by default
-set adjust-open "best-fit"
+set adjust-open "width"
 
 # One page per row by default
 set pages-per-row 1
@@ -14,7 +14,7 @@ set scroll-full-overlap 0.01
 set scroll-step 100
 
 #zoom settings
-set zoom-min 10
+set zoom-min 100
 set guioptions ""
 
 # zathurarc-dark
@@ -59,15 +59,15 @@ unmap f
 map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
 set scroll-step 300
-map [fullscreen] o scroll up
-map [fullscreen] l scroll down
-map [fullscreen] k scroll left
-map [fullscreen] m scroll right
-map [fullscreen] <C-o> scroll half-up
-map [fullscreen] <C-l> scroll half-down
-map o scroll up
-map l scroll down
-map k scroll left
-map m scroll right
-map <C-o> scroll half-up
-map <C-l> scroll half-down
+# map [fullscreen] o scroll up
+# map [fullscreen] l scroll down
+# map [fullscreen] k scroll left
+# map [fullscreen] m scroll right
+map [fullscreen] <C-k> scroll half-up
+map [fullscreen] <C-j> scroll half-down
+# map o scroll up
+# map l scroll down
+# map k scroll left
+# map m scroll right
+map <C-k> scroll half-up
+map <C-j> scroll half-down
