@@ -173,7 +173,8 @@ bindkey "^h" backward-char
 bindkey "^K" up-line-or-history
 bindkey "^J" down-line-or-history
 bindkey "^U" backward-delete-char
-bindkey "^Y" kill-whole-line
+# bindkey "^Y" kill-whole-line
+bindkey "^Y" backward-kill-word
 # bindkey "^j": next-history
  # PROMPT='%B%F{red}%n%f%F{yellow}@%F{blue}%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 eval "$(zoxide init zsh)"

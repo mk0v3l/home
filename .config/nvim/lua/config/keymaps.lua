@@ -409,6 +409,8 @@ map("v", ";", ":", { silent = false })
 map("v", "<C-a>", ":Commentary<CR>", { silent = true })
 map("v", "-", "$", { silent = true })
 
+map("i", "<C-u>", "<bs>", { silent = true })
+map("i", "<C-y>", "<C-w>", { silent = true })
 map("i", "<C-a>", "<Esc>:Commentary<CR>A", { silent = true })
 map("n", "<leader>wh", "<C-w>h", { silent = true , desc = " Window Left" })
 map("n", "<leader>wj", "<C-w>j", { silent = true , desc = " Window Down" })
