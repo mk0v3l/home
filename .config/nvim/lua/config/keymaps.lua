@@ -396,6 +396,10 @@ map("v", "<C-a>", ":Commentary<CR>", { silent = true })
 map("v", "-", "$", { silent = true })
 
 map("i", "<C-a>", "<Esc>:Commentary<CR>A", { silent = true })
+map("n", "<leader>wh", "<C-w>h", { silent = true , desc = " Window Left" })
+map("n", "<leader>wj", "<C-w>j", { silent = true , desc = " Window Down" })
+map("n", "<leader>wk", "<C-w>k", { silent = true , desc = " Window Up" })
+map("n", "<leader>wl", "<C-w>l", { silent = true , desc = " Window Right" })
 
 
 -- local copilot_suggestion = fn.require_on_exported_call 'copilot.suggestion'
