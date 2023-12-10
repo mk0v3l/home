@@ -436,6 +436,7 @@ return {
         },
     },
     "mk0v3l/visualkeyboard.nvim",
+    "sindrets/diffview.nvim",
     "braxtons12/blame_line.nvim",
     {
         "Febri-i/snake.nvim",

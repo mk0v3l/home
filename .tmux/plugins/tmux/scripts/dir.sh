@@ -170,6 +170,7 @@ main() {
 	path=$(echo $res | cut -d';' -f1)
 	command=$(echo $res | cut -d';' -f2)
 
+	# echo "$res"
 	if echo "$command" | grep -q "ssh"; then
 		# if echo "$command" | grep -q "nvim"; then
 		path=$(echo "󰀂$command")
