@@ -283,7 +283,7 @@ return {
                     -- accept = "<C-z>",
                     -- accept = "<C-left>",
                     accept = "<C-right>",
-                    accept_line = "<C-l>",
+                    accept_line = "<C-p>",
                     -- accept_line = "<C-down>",
                     accept_word = "<C-o>",
                     next = "<C-]>",

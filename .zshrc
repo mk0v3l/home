@@ -10,9 +10,9 @@ source ~/.zshfixe || true
 # fi
 source ~/.aliases
 source ~/.sensible
-source ~/.cursorStyle
+# source ~/.cursorStyle
 # echo -e '\033[?6c'
-source ~/.profile
+# source ~/.profile
 TERM=xterm-256color
 setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz 2> /dev/null
 SHELL=tmux
@@ -153,14 +153,28 @@ export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-bindkey '^[[Z' forward-word
-# bindkey '^ ' autosuggest-accept
+# bindkey '^[[Z' forward-word
+bindkey '^p' autosuggest-accept
 # bindkey '\e' autosuggest-accept
 # bindkey '\e' complete-word
-bindkey '^a' forward-word
+# bindkey '^a' forward-word
 bindkey '^o' forward-word
-bindkey '^^i' forward-word
-
+# bindkey '^^i' forward-word
+# bindkey "^k" arrow-up
+# bindkey "^k" up-line-or-beginning-search
+# bindkey "^j" down-line-or-beginning-commande
+bindkey "^t" clear-screen
+bindkey "^l" forward-char
+bindkey "^h" backward-char
+# bindkey "^J" up-line-or-history
+# bindkey "^J" history-search-forward
+# bindkey "^K" down-line-or-history
+# bindkey "^K" history-search-backward
+bindkey "^K" up-line-or-history
+bindkey "^J" down-line-or-history
+bindkey "^U" backward-delete-char
+bindkey "^Y" kill-whole-line
+# bindkey "^j": next-history
  # PROMPT='%B%F{red}%n%f%F{yellow}@%F{blue}%m%f%F{yellow}[%D{%L:%M:%S}]%f:%F{blue}${${(%):-%~}}%f$ %b'
 eval "$(zoxide init zsh)"
 source ~/.aliases

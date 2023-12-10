@@ -34,12 +34,12 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window wi
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move Lines
-map("n", "ê", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("n", "ë", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("i", "ê", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "ë", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "ê", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "ë", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("n", "<C-down>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<C-up>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "<C-down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<C-up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "<C-down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<C-up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- buffers
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
@@ -324,11 +324,21 @@ map("n", "<C-h>", "5h", { silent = true })
 map("n", "<C-j>", "5j", { silent = true })
 map("n", "<C-l>", "5l", { silent = true })
 
+-- noremap <C-u> :m-2<CR>
+-- noremap <C-j> :m+<CR>
+
+-- xnoremap <C-u> :m-2<CR>gv=gv
+-- xnoremap <C-j> :m'>+<CR>gv=gv
+
+-- inoremap <C-u> <Esc>: m-2<CR>a
+-- inoremap <C-j> <Esc> :m+<CR>i
+
+
 -- Visual mode
--- map("v", "o", "<up>", { silent = true })
--- map("v", "k", "h", { silent = true })
--- map("v", "l", "j", { silent = true })
--- map("v", "m", "l", { silent = true })
+map("i", "<C-k>", "<up>", { silent = true })
+map("i", "<C-j>", "<down>", { silent = true })
+map("i", "<C-h>", "<left>", { silent = true })
+map("i", "<C-l>", "<right>", { silent = true })
 -- Fast mouvement
 -- map("v", "<C-o>", "5k", { silent = true })
 -- map("v", "<C-k>", "5h", { silent = true })
@@ -367,7 +377,7 @@ map("n", ",m", ":bn<CR>", { silent = true })
 
 -- Normal mode
 map("n", ";", ":", { silent = false })
-map("n", "m", "@", { silent = true })
+map("n", "t", "@", { silent = true })
 -- map("n", "<C-y>", ":source ~/.config/nvim/lua/config/keymaps.lua<CR>", { silent = false })
 map("n", "<C-y>", ":source ~/.config/nvim/init.lua<CR>", { silent = false })
 map("n", "<C-a>", ":Commentary<CR>", { silent = true })
