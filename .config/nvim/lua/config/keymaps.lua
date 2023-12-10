@@ -300,9 +300,12 @@ local map = vim.keymap.set
 map("n", "<C-q>", ":q<CR>", { silent = true })
 map("n", "<C-s>", ":w<CR>", { silent = true })
 
-map("n", "z", "w", { silent = true })
-map("o", "z", "w", { silent = true })
-map("v", "z", "w", { silent = true })
+map("n", "die", "diw", { silent = true })
+map("n", "<leader>wo", "<C-w>=", { silent = true })
+map("n", "<leader>wi", "<C-w>|", { silent = true })
+-- map("n", "z", "w", { silent = true })
+-- map("o", "z", "w", { silent = true })
+-- map("v", "z", "w", { silent = true })
 -- Mouvement keys
 -- Normal mode
 -- map("n", "o", "<up>", { silent = true })
