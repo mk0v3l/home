@@ -45,10 +45,19 @@ export PATH=$NETKIT_HOME/bin:$PATH
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 #ZSH_THEME_RANDOM_CANDIDATES=( "gozilla" "mlh" )
+export EDITOR=/home/mkovel/nvim.appimage
+export PATH="$HOME/.cargo/bin:$PATH"
 
+export PATH="/usr/lib/w3m/:$PATH"
+export PATH="$HOME/snap/:$PATH"
+# export PATH="$HOME/.gord/:$PATH"
+# export PATH="/snap/bin/nvim:$PATH"
+export PATH="/snap/bin/:$PATH"
+export PATH="$HOME/.stubgen-2.07/:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/go/bin/:$PATH"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
-
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
