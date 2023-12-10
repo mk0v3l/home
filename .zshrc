@@ -17,6 +17,7 @@ TERM=xterm-256color
 setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz 2> /dev/null
 SHELL=tmux
 export FAST=1
+PROMPT='%F{green}󰞦 %{%}%f%B'
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
