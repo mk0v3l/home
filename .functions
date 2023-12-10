@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+PROMPT='%F{green}󰞦 %{%}%f%B'
 # $ pdflatex --shell-escape -output-directory=/tmp/latex ex.tex && mv /tmp/latex/ex.pdf . && open ex.pdf
 function latex(){
 	# mkdir -p /tmp/latex
