@@ -4,6 +4,7 @@ require("config.lazy")
 -- require("spaceless").setup()
 vim.g.tutor_is_loaded = 1
 vim.cmd.colorscheme("habamax")
+vim.opt.mouse = ""
 -- vim.cmd(":RltvNmbr")
 -- os.execute("! ~/.keyrepeatfast.sh")
 -- vim.cmd("! ~/.keyrepeatfast.sh")
