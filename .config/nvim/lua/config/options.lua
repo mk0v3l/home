@@ -3,6 +3,7 @@
 -- Add any additional options here
 vim.wo.number = true
 vim.wo.relativenumber = true
+-- opt.cursorline = true
 
 -- vim.api.nvim_create_autocmd({ "VimEnter" }, { pattern = "*", command = "! ~/.keyrepeatfast.sh >/dev/null" })
 -- vim.api.nvim_create_autocmd({ "VimLeavePre" }, { pattern = "*", command = "! ~/.keyrepeatslow.sh >/dev/null" })
