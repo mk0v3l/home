@@ -82,7 +82,7 @@ return {
             {action = "FloatermNew  ~/.gord/gord",                                 desc = " DisGord",         icon = "󰙯 ", key = "d" },
             { action = "FloatermNew  ranger",                                      desc = " Ranger",          icon = " ", key = "R" },
             -- { action = "ene | startinsert",                                        desc = " New file",        icon = " ", key = "n" },
-            { action = "ene | file |startinsert",                                        desc = " New file",        icon = " ", key = "n" },
+            { action = "ene | file |startinsert",                                  desc = " New file",        icon = " ", key = "n" },
             { action = "Telescope find_files",                                     desc = " Find file",       icon = "󰥨 ", key = "f" },
             { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = "󰙰 ", key = "r" },
             { action = [[lua require("lazyvim.util").telescope.config_files()()]], desc = " Config files",    icon = " ", key = "c" },
@@ -93,6 +93,7 @@ return {
             { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
             { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
             { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
+            { action = "SnakeStart",                                               desc = " Snake",     icon = "󱔎 ", key = "S" },
           },
                     footer = function()
                         local stats = require("lazy").stats()
