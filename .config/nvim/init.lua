@@ -3,7 +3,7 @@ require("config.lazy")
 -- vim.cmd("source ~/.config/nvim/cop.vim")
 -- require("spaceless").setup()
 vim.g.tutor_is_loaded = 1
-vim.cmd.colorscheme("habamax")
+vim.cmd.colorscheme("tokyonight-night")
 vim.opt.mouse = ""
 -- vim.cmd(":RltvNmbr")
 -- os.execute("! ~/.keyrepeatfast.sh")
