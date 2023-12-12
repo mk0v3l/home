@@ -13,13 +13,14 @@ source ~/.sensible
 # source ~/.cursorStyle
 # echo -e '\033[?6c'
 # source ~/.profile
-TERM=xterm-256color
+TERM=tmux-256color
+# TERM=xterm-256color
 setfont /usr/share/consolefonts/Lat38-TerminusBold20x10.psf.gz 2> /dev/null
 SHELL=tmux
 export FAST=1
 PROMPT='%F{green}󰞦 %{%}%f%B'
 # If you come from bash you might have to change your $PATH.
-TERM=xterm-256color
+# TERM=xterm-256color
 SHELL=tmux
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 PATH=$HOME/.cargo/bin:$PATH
@@ -180,8 +181,12 @@ bindkey "^Y" backward-kill-word
 eval "$(zoxide init zsh)"
 source ~/.aliases
 source ~/.functions
-# TMOUT=1
+# T
+export PATH=$PATH:/home/mkovel/.local/bin/poetry
+export PATH="/home/mkovel/.local/bin:$PATH"
+export hugo='yooo'
 
+TERM=tmux-256color
 # TRAPALRM() {
 #     zle reset-prompt
 # }
