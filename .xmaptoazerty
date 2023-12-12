@@ -1,0 +1,9 @@
+keycode  38 = q Q a A oe OE ae AE
+keycode  24 = a A q Q aring Aring adiaeresis Adiaeresis
+
+keycode  25 = z Z w W Greek_OMEGA dead_cedilla guillemotleft leftdoublequotemark
+keycode  52 = w W z Z U2211 doublelowquotemark acircumflex Acircumflex
+
+keycode  58 = semicolon colon m M U2026 thorn odiaeresis Odiaeresis
+keycode  47 = m M comma question mu threequarters questiondown U2026
+
