@@ -446,4 +446,9 @@ return {
         },
         opts = {},
     },
+    {
+        "mk0v3l/tokyonight.nvim",
+        lazy = true,
+        opts = { style = "moon" },
+    },
 }
