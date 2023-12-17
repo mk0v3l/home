@@ -3,6 +3,7 @@
 -- Add any additional options here
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.cmd("set colorcolumn=80")
 -- opt.cursorline = true
 
 -- vim.api.nvim_create_autocmd({ "VimEnter" }, { pattern = "*", command = "! ~/.keyrepeatfast.sh >/dev/null" })
