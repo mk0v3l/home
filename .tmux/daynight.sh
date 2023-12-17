@@ -182,7 +182,7 @@ case $weather_condition in
 		cond=$cloudnight
 	fi
 	;;
-*clear*)
+*clear* | *sunny*)
 	if $DAY; then
 		cond=$sun
 	else
