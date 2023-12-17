@@ -205,7 +205,7 @@ mappings.default_mappings = config.values.default_mappings
     i = {
       ["<C-n>"] = actions.move_selection_next,
       ["<Down>"] = actions.move_selection_next,
-      ["<C-p>"] = actions.move_selection_previous,
+      -- ["<C-p>"] = actions.move_selection_previous,
       ["<Up>"] = actions.move_selection_previous,
 
       ["<C-c>"] = actions.close,
@@ -227,7 +227,7 @@ mappings.default_mappings = config.values.default_mappings
       ["<C-Down>"] = actions.preview_scrolling_down,
       ["<C-d>"] = actions.preview_scrolling_down,
       ["<PageDown>"] = actions.preview_scrolling_down,
-      -- ["<C-k>"] = actions.preview_scrolling_right,
+      -- ["<C-k>"] = "5k",
       ["<C-Right>"] = actions.preview_scrolling_right,
       ["<Right>"] = actions.preview_scrolling_right,
       ["<C-Left>"] = actions.preview_scrolling_left,
@@ -282,7 +282,7 @@ mappings.default_mappings = config.values.default_mappings
 
       ["<C-o>"] = actions.preview_scrolling_up,
       ["<C-l>"] = actions.preview_scrolling_down,
-      ["<C-k>"] = actions.preview_scrolling_left,
+      -- ["<C-k>"] = actions.preview_scrolling_left,
       ["Right"] = actions.preview_scrolling_right,
       ["<PageUp>"] = actions.preview_scrolling_up,
       ["<PageDown>"] = actions.preview_scrolling_down,
@@ -334,8 +334,10 @@ map("n", "<C-l>", "5l", { silent = true })
 -- inoremap <C-j> <Esc> :m+<CR>i
 
 
--- Visual mode
-map("i", "<C-k>", "<up>", { silent = true })
+-- Insert mode
+map("i", "jk", "<Esc>", { silent = true })
+map("i", "kj", "<Esc>", { silent = true })
+map("i", "<C-k>", "<up>", { silent = true ,remap = true})
 map("i", "<C-j>", "<down>", { silent = true })
 map("i", "<C-h>", "<left>", { silent = true })
 map("i", "<C-l>", "<right>", { silent = true })
@@ -344,6 +346,7 @@ map("i", "<C-l>", "<right>", { silent = true })
 -- map("v", "<C-k>", "5h", { silent = true })
 -- map("v", "<C-l>", "5j", { silent = true })
 -- map("v", "<C-m>", "5l", { silent = true })
+-- Visual mode
 map("v", "<C-k>", "5k", { silent = true })
 map("v", "<C-h>", "5h", { silent = true })
 map("v", "<C-j>", "5j", { silent = true })
@@ -458,7 +461,7 @@ map("n", "<leader>1", "<cmd>!~/.keyrepeat.sh;cat ~/.speed<CR>", { silent = true,
 -- vim.keymap.del("n", "<leader>cl")
 -- vim.keymap.set("mode", "the keymap", "<nop>", {}) {} is the opt table
 -- vim.keymap.set("n", "<leader>cl",  "<nop>", {})
-map("n", "<leader>cl", "<cmd>LspInfo<cr>", { silent = true, desc = "Lsp Info" })
+-- map("n", "<leader>cl", "<cmd>LspInfo<cr>", { silent = true, desc = "Lsp Info" })
 map("n", "<leader>ccl", ":FloatermNew pdflatex -shell-escape % 0<&- && zathura --mode fullscreen %:r.pdf 2>/dev/null<CR>", { silent = false, desc = "   LaTeX" })
 map("n", "<leader>ccu", ":luafile %<CR>", { silent = false, desc = "  Lua" })
 map("n", "<leader>k", "<cmd>lua require'visualkeyboard'.toggle()<CR>", { silent = false, desc = " Toggle Keyboard"})

@@ -193,9 +193,14 @@ return {
 
     {
         "neovim/nvim-lspconfig",
+        keys = {
+            { "C-k", mode = "i", false },
+        },
         init = function()
             local keys = require("lazyvim.plugins.lsp.keymaps").get()
             keys[#keys + 1] = { "<leader>cl", false }
+            keys[#keys + 1] = { "<C-k>", "<cmd>echo 'hello'<cr>" }
+            -- keys[#keys + 1] = { "<c-k>", mode = "i", false }
         end,
     },
 
@@ -451,4 +456,5 @@ return {
         lazy = true,
         opts = { style = "moon" },
     },
+    "vimsence/vimsence",
 }
