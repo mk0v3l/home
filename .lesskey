@@ -1,6 +1,6 @@
-l forw-line
-^l forw-screen
-m forw-screen
-o back-line
-k back-screen
-^o back-screen
+# l forw-line
+^j forw-screen
+# m forw-screen
+# o back-line
+# k back-screen
+^k back-screen
