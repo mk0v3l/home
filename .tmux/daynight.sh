@@ -239,7 +239,10 @@ esac
 # ${${(%):-%~}}
 # bat_stat=$(battery_status)
 # bsd="#[fg=$green]#[bg=$green]#[fg=$dark_gray]ד״סב"
-bsd="#[fg=$colbat]#[bg=$colbat]#[fg=$dark_gray]ד״סב"
+bsd_col=$light_purple
+bsd="#[fg=$colbat]#{?client_prefix,#[fg=$bsd_col],}#[bg=$colbat]#[fg=$dark_gray]#{?client_prefix,#[bg=$bsd_col],}ד״סב"
+# bsd="#[fg=$colbat]#[bg=$colbat]#[fg=$dark_gray]ד״סב"
+# bds="#[bg=$colbat,fg=${dark_gray}]#{?client_prefix,#[bg=red],} ${left_icon} #[fg=${green},bg=${gray}]#{?client_prefix,#[fg=red],}${left_sep}
 if ping -q -c 1 -W 1 ipinfo.io >/dev/null; then
 	echo "$dirr#[bg=$gray]$giit#[fg=$dark_purple]#[bg=$dark_purple]$speed$cal$today $cond$temperature$therm $hour$bat $bsd"
 
