@@ -282,9 +282,9 @@
     {
         "Identifier": "exit_application",
         "ScopeIdentifier": "global",
-        "EventKey": 3,
+        "EventKey": 17,
         "EventMod": 2,
-        "EventRune": 3
+        "EventRune": 17
     },
     {
         "Identifier": "focus_up",
