@@ -154,7 +154,7 @@ function isDefFunc(){
 	return 1
 }
 function install(){
-	sudo apt install $@
+	sudo apt install $@ -y
 }
 function pdf2jpg(){
 	filename=$(basename -- "$1")
