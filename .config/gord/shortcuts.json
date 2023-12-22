@@ -74,28 +74,28 @@
         "ScopeIdentifier": "chatview",
         "EventKey": 256,
         "EventMod": 0,
-        "EventRune": 111
+        "EventRune": 107
     },
     {
         "Identifier": "selection_down",
         "ScopeIdentifier": "chatview",
         "EventKey": 256,
         "EventMod": 0,
-        "EventRune": 108
+        "EventRune": 106
     },
     {
         "Identifier": "selection_top",
         "ScopeIdentifier": "chatview",
         "EventKey": 256,
         "EventMod": 0,
-        "EventRune": 107
+        "EventRune": 104
     },
     {
         "Identifier": "selection_bottom",
         "ScopeIdentifier": "chatview",
         "EventKey": 256,
         "EventMod": 0,
-        "EventRune": 109
+        "EventRune": 108
     },
     {
         "Identifier": "toggle_reply_mention",
@@ -289,9 +289,9 @@
     {
         "Identifier": "focus_up",
         "ScopeIdentifier": "global",
-        "EventKey": -1,
-        "EventMod": -1,
-        "EventRune": -1
+        "EventKey": 257,
+        "EventMod": 2,
+        "EventRune": 0
     },
     {
         "Identifier": "focus_down",
@@ -352,16 +352,16 @@
     {
         "Identifier": "focus_message_input",
         "ScopeIdentifier": "global",
-        "EventKey": 0,
-        "EventMod": 2,
-        "EventRune": 0
+        "EventKey": 9,
+        "EventMod": 0,
+        "EventRune": 9
     },
     {
         "Identifier": "focus_message_container",
         "ScopeIdentifier": "global",
-        "EventKey": 16,
-        "EventMod": 6,
-        "EventRune": 16
+        "EventKey": 29,
+        "EventMod": 2,
+        "EventRune": 29
     },
     {
         "Identifier": "focus_command_input",
@@ -380,16 +380,16 @@
     {
         "Identifier": "toggle_user_container",
         "ScopeIdentifier": "global",
-        "EventKey": 10,
+        "EventKey": 21,
         "EventMod": 2,
-        "EventRune": 10
+        "EventRune": 21
     },
     {
         "Identifier": "toggle_command_view",
         "ScopeIdentifier": "global",
-        "EventKey": 24,
+        "EventKey": 20,
         "EventMod": 2,
-        "EventRune": 24
+        "EventRune": 20
     },
     {
         "Identifier": "toggle_bare_chat",
@@ -401,16 +401,16 @@
     {
         "Identifier": "group_channel_mark_muted",
         "ScopeIdentifier": "global",
-        "EventKey": 25,
-        "EventMod": 2,
-        "EventRune": 25
+        "EventKey": -1,
+        "EventMod": -1,
+        "EventRune": -1
     },
     {
         "Identifier": "guild_mark_muted",
         "ScopeIdentifier": "guildlist",
-        "EventKey": 25,
-        "EventMod": 2,
-        "EventRune": 25
+        "EventKey": -1,
+        "EventMod": -1,
+        "EventRune": -1
     },
     {
         "Identifier": "guild_mark_read",
