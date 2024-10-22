@@ -244,12 +244,15 @@ bsd="#[fg=$colbat]#{?client_prefix,#[fg=$bsd_col],}#[bg=$colbat]#[fg=$dark_gr
 # bsd="#[fg=$colbat]#[bg=$colbat]#[fg=$dark_gray]ד״סב"
 # bds="#[bg=$colbat,fg=${dark_gray}]#{?client_prefix,#[bg=red],} ${left_icon} #[fg=${green},bg=${gray}]#{?client_prefix,#[fg=red],}${left_sep}
 if ping -q -c 1 -W 1 ipinfo.io >/dev/null; then
-	echo "$dirr#[bg=$gray]$giit#[fg=$dark_purple]#[bg=$dark_purple]$speed$cal$today $cond$temperature$therm $hour$bat $bsd"
+	# echo "$dirr#[bg=$gray]$giit#[fg=$dark_purple]#[bg=$dark_purple]$speed$cal$today $cond$temperature$therm $hour$bat $bsd"
+	echo "$dirr#[bg=$gray]$giit#[fg=$dark_purple]#[bg=$dark_purple]$speed$cal$today  $hour$bat $bsd"
 
 	# PROMPT="%F{green}󰞦%{$reset_color%}%f%B"
 	# export PROMPT="yo"
 else
 	echo "$dirr#[bg=$gray]$giit#[fg=$dark_purple]#[bg=$dark_purple]$speed$cal$today $nowifi$hour$bat $bsd"
+	# echo "$dirr#[bg=$gray]$giit#[fg=$dark_purple]#[bg=$dark_purple]$speed$cal$today $nowifi$hour$bat $bsd"
+	# echo ""
 	# echo "$cal$today $err$hour$bat"
 	# echo "$cal$today $nowifi$hour$bat"
 fi
