@@ -212,3 +212,8 @@ function open(){
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{\1}/'
 }
+
+verifysha512() {
+    [ "$(sha512sum "$1" | cut -d' ' -f1)" = "$2" ] && echo "✅ OK" || echo "❌ Non valide"
+}
+
